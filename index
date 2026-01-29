@@ -1,61 +1,647 @@
 <!doctype html>
 <html lang="it">
 <head>
-  <meta charset="utf-8">
-  <title>Le mie slide</title>
+  <meta charset="utf-8" />
+  <title>ZeroStart Migliorshop — Slides Full</title>
 
-  <link rel="stylesheet" href="https://unpkg.com/reveal.js/dist/reveal.css">
-  <link rel="stylesheet" href="https://unpkg.com/reveal.js/dist/theme/black.css">
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
 
   <style>
-    body { background: #0f172a; }
-    h1, h2 { letter-spacing: -0.02em; }
-    .card {
-      background: rgba(255,255,255,0.06);
-      border-radius: 16px;
-      padding: 20px;
+    /* ===== SLIDE PDF ORIZZONTALE 16:9 =====
+       297mm x 167mm ~ 16:9 (wide), perfetto “stile slide”
+    */
+    @page { size: 297mm 167mm; margin: 0; }
+    * { box-sizing: border-box; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+    :root{
+      --blu:#0e2166;
+      --viola:#8923ad;
+      --azzurro:#19c6ff;
+
+      --grigio:#4b5563;
+      --muted:#6b7280;
+
+      --arancio:#f97316;
+      --arancio-bd:#fed7aa;
+      --arancio-bg:#fff7ed;
+      --arancio-txt:#9a3412;
+
+      --verde:#15803d;
+      --verde-bg:#ecfdf5;
+      --verde-bd:#bbf7d0;
+
+      --rosso:#ef4444;
+      --rosso-bd:#fecaca;
+      --rosso-bg:#fef2f2;
+      --rosso-txt:#991b1b;
+
+      --card-bd:#e2e5f3;
+    }
+
+    body{
+      margin:0;
+      font-family:"Varela Round", Arial, Helvetica, sans-serif;
+      color:#101827;
+      background:#0b1220;
+    }
+
+    /* Ogni slide = 1 pagina */
+    .slide{
+      width: 297mm;
+      height: 167mm;
+      position: relative;
+      overflow: hidden;
+      page-break-after: always;
+    }
+    .slide:last-child{ page-break-after: auto; }
+
+    /* Sfondo “powerpoint style” pieno */
+    .bg-soft{
+      background:
+        radial-gradient(circle at 0% 0%, rgba(25,198,255,0.22) 0, transparent 55%),
+        radial-gradient(circle at 100% 0%, rgba(137,35,173,0.20) 0, transparent 55%),
+        radial-gradient(circle at 30% 100%, rgba(249,115,22,0.12) 0, transparent 60%),
+        linear-gradient(180deg, #fbfcff 0%, #ffffff 55%, #f6f7ff 100%);
+    }
+
+    /* Safe-area come Canva: padding interno, ma SENZA riquadri */
+    .pad{
+      position:absolute;
+      inset: 12mm;
+      display:flex;
+      flex-direction:column;
+      gap: 10mm;
+    }
+
+    /* ===== Header pill + logo (diretto sul foglio) ===== */
+    .top-bar{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+    }
+
+    .pill-row{ display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+    .pill{
+      display:inline-flex; align-items:center; gap:8px;
+      border-radius:999px;
+      border:1px solid #dce8ff;
+      padding:8px 13px;
+      font-size: 13px;
+      font-weight: 900;
+      color:var(--blu);
+      background:#f5f7ff;
+      white-space:nowrap;
+      box-shadow: 0 10px 24px rgba(15,23,42,0.06);
+    }
+    .pill-dot{
+      width:10px; height:10px; border-radius:999px;
+      background:linear-gradient(135deg,var(--viola),var(--azzurro));
+    }
+    .pill-red{
+      display:inline-flex; align-items:center; gap:8px;
+      border-radius:999px;
+      border:1px solid var(--rosso-bd);
+      padding:8px 13px;
+      font-size: 13px;
+      font-weight: 900;
+      color: var(--rosso-txt);
+      background: var(--rosso-bg);
+      white-space:nowrap;
+      box-shadow: 0 10px 24px rgba(15,23,42,0.06);
+    }
+    .pill-red-dot{
+      width:10px; height:10px; border-radius:999px;
+      background: linear-gradient(135deg,#f87171,var(--rosso));
+      box-shadow: 0 4px 10px rgba(239,68,68,0.18);
+    }
+    .logo{
+      height: 34px;
+      display:block;
+      filter: drop-shadow(0 10px 18px rgba(15,23,42,0.10));
+    }
+
+    /* ===== Slide layout ===== */
+    .grid{
+      display:grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 12mm;
+      align-items: stretch;
+      min-height: 0;
+      flex:1;
+    }
+
+    /* Trust chips */
+    .trust-line{
+      display:flex; gap:8px; flex-wrap:wrap; align-items:center;
+      font-size: 13px;
+      margin-top: 2mm;
+    }
+    .trust-chip{
+      display:inline-flex; align-items:center; gap:6px;
+      padding:7px 11px;
+      border-radius:999px;
+      border:1px solid var(--verde-bd);
+      background:var(--verde-bg);
+      color:var(--verde);
+      font-weight:900;
+      white-space:nowrap;
+    }
+    .trust-dot{
+      width:8px;height:8px;border-radius:999px;
+      background:linear-gradient(135deg,#34d399,var(--verde));
+      box-shadow: 0 4px 10px rgba(21,128,61,0.14);
+    }
+
+    .hero-title{
+      margin: 6mm 0 0 0;
+      font-size: 44px;
+      line-height: 1.05;
+      color:var(--blu);
+      letter-spacing:-0.7px;
+    }
+    .hero-title span{ color:var(--viola); }
+
+    .hero-sub{
+      margin-top: 4mm;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.35;
+      max-width: 92%;
+    }
+
+    /* Value cards “floating” (non riquadro globale, solo elementi) */
+    .value-grid{
+      margin-top: 6mm;
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .value-item{
+      border-radius:16px;
+      border:1px solid #e2e8f0;
+      background: rgba(255,255,255,0.82);
+      padding:12px 14px;
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+      box-shadow: 0 18px 50px rgba(15,23,42,0.06);
+      backdrop-filter: blur(6px);
+      min-height: 86px;
+    }
+    .value-icon{
+      width:28px; height:28px;
+      border-radius:11px;
+      background:linear-gradient(135deg,#eef2ff,#f5f7ff);
+      border:1px solid #e0e7ff;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:900;
+      color:var(--blu);
+      flex:0 0 28px;
+      line-height:1;
+      margin-top:1px;
+    }
+    .value-title{
+      font-size: 15px;
+      font-weight: 900;
+      color:#111827;
+      line-height:1.12;
+      margin-bottom: 4px;
+    }
+    .value-desc{
+      font-size: 13px;
+      color: var(--muted);
+      line-height:1.25;
+    }
+
+    .mega-badge{
+      margin-top: 6mm;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      padding: 11px 16px;
+      border-radius:999px;
+      border:1px solid var(--arancio-bd);
+      background: linear-gradient(135deg, rgba(255,247,237,0.95), rgba(255,255,255,0.9));
+      box-shadow: 0 18px 50px rgba(249,115,22,0.10);
+      backdrop-filter: blur(6px);
+    }
+    .mega-main{
+      font-size: 16px;
+      font-weight: 900;
+      color:var(--arancio-txt);
+      white-space:nowrap;
+    }
+    .mega-highlight{ color: var(--arancio); }
+    .mega-sub{
+      font-size: 13px;
+      font-weight: 900;
+      white-space:nowrap;
+      padding:8px 11px;
+      border-radius:999px;
+      border:1px solid rgba(14,33,102,0.18);
+      background: rgba(239,246,255,0.92);
+      color:var(--blu);
+    }
+
+    /* Side panel (sempre “elemento”, non frame globale) */
+    .side{
+      display:flex;
+      flex-direction:column;
+      gap: 10px;
+      min-height: 0;
+    }
+    .side-title{
+      font-size: 18px;
+      font-weight: 900;
+      color: var(--blu);
+      letter-spacing:-0.2px;
+      margin:0;
+    }
+    .side-sub{ margin-top:3px; font-size: 13px; color: var(--muted); }
+
+    .kpi{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:10px;
+      margin-top: 4px;
+    }
+    .kpi-box{
+      border-radius:16px;
+      border:1px solid #e5e7eb;
+      background: rgba(255,255,255,0.85);
+      padding:12px 14px;
+      box-shadow: 0 18px 50px rgba(15,23,42,0.06);
+      backdrop-filter: blur(6px);
+    }
+    .kpi-label{ font-size: 12px; color: var(--muted); font-weight: 900; }
+    .kpi-value{ margin-top:7px; font-size: 24px; font-weight: 900; color:#111827; }
+    .kpi-chip{
+      margin-top:10px;
+      display:inline-flex; align-items:center; gap:8px;
+      padding:7px 11px;
+      border-radius:999px;
+      border:1px solid var(--verde-bd);
+      background:var(--verde-bg);
+      color:var(--verde);
+      font-weight:900;
+      font-size: 12px;
+      white-space:nowrap;
+    }
+    .kpi-dot{
+      width:10px;height:10px;border-radius:999px;
+      background:linear-gradient(135deg,#34d399,var(--verde));
+    }
+
+    .cta{
+      margin-top:auto;
+      border-radius:18px;
+      border:1px solid var(--arancio-bd);
+      background: linear-gradient(135deg, rgba(255,247,237,0.95), rgba(255,255,255,0.9));
+      padding: 13px 16px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 10px;
+      box-shadow: 0 18px 50px rgba(249,115,22,0.10);
+      backdrop-filter: blur(6px);
+    }
+    .cta-title{
+      font-size: 15px;
+      font-weight: 900;
+      color: var(--arancio-txt);
+      line-height: 1.15;
+    }
+    .cta-title span{ color: var(--arancio); }
+    .cta-sub{
+      margin-top: 4px;
+      font-size: 12.8px;
+      color: var(--arancio-txt);
+      opacity: 0.95;
+      line-height: 1.25;
+    }
+    .cta-btn{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:11px 13px;
+      border-radius:999px;
+      border:1px solid var(--arancio-bd);
+      background:linear-gradient(135deg, #ffffff, var(--arancio-bg));
+      color:var(--arancio-txt);
+      font-weight:900;
+      font-size:13px;
+      white-space:nowrap;
+      text-decoration:none;
+    }
+    .cta-btn-dot{
+      width:10px;height:10px;border-radius:999px;
+      background:linear-gradient(135deg,#f59e0b,var(--arancio));
+    }
+
+    /* ===== Slide 2 styles ===== */
+    .grid-2{
+      display:grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 12mm;
+      flex:1;
+      min-height: 0;
+      align-items: stretch;
+    }
+
+    table{ border-collapse:collapse; width:100%; }
+    .cs-table{
+      width:100%;
+      border-radius:18px;
+      overflow:hidden;
+      border:1px solid #e5e7eb;
+      background: rgba(255,255,255,0.88);
+      box-shadow: 0 18px 55px rgba(15,23,42,0.08);
+      backdrop-filter: blur(6px);
+    }
+    .cs-table th, .cs-table td{
+      border:1px solid #e5e7eb;
+      padding:12px 12px;
+      font-size: 13px;
+      vertical-align: middle;
+    }
+    .cs-table th{
+      background:#f5f7ff;
+      color:#111827;
+      text-align:left;
+    }
+    .cs-col-plan{ text-align:center; }
+    .cs-annual{ background:linear-gradient(135deg,#e0edff,#f5f7ff); }
+    .cs-triennial{ background:linear-gradient(135deg,#f4e8ff,#fdf2ff); }
+    .cs-plan-title{ font-size: 14px; font-weight:900; line-height:1.1; }
+    .cs-badge{ display:block; font-size:12.5px; color:var(--muted); margin-top:4px; font-weight:800; }
+    .cs-name{ font-weight:900; font-size: 13.5px; margin-bottom: 3px; }
+    .cs-desc{ font-size: 12.5px; color: var(--muted); }
+    .cs-price{ font-weight:900; font-size: 14.5px; display:inline-block; }
+    .cs-saving{
+      margin-top: 7px;
+      font-size: 12.5px;
+      color: var(--verde);
+      font-weight: 900;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      justify-content:center;
+    }
+    .save-pill{
+      display:inline-block;
+      padding:4px 11px;
+      border-radius:999px;
+      background:#ecfdf5;
+      border:1px solid #bbf7d0;
+    }
+
+    .badge-orange{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:8px 13px;
+      border-radius:999px;
+      border:1px solid var(--arancio-bd);
+      background: var(--arancio-bg);
+      color: var(--arancio-txt);
+      font-weight:900;
+      font-size: 13px;
+      white-space:nowrap;
+      box-shadow: 0 10px 24px rgba(15,23,42,0.06);
+    }
+    .badge-dot{
+      width:10px;height:10px;border-radius:999px;
+      background: linear-gradient(135deg,#f59e0b,var(--arancio));
+      box-shadow: 0 4px 10px rgba(249,115,22,0.16);
+    }
+
+    .conditions{
+      border-radius:18px;
+      border:1px dashed #cbd5f5;
+      background: rgba(248,250,252,0.92);
+      padding: 14px 16px;
+      font-size: 12.8px;
+      color: var(--grigio);
+      line-height: 1.35;
+      box-shadow: 0 18px 55px rgba(15,23,42,0.06);
+      backdrop-filter: blur(6px);
     }
   </style>
 </head>
+
 <body>
 
-<div class="reveal">
-  <div class="slides">
+  <!-- ===================== SLIDE 1 ===================== -->
+  <div class="slide bg-soft">
+    <div class="pad">
 
-    <section>
-      <h1>La mia prima presentazione</h1>
-      <p>Reveal.js su GitHub Pages</p>
-      <p style="font-size:0.8em; opacity:0.7;">Premi → per andare avanti</p>
-    </section>
-
-    <section>
-      <h2>Perché è figo</h2>
-      <ul>
-        <li class="fragment">Zero installazioni</li>
-        <li class="fragment">Online</li>
-        <li class="fragment">PDF</li>
-      </ul>
-    </section>
-
-    <section>
-      <h2>Box</h2>
-      <div class="card">
-        <p>Qui puoi mettere contenuti, immagini, numeri, grafici</p>
+      <div class="top-bar">
+        <div class="pill-row">
+          <div class="pill"><span class="pill-dot"></span>Offerta ZeroStart Migliorshop</div>
+          <div class="pill-red"><span class="pill-red-dot"></span>Valida fino all’ 11/02/2026</div>
+        </div>
+        <img class="logo" src="http://img.mailinblue.com/9212108/images/68cc492abd5f0_1758218538.png" alt="Logo Migliorshop">
       </div>
-    </section>
 
-    <section>
-      <h2>Fine</h2>
-      <p>Ora esportiamo in PDF ✅</p>
-    </section>
+      <div class="grid">
+        <!-- LEFT -->
+        <div>
+          <div class="trust-line">
+            <span class="trust-chip"><span class="trust-dot"></span>Nessuna commissione sul venduto</span>
+            <span class="trust-chip"><span class="trust-dot"></span>Sito gratis</span>
+            <span class="trust-chip"><span class="trust-dot"></span>Piattaforma inclusa</span>
+            <span class="trust-chip"><span class="trust-dot"></span>Grossista compreso</span>
+          </div>
 
+          <h1 class="hero-title">Lancia il tuo e-commerce <span>senza costi</span> di avvio.</h1>
+
+          <p class="hero-sub">
+            Sito, piattaforma e grossista sono inclusi: investi solo in Content &amp; Strategy per partire forte, misurare e scalare.
+          </p>
+
+          <div class="value-grid">
+            <div class="value-item">
+              <div class="value-icon">€</div>
+              <div>
+                <div class="value-title">Zero costi inutili</div>
+                <div class="value-desc">Sito + piattaforma + grossista gratuiti. Paghi solo il piano che ti fa vendere di più.</div>
+              </div>
+            </div>
+            <div class="value-item">
+              <div class="value-icon">✓</div>
+              <div>
+                <div class="value-title">Massima flessibilità</div>
+                <div class="value-desc">Contratto annuale o triennale: più durata = più risparmio garantito.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mega-badge">
+            <div class="mega-main">Avvia gratis · <span class="mega-highlight">Risparmi oltre 12.500€</span></div>
+            <div class="mega-sub">Investi solo in ciò che ti fa guadagnare</div>
+          </div>
+        </div>
+
+        <!-- RIGHT -->
+        <div class="side">
+          <div>
+            <h2 class="side-title">Cosa ottieni subito</h2>
+            <div class="side-sub">In 30–40 giorni lavorativi, pronto a vendere.</div>
+          </div>
+
+          <div class="kpi">
+            <div class="kpi-box">
+              <div class="kpi-label">Setup iniziale</div>
+              <div class="kpi-value">€ 0</div>
+              <div class="kpi-chip"><span class="kpi-dot"></span>ZeroStart attivo</div>
+            </div>
+            <div class="kpi-box">
+              <div class="kpi-label">Commissioni</div>
+              <div class="kpi-value">0%</div>
+              <div class="kpi-chip"><span class="kpi-dot"></span>Sul venduto</div>
+            </div>
+            <div class="kpi-box">
+              <div class="kpi-label">Piattaforma</div>
+              <div class="kpi-value">Inclusa</div>
+              <div class="kpi-chip"><span class="kpi-dot"></span>Gestione facile</div>
+            </div>
+            <div class="kpi-box">
+              <div class="kpi-label">Grossista</div>
+              <div class="kpi-value">Incluso</div>
+              <div class="kpi-chip"><span class="kpi-dot"></span>Catalogo pronto</div>
+            </div>
+          </div>
+
+          <div class="cta">
+            <div>
+              <div class="cta-title">Blocca l’offerta e parti <span>senza costi</span></div>
+              <div class="cta-sub">Scegli un piano Content &amp; Strategy e fissiamo il prossimo step.</div>
+            </div>
+            <a class="cta-btn" href="https://calendar.app.google/uFHDD9vTSKsrS3dp7" target="_blank" rel="noopener noreferrer">
+              <span class="cta-btn-dot"></span>Blocca offerta
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
   </div>
-</div>
 
-<script src="https://unpkg.com/reveal.js/dist/reveal.js"></script>
-<script>
-  Reveal.initialize({ hash: true });
-</script>
+  <!-- ===================== SLIDE 2 ===================== -->
+  <div class="slide bg-soft">
+    <div class="pad">
+
+      <div class="top-bar">
+        <div class="pill-row">
+          <div class="pill"><span class="pill-dot"></span>Piani Content &amp; Strategy</div>
+          <div class="badge-orange"><span class="badge-dot"></span>Risparmi fino a 3.000€ / anno</div>
+        </div>
+        <img class="logo" src="http://img.mailinblue.com/9212108/images/68cc492abd5f0_1758218538.png" alt="Logo Migliorshop">
+      </div>
+
+      <div class="grid-2">
+        <!-- LEFT -->
+        <div style="display:flex; flex-direction:column; gap:10px;">
+          <div>
+            <div class="trust-line">
+              <span class="trust-chip"><span class="trust-dot"></span>Zero costi di avvio</span>
+              <span class="trust-chip"><span class="trust-dot"></span>Scalabilità</span>
+              <span class="trust-chip"><span class="trust-dot"></span>Ottimizzazione</span>
+            </div>
+
+            <h1 class="hero-title" style="font-size:40px;">Scegli il piano<br><span>più adatto</span> a te</h1>
+            <p class="hero-sub" style="font-size:15px;">
+              Annuale = più flessibile. Triennale = più conveniente, con risparmi annui certi.
+            </p>
+
+            <div class="mega-badge" style="margin-top:8mm;">
+              <div class="mega-main">Triennale · <span class="mega-highlight">più conveniente</span></div>
+              <div class="mega-sub">Risparmi annui certi</div>
+            </div>
+          </div>
+
+          <div class="conditions">
+            <strong style="color:var(--blu);">Note</strong><br>
+            Prezzi IVA esclusa. Offerta valida previa selezione di un piano (Basic/Standard/Premium).
+            Campagne pubblicitarie e Farmadati (200€/anno) non inclusi.
+          </div>
+
+          <div class="cta">
+            <div>
+              <div class="cta-title">Vuoi partire <span>subito</span>?</div>
+              <div class="cta-sub">Fissiamo un appuntamento e definiamo il piano migliore.</div>
+            </div>
+            <a class="cta-btn" href="https://calendar.app.google/uFHDD9vTSKsrS3dp7" target="_blank" rel="noopener noreferrer">
+              <span class="cta-btn-dot"></span>Prenota call
+            </a>
+          </div>
+        </div>
+
+        <!-- RIGHT -->
+        <div>
+          <table class="cs-table">
+            <thead>
+              <tr>
+                <th>Pacchetto</th>
+                <th class="cs-col-plan cs-annual">
+                  <span class="cs-plan-title" style="color:var(--blu);">Annuale</span>
+                  <span class="cs-badge">(12 mesi)</span>
+                </th>
+                <th class="cs-col-plan cs-triennial">
+                  <span class="cs-plan-title" style="color:var(--viola);">Triennale</span>
+                  <span class="cs-badge">(36 mesi)</span>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <div class="cs-name">Content &amp; Strategy Basic</div>
+                  <div class="cs-desc">Per chi si affaccia all’e-commerce</div>
+                </td>
+                <td class="cs-col-plan cs-annual"><span class="cs-price">399€ / mese</span></td>
+                <td class="cs-col-plan cs-triennial">
+                  <div class="cs-price">299€ / mese</div>
+                  <div class="cs-saving"><span class="save-pill">Risparmi 1.200€ / anno</span></div>
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  <div class="cs-name">Content &amp; Strategy Standard</div>
+                  <div class="cs-desc">Per chi punta in alto</div>
+                </td>
+                <td class="cs-col-plan cs-annual"><span class="cs-price">799€ / mese</span></td>
+                <td class="cs-col-plan cs-triennial">
+                  <div class="cs-price">599€ / mese</div>
+                  <div class="cs-saving"><span class="save-pill">Risparmi 2.400€ / anno</span></div>
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  <div class="cs-name">Content &amp; Strategy Premium</div>
+                  <div class="cs-desc">Per chi vuole il meglio</div>
+                </td>
+                <td class="cs-col-plan cs-annual"><span class="cs-price">1.049€ / mese</span></td>
+                <td class="cs-col-plan cs-triennial">
+                  <div class="cs-price">799€ / mese</div>
+                  <div class="cs-saving"><span class="save-pill">Risparmi 3.000€ / anno</span></div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
 
 </body>
 </html>
