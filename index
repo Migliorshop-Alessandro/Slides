@@ -43,6 +43,8 @@
 
       /* Web viewer scaling */
       --web-scale: 1;
+      --pan-x: 0px;
+      --pan-y: 0px;
     }
 
     body{
@@ -576,6 +578,14 @@
         align-items:center;           /* FIX */
         justify-content:center;       /* FIX */
         height: min(76vh, 820px);     /* FIX: più alto */
+        touch-action: none;
+      }
+
+      html.is-zoomed .stage{
+        cursor: grab;
+      }
+      html.is-zoomed .stage.is-panning{
+        cursor: grabbing;
       }
 
       /* mostra una slide alla volta in web */
@@ -584,7 +594,78 @@
 
       /* scala in web */
       #deck .slide{
-        transform: scale(var(--web-scale));
+        transform: translate(var(--pan-x), var(--pan-y)) scale(var(--web-scale));
+        transition: opacity .25s ease;
+      }
+
+      /* Animazioni web */
+      #deck .slide.is-active{
+        animation: slideFade .45s ease;
+      }
+      #deck .slide.is-active .pad{
+        animation: contentRise .55s ease;
+      }
+      #deck .slide.is-active .value-item,
+      #deck .slide.is-active .kpi-box,
+      #deck .slide.is-active .side,
+      #deck .slide.is-active .mega-badge,
+      #deck .slide.is-active .section-card{
+        animation: cardPop .6s ease both;
+      }
+      #deck .slide.is-active .value-item:nth-child(2),
+      #deck .slide.is-active .kpi-box:nth-child(2){
+        animation-delay: .08s;
+      }
+      #deck .slide.is-active .value-item:nth-child(3),
+      #deck .slide.is-active .kpi-box:nth-child(3){
+        animation-delay: .16s;
+      }
+
+      .web-only{ display:block; }
+      .side-callout{
+        align-self:flex-start;
+        padding: 10px 14px;
+        border-radius: 14px;
+        background: linear-gradient(135deg, rgba(25,198,255,0.22), rgba(137,35,173,0.20));
+        border: 1px solid rgba(255,255,255,0.30);
+        color: #ffffff;
+        font-weight: 900;
+        font-size: 14px;
+        text-transform: uppercase;
+        letter-spacing: .4px;
+        box-shadow: 0 16px 40px rgba(15,23,42,0.40);
+        margin-bottom: 10px;
+        animation: pulseGlow 1.8s ease-in-out infinite;
+      }
+
+      @keyframes slideFade{
+        from{ opacity: 0; }
+        to{ opacity: 1; }
+      }
+      @keyframes contentRise{
+        from{ opacity: 0; transform: translateY(16px); }
+        to{ opacity: 1; transform: translateY(0); }
+      }
+      @keyframes cardPop{
+        from{ opacity: 0; transform: translateY(12px) scale(0.98); }
+        to{ opacity: 1; transform: translateY(0) scale(1); }
+      }
+      @keyframes pulseGlow{
+        0%,100%{ box-shadow: 0 16px 40px rgba(15,23,42,0.40); }
+        50%{ box-shadow: 0 20px 48px rgba(25,198,255,0.40); }
+      }
+
+      @media (prefers-reduced-motion: reduce){
+        #deck .slide.is-active,
+        #deck .slide.is-active .pad,
+        #deck .slide.is-active .value-item,
+        #deck .slide.is-active .kpi-box,
+        #deck .slide.is-active .side,
+        #deck .slide.is-active .mega-badge,
+        #deck .slide.is-active .section-card{
+          animation: none !important;
+        }
+        .side-callout{ animation: none !important; }
       }
 
       /* progress bar */
@@ -615,15 +696,14 @@
       }
       .footer-hint a{ color: rgba(234,240,255,0.90); text-decoration:none; font-weight:900; }
 
-      /* FULLSCREEN MODE */
-      html.is-fs .viewer{
-        width: min(1900px, 98vw); /* FIX: molto più largo in fullscreen */
-      }
-      html.is-fs .viewer-wrap{
-        padding: 10px 10px 14px;
-      }
-      html.is-fs .stage{
-        height: calc(100vh - 140px); /* FIX: usa più viewport */
+      @media (max-width: 980px){
+        .web-topbar-inner{
+          flex-direction: column;
+          align-items: flex-start;
+        }
+        .web-actions{
+          justify-content:flex-start;
+        }
       }
 
       @media (max-width: 560px){
@@ -631,7 +711,8 @@
         .web-actions{ gap: 8px; }
         .web-btn{ padding: 9px 10px; font-size: 12px; }
         .viewer{ padding: 10px; }
-        .stage{ height: min(74vh, 640px); }
+        .stage{ height: min(72vh, 560px); }
+        .side-callout{ font-size: 12px; padding: 8px 10px; }
       }
     }
 
@@ -641,7 +722,7 @@
       .web-shell{ display:block !important; }
 
       /* nascondi solo UI */
-      .web-topbar, .footer-hint, .progress{ display:none !important; }
+      .web-topbar, .footer-hint, .progress, .web-only{ display:none !important; }
 
       /* rimuovi cornici/padding in stampa */
       .viewer-wrap{ padding:0 !important; }
@@ -665,25 +746,20 @@
         <div class="brand">
           <span class="mark"></span>
           <div>
-            <div class="title">ZeroStart Migliorshop</div>
-            <div class="sub">Viewer web + PDF (stesso file)</div>
+            <div class="title">Offerta ZeroStart Migliorshop</div>
           </div>
         </div>
 
         <div class="web-actions">
-          <button class="web-btn" id="prevBtn" type="button" title="Slide precedente (←)">← Prev</button>
-          <button class="web-btn" id="nextBtn" type="button" title="Slide successiva (→)">Next →</button>
+          <button class="web-btn" id="prevBtn" type="button" title="Slide precedente (←)">Precedente</button>
+          <button class="web-btn" id="nextBtn" type="button" title="Slide successiva (→)">Successiva</button>
 
           <button class="web-btn" id="zoomOutBtn" type="button" title="Zoom -">−</button>
           <button class="web-btn" id="zoomInBtn" type="button" title="Zoom +">+</button>
 
-          <button class="web-btn" id="fsBtn" type="button" title="Fullscreen">⛶</button>
-
-          <button class="web-btn primary" id="printBtn" type="button" title="Stampa / Salva PDF">
-            <span class="dot"></span> PDF
+          <button class="web-btn primary" id="printBtn" type="button" title="Esporta in PDF">
+            <span class="dot"></span> Esporta in PDF
           </button>
-
-          <span class="kbd">← →</span>
         </div>
       </div>
     </div>
@@ -745,7 +821,9 @@
                   </div>
 
                   <!-- RIGHT -->
-                  <div class="side">
+                  <div>
+                    <div class="side-callout web-only">Risparmi fino a 12.500€</div>
+                    <div class="side">
                     <div>
                       <h2 class="side-title">Cosa ottieni subito</h2>
                       <div class="side-sub">In 30–40 giorni lavorativi, pronto a vendere.</div>
@@ -1118,6 +1196,7 @@
                     </div>
 
                   </div>
+                  </div>
 
                   <!-- Footer CTA piccolo -->
                   <div class="mega-badge" style="justify-content:space-between;">
@@ -1142,10 +1221,7 @@
     </div>
 
     <div class="footer-hint">
-      <div>Scorciatoie: <span class="kbd">←</span> <span class="kbd">→</span> · <span class="kbd">F</span> fullscreen · <span class="kbd">P</span> PDF</div>
-      <div>
-        Link rapido: <a href="?s=1">S1</a> · <a href="?s=2">S2</a> · <a href="?s=3">S3</a>
-      </div>
+      <div>Scorciatoie: <span class="kbd">←</span> <span class="kbd">→</span> · <span class="kbd">P</span> PDF</div>
     </div>
   </div>
 
@@ -1159,12 +1235,18 @@
       const nextBtn = document.getElementById('nextBtn');
       const zoomInBtn = document.getElementById('zoomInBtn');
       const zoomOutBtn = document.getElementById('zoomOutBtn');
-      const fsBtn = document.getElementById('fsBtn');
       const printBtn = document.getElementById('printBtn');
       const stage = document.getElementById('stage');
 
       let index = 0;
       let scale = 1;
+      let panX = 0;
+      let panY = 0;
+      let isPanning = false;
+      let startPanX = 0;
+      let startPanY = 0;
+      let startX = 0;
+      let startY = 0;
 
       function clamp(n, a, b){ return Math.max(a, Math.min(b, n)); }
 
@@ -1193,6 +1275,34 @@
         fitToViewport();
       }
 
+      function setPan(x, y){
+        panX = x;
+        panY = y;
+        document.documentElement.style.setProperty('--pan-x', `${panX.toFixed(1)}px`);
+        document.documentElement.style.setProperty('--pan-y', `${panY.toFixed(1)}px`);
+      }
+
+      function panBounds(){
+        const active = slides[index];
+        if(!active) return { maxX: 0, maxY: 0 };
+        const slideW = active.offsetWidth * scale;
+        const slideH = active.offsetHeight * scale;
+        const maxX = Math.max(0, (slideW - stage.clientWidth) / 2);
+        const maxY = Math.max(0, (slideH - stage.clientHeight) / 2);
+        return { maxX, maxY };
+      }
+
+      function clampPan(){
+        const { maxX, maxY } = panBounds();
+        const nextX = clamp(panX, -maxX, maxX);
+        const nextY = clamp(panY, -maxY, maxY);
+        setPan(nextX, nextY);
+      }
+
+      function resetPan(){
+        setPan(0, 0);
+      }
+
       // --- Smart fit: usa offsetWidth/Height (più stabile del rect)
       function fitToViewport(){
         const active = slides[index];
@@ -1207,10 +1317,12 @@
         const pad = 18;
         const s = Math.min((vw - pad) / slideW, (vh - pad) / slideH);
 
-        const maxScale = document.fullscreenElement ? 1.45 : 1.15; // FIX: più grande in fullscreen
+        const maxScale = 1.15;
         scale = clamp(s, 0.35, maxScale);
 
         document.documentElement.style.setProperty('--web-scale', scale.toFixed(3));
+        document.documentElement.classList.toggle('is-zoomed', scale > 1.02);
+        resetPan();
       }
 
       function next(){ show(index + 1); }
@@ -1221,22 +1333,20 @@
       nextBtn?.addEventListener('click', next);
 
       zoomInBtn?.addEventListener('click', () => {
-        scale = clamp(scale + 0.08, 0.35, document.fullscreenElement ? 1.6 : 1.4);
+        scale = clamp(scale + 0.08, 0.35, 1.5);
         document.documentElement.style.setProperty('--web-scale', scale.toFixed(3));
+        document.documentElement.classList.toggle('is-zoomed', scale > 1.02);
+        clampPan();
       });
       zoomOutBtn?.addEventListener('click', () => {
-        scale = clamp(scale - 0.08, 0.35, document.fullscreenElement ? 1.6 : 1.4);
+        scale = clamp(scale - 0.08, 0.35, 1.5);
         document.documentElement.style.setProperty('--web-scale', scale.toFixed(3));
-      });
-
-      fsBtn?.addEventListener('click', async () => {
-        try{
-          if(!document.fullscreenElement){
-            await document.documentElement.requestFullscreen();
-          }else{
-            await document.exitFullscreen();
-          }
-        }catch(e){}
+        document.documentElement.classList.toggle('is-zoomed', scale > 1.02);
+        if(scale <= 1.02){
+          resetPan();
+        }else{
+          clampPan();
+        }
       });
 
       printBtn?.addEventListener('click', () => window.print());
@@ -1248,14 +1358,41 @@
 
         if(e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' '){ e.preventDefault(); next(); }
         if(e.key === 'ArrowLeft'  || e.key === 'PageUp'){ e.preventDefault(); prev(); }
-        if(e.key.toLowerCase() === 'f'){ fsBtn?.click(); }
         if(e.key.toLowerCase() === 'p'){ printBtn?.click(); }
         if(e.key === '+'){ zoomInBtn?.click(); }
         if(e.key === '-'){ zoomOutBtn?.click(); }
       });
 
+      stage.addEventListener('pointerdown', (e) => {
+        if(scale <= 1.02) return;
+        isPanning = true;
+        stage.classList.add('is-panning');
+        startX = e.clientX;
+        startY = e.clientY;
+        startPanX = panX;
+        startPanY = panY;
+        stage.setPointerCapture(e.pointerId);
+        e.preventDefault();
+      });
+
+      stage.addEventListener('pointermove', (e) => {
+        if(!isPanning) return;
+        setPan(startPanX + (e.clientX - startX), startPanY + (e.clientY - startY));
+        clampPan();
+      });
+
+      stage.addEventListener('pointerup', () => {
+        isPanning = false;
+        stage.classList.remove('is-panning');
+      });
+
+      stage.addEventListener('pointercancel', () => {
+        isPanning = false;
+        stage.classList.remove('is-panning');
+      });
+
       // Swipe (mobile)
-      let startX = 0, startY = 0, isTouch = false;
+      let isTouch = false;
       stage.addEventListener('touchstart', (e) => {
         const t = e.touches[0];
         startX = t.clientX; startY = t.clientY;
@@ -1265,6 +1402,7 @@
       stage.addEventListener('touchend', (e) => {
         if(!isTouch) return;
         isTouch = false;
+        if(scale > 1.02) return;
         const t = e.changedTouches[0];
         const dx = t.clientX - startX;
         const dy = t.clientY - startY;
@@ -1275,10 +1413,6 @@
 
       // Resize & Fullscreen change
       window.addEventListener('resize', () => fitToViewport());
-      document.addEventListener('fullscreenchange', () => {
-        document.documentElement.classList.toggle('is-fs', !!document.fullscreenElement); // FIX: classe per CSS fullscreen
-        setTimeout(fitToViewport, 80);
-      });
 
       // init
       const initial = clamp(getParamS() - 1, 0, slides.length - 1);
