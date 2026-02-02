@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Offerta ZeroStart Migliorshop — Landing</title>
+  <title>Offerta ZeroStart Migliorshop — Sito One Page</title>
 
   <!-- Google Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,13 +13,20 @@
   <style>
     *{ box-sizing:border-box; }
     html{ scroll-behavior:smooth; }
+    body{
+      margin:0;
+      font-family:"Varela Round", Arial, Helvetica, sans-serif;
+      color:#0f172a;
+      background:#ffffff;
+    }
+
     :root{
       --blu:#0e2166;
       --viola:#8923ad;
       --azzurro:#19c6ff;
 
-      --grigio:#4b5563;
       --muted:#6b7280;
+      --text:#0f172a;
 
       --arancio:#f97316;
       --arancio-bd:#fed7aa;
@@ -35,55 +42,39 @@
       --rosso-bg:#fef2f2;
       --rosso-txt:#991b1b;
 
-      --card-bd:#e2e5f3;
-
-      --radius:20px;
-      --shadow: 0 28px 90px rgba(15,23,42,0.18);
-      --shadow-soft: 0 18px 55px rgba(15,23,42,0.08);
-      --glass: rgba(255,255,255,0.86);
-      --glass-2: rgba(255,255,255,0.92);
-      --line: rgba(255,255,255,0.14);
-      --line-2: rgba(15,23,42,0.10);
-      --max: 1180px;
+      --line: rgba(15,23,42,0.10);
+      --shadow: 0 12px 30px rgba(15,23,42,0.08);
+      --max: 1140px;
     }
 
-    body{
-      margin:0;
-      font-family:"Varela Round", Arial, Helvetica, sans-serif;
-      color:#101827;
+    /* ===== layout ===== */
+    .container{ max-width: var(--max); margin: 0 auto; padding: 0 18px; }
+    section{ padding: 56px 0; }
+    .section--alt{ background: #fbfcff; }
+    .section--tint{
       background:
-        radial-gradient(circle at 20% -10%, rgba(25,198,255,0.16) 0, transparent 55%),
-        radial-gradient(circle at 110% 10%, rgba(137,35,173,0.14) 0, transparent 55%),
-        radial-gradient(circle at 50% 120%, rgba(249,115,22,0.10) 0, transparent 60%),
-        linear-gradient(180deg, #070b14 0%, #0b1220 55%, #070b14 100%);
-      min-height:100vh;
+        radial-gradient(circle at 0% 10%, rgba(25,198,255,0.10) 0, transparent 55%),
+        radial-gradient(circle at 100% 0%, rgba(137,35,173,0.09) 0, transparent 55%),
+        linear-gradient(180deg, #fbfcff 0%, #ffffff 70%);
     }
+    .divider{ border-top: 1px solid rgba(15,23,42,0.08); }
 
-    /* ========= helpers ========= */
-    .wrap{ max-width: var(--max); margin:0 auto; padding: 0 18px; }
-    .row{ display:flex; gap:14px; align-items:center; flex-wrap:wrap; }
-    .spacer{ height: 22px; }
-    .muted{ color: rgba(234,240,255,0.70); }
-    a{ color:inherit; }
-
-    /* ========= topbar ========= */
-    .topbar{
-      position:sticky;
-      top:0;
-      z-index:50;
-      backdrop-filter: blur(12px);
-      background: rgba(11,18,32,0.55);
-      border-bottom: 1px solid rgba(255,255,255,0.08);
+    /* ===== header / menu ===== */
+    header{
+      position: sticky;
+      top: 0;
+      z-index: 60;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(15,23,42,0.08);
     }
-
-    .topbar-inner{
+    .header-inner{
       display:flex;
       align-items:center;
       justify-content:space-between;
       gap: 14px;
       padding: 14px 0;
     }
-
     .brand{
       display:flex;
       align-items:center;
@@ -93,81 +84,56 @@
     .brand .mark{
       width:12px;height:12px;border-radius:999px;
       background: linear-gradient(135deg, var(--viola), var(--azzurro));
-      box-shadow: 0 12px 30px rgba(25,198,255,0.18);
+      box-shadow: 0 10px 24px rgba(25,198,255,0.18);
       flex:0 0 12px;
     }
     .brand .title{
-      color:#eaf0ff;
       font-weight:900;
       letter-spacing:-0.2px;
       font-size: 14px;
       line-height: 1.2;
+      color: var(--blu);
     }
     .brand .sub{
-      color: rgba(234,240,255,0.70);
+      color: var(--muted);
       font-size: 12px;
       margin-top: 2px;
     }
 
-    .nav{
+    nav{
       display:flex;
       align-items:center;
-      gap:10px;
+      gap: 10px;
       flex-wrap:wrap;
       justify-content:flex-end;
     }
-    .nav a{
+    nav a{
       text-decoration:none;
+      color: var(--text);
+      font-weight:900;
+      font-size: 13px;
+      padding: 10px 10px;
+      border-radius: 10px;
+      transition: background .12s ease, transform .12s ease;
+      white-space:nowrap;
+    }
+    nav a:hover{ background: rgba(15,23,42,0.06); transform: translateY(-1px); }
+    .nav-cta{
       display:inline-flex;
       align-items:center;
       gap:8px;
       padding: 10px 12px;
       border-radius: 999px;
-      border:1px solid rgba(255,255,255,0.14);
-      background: rgba(255,255,255,0.06);
-      color:#eaf0ff;
-      font-weight:900;
-      font-size:12.5px;
-      transition: transform .12s ease, background .12s ease, border-color .12s ease;
-      user-select:none;
-      white-space:nowrap;
-    }
-    .nav a:hover{ transform: translateY(-1px); background: rgba(255,255,255,0.10); border-color: rgba(255,255,255,0.22); }
-    .nav a.primary{
-      border-color: rgba(249,115,22,0.35);
-      background: linear-gradient(135deg, rgba(249,115,22,0.14), rgba(255,255,255,0.06));
+      border: 1px solid rgba(249,115,22,0.35);
+      background: linear-gradient(135deg, rgba(249,115,22,0.14), rgba(255,255,255,0.90));
+      color: var(--arancio-txt);
     }
     .dot{
       width:8px;height:8px;border-radius:999px;
       background: linear-gradient(135deg, #f59e0b, var(--arancio));
     }
 
-    /* ========= page sections ========= */
-    section{
-      padding: 38px 0;
-    }
-
-    .surface{
-      border-radius: 24px;
-      border: 1px solid rgba(255,255,255,0.10);
-      background: rgba(255,255,255,0.04);
-      box-shadow: 0 50px 140px rgba(0,0,0,0.55), 0 18px 60px rgba(15,23,42,0.30);
-      overflow:hidden;
-    }
-
-    .soft-bg{
-      background:
-        radial-gradient(circle at 0% 0%, rgba(25,198,255,0.22) 0, transparent 55%),
-        radial-gradient(circle at 100% 0%, rgba(137,35,173,0.20) 0, transparent 55%),
-        radial-gradient(circle at 30% 100%, rgba(249,115,22,0.12) 0, transparent 60%),
-        linear-gradient(180deg, #fbfcff 0%, #ffffff 55%, #f6f7ff 100%);
-    }
-
-    .pad{
-      padding: 28px;
-    }
-
-    /* ========= pills / chips ========= */
+    /* ===== small UI bits (no “big boxes”) ===== */
     .pill-row{ display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
     .pill{
       display:inline-flex; align-items:center; gap:8px;
@@ -202,7 +168,6 @@
       background: linear-gradient(135deg,#f87171,var(--rosso));
       box-shadow: 0 4px 10px rgba(239,68,68,0.18);
     }
-
     .badge-orange{
       display:inline-flex; align-items:center; gap:8px;
       padding:8px 13px;
@@ -221,25 +186,13 @@
       box-shadow: 0 4px 10px rgba(249,115,22,0.16);
     }
 
-    .logo{
-      height: 34px;
-      display:block;
-      filter: drop-shadow(0 10px 18px rgba(15,23,42,0.10));
-    }
-
-    /* ========= hero ========= */
-    .hero{
-      display:grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 22px;
-      align-items:stretch;
-      margin-top: 18px;
-    }
-
     .trust-line{
-      display:flex; gap:8px; flex-wrap:wrap; align-items:center;
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      align-items:center;
       font-size: 13px;
-      margin-top: 8px;
+      margin-top: 14px;
     }
     .trust-chip{
       display:inline-flex; align-items:center; gap:6px;
@@ -257,133 +210,140 @@
       box-shadow: 0 4px 10px rgba(21,128,61,0.14);
     }
 
-    .hero-title{
-      margin: 16px 0 0 0;
-      font-size: clamp(34px, 4vw, 48px);
-      line-height: 1.05;
-      color:var(--blu);
-      letter-spacing:-0.7px;
+    .logo{
+      height: 34px;
+      display:block;
+      filter: drop-shadow(0 10px 18px rgba(15,23,42,0.10));
     }
-    .hero-title span{ color:var(--viola); }
-    .hero-sub{
+
+    /* ===== hero ===== */
+    .hero{
+      padding: 44px 0 54px;
+    }
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 32px;
+      align-items:start;
+      margin-top: 18px;
+    }
+    h1{
+      margin: 14px 0 0 0;
+      font-size: clamp(34px, 4vw, 52px);
+      line-height: 1.05;
+      letter-spacing: -0.8px;
+      color: var(--blu);
+    }
+    h1 span{ color: var(--viola); }
+    .lead{
       margin-top: 14px;
       color: var(--muted);
       font-size: 16px;
-      line-height: 1.35;
-      max-width: 60ch;
+      line-height: 1.45;
+      max-width: 62ch;
     }
 
-    .value-grid{
-      margin-top: 16px;
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-    }
-    .value-item{
-      border-radius:16px;
-      border:1px solid #e2e8f0;
-      background: rgba(255,255,255,0.82);
-      padding:12px 14px;
+    .hero-actions{
       display:flex;
       gap:10px;
-      align-items:flex-start;
-      box-shadow: 0 18px 50px rgba(15,23,42,0.06);
-      backdrop-filter: blur(6px);
-      min-height: 86px;
-    }
-    .value-icon{
-      width:28px; height:28px;
-      border-radius:11px;
-      background:linear-gradient(135deg,#eef2ff,#f5f7ff);
-      border:1px solid #e0e7ff;
-      display:flex;
       align-items:center;
-      justify-content:center;
-      font-weight:900;
-      color:var(--blu);
-      flex:0 0 28px;
-      line-height:1;
-      margin-top:1px;
-    }
-    .value-title{
-      font-size: 15px;
-      font-weight: 900;
-      color:#111827;
-      line-height:1.12;
-      margin-bottom: 4px;
-    }
-    .value-desc{
-      font-size: 13px;
-      color: var(--muted);
-      line-height:1.25;
-    }
-
-    .mega-badge{
-      margin-top: 16px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
-      padding: 11px 16px;
-      border-radius:999px;
-      border:1px solid var(--arancio-bd);
-      background: linear-gradient(135deg, rgba(255,247,237,0.95), rgba(255,255,255,0.9));
-      box-shadow: 0 18px 50px rgba(249,115,22,0.10);
-      backdrop-filter: blur(6px);
       flex-wrap:wrap;
+      margin-top: 16px;
     }
-    .mega-main{
-      font-size: 16px;
-      font-weight: 900;
-      color:var(--arancio-txt);
-      white-space:nowrap;
-    }
-    .mega-highlight{ color: var(--arancio); }
-    .mega-sub{
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding: 12px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(15,23,42,0.14);
+      background: #ffffff;
+      color: var(--text);
+      font-weight:900;
       font-size: 13px;
-      font-weight: 900;
+      text-decoration:none;
+      box-shadow: 0 10px 24px rgba(15,23,42,0.06);
+      transition: transform .12s ease, filter .12s ease, background .12s ease;
       white-space:nowrap;
-      padding:8px 11px;
-      border-radius:999px;
-      border:1px solid rgba(14,33,102,0.18);
-      background: rgba(239,246,255,0.92);
-      color:var(--blu);
+    }
+    .btn:hover{ transform: translateY(-1px); filter: brightness(1.01); }
+    .btn.primary{
+      border-color: rgba(249,115,22,0.35);
+      background: linear-gradient(135deg, rgba(249,115,22,0.14), #ffffff);
+      color: var(--arancio-txt);
+    }
+    .btn .btn-dot{
+      width:10px;height:10px;border-radius:999px;
+      background: linear-gradient(135deg,#f59e0b,var(--arancio));
     }
 
-    /* ========= side (what you get) ========= */
-    .side{
-      display:flex;
-      flex-direction:column;
-      gap: 10px;
-      min-height: 0;
+    .mega{
+      margin-top: 18px;
+      border: 1px solid var(--arancio-bd);
+      background: linear-gradient(135deg, rgba(255,247,237,0.95), rgba(255,255,255,0.95));
+      border-radius: 16px;
+      padding: 14px 14px;
+      box-shadow: var(--shadow);
     }
-    .side-title{
+    .mega .main{
+      font-weight: 900;
+      color: var(--arancio-txt);
+      font-size: 16px;
+      line-height: 1.2;
+    }
+    .mega .main .hi{ color: var(--arancio); }
+    .mega .sub{
+      margin-top: 8px;
+      display:inline-flex;
+      font-weight:900;
+      font-size: 13px;
+      border-radius: 999px;
+      padding: 8px 10px;
+      border: 1px solid rgba(14,33,102,0.18);
+      background: rgba(239,246,255,0.92);
+      color: var(--blu);
+    }
+
+    /* right column “what you get” — no big rectangle; just layout + small tiles */
+    .what-title{
+      margin: 0;
       font-size: 18px;
       font-weight: 900;
       color: var(--blu);
       letter-spacing:-0.2px;
-      margin:0;
     }
-    .side-sub{ margin-top:3px; font-size: 13px; color: var(--muted); }
-
-    .kpi{
+    .what-sub{
+      margin-top: 6px;
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.35;
+    }
+    .kpi-grid{
+      margin-top: 14px;
       display:grid;
       grid-template-columns: 1fr 1fr;
-      gap:10px;
-      margin-top: 8px;
+      gap: 12px;
     }
-    .kpi-box{
-      border-radius:16px;
-      border:1px solid #e5e7eb;
-      background: rgba(255,255,255,0.85);
-      padding:12px 14px;
-      box-shadow: 0 18px 50px rgba(15,23,42,0.06);
-      backdrop-filter: blur(6px);
+    .kpi{
+      border: 1px solid rgba(15,23,42,0.10);
+      border-radius: 14px;
+      padding: 12px 12px;
+      background: rgba(255,255,255,0.75);
+      box-shadow: 0 10px 22px rgba(15,23,42,0.06);
     }
-    .kpi-label{ font-size: 12px; color: var(--muted); font-weight: 900; }
-    .kpi-value{ margin-top:7px; font-size: 24px; font-weight: 900; color:#111827; }
-    .kpi-chip{
-      margin-top:10px;
+    .kpi .label{
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 900;
+    }
+    .kpi .val{
+      margin-top: 7px;
+      font-size: 24px;
+      font-weight: 900;
+      color: #111827;
+    }
+    .kpi .chip{
+      margin-top: 10px;
       display:inline-flex; align-items:center; gap:8px;
       padding:7px 11px;
       border-radius:999px;
@@ -394,75 +354,92 @@
       font-size: 12px;
       white-space:nowrap;
     }
-    .kpi-dot{
+    .kpi .chip .d{
       width:10px;height:10px;border-radius:999px;
       background:linear-gradient(135deg,#34d399,var(--verde));
     }
 
-    .cta{
+    /* ===== content blocks ===== */
+    h2{
+      margin:0;
+      font-size: clamp(26px, 3vw, 38px);
+      line-height: 1.08;
+      letter-spacing: -0.6px;
+      color: var(--blu);
+    }
+    h2 span{ color: var(--viola); }
+    .subhead{
       margin-top: 12px;
-      border-radius:18px;
-      border:1px solid var(--arancio-bd);
-      background: linear-gradient(135deg, rgba(255,247,237,0.95), rgba(255,255,255,0.9));
-      padding: 13px 16px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap: 10px;
-      box-shadow: 0 18px 50px rgba(249,115,22,0.10);
-      backdrop-filter: blur(6px);
-      flex-wrap:wrap;
-    }
-    .cta-title{
+      color: var(--muted);
       font-size: 15px;
-      font-weight: 900;
-      color: var(--arancio-txt);
-      line-height: 1.15;
-    }
-    .cta-title span{ color: var(--arancio); }
-    .cta-sub{
-      margin-top: 8px;
-      font-size: 12.8px;
-      color: var(--arancio-txt);
-      opacity: 0.95;
-      line-height: 1.25;
-    }
-    .cta-btn{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding:11px 13px;
-      border-radius:999px;
-      border:1px solid var(--arancio-bd);
-      background:linear-gradient(135deg, #ffffff, var(--arancio-bg));
-      color:var(--arancio-txt);
-      font-weight:900;
-      font-size:13px;
-      white-space:nowrap;
-      text-decoration:none;
-      transition: transform .12s ease, filter .12s ease;
-    }
-    .cta-btn:hover{ transform: translateY(-1px); filter: brightness(1.02); }
-    .cta-btn:active{ transform: translateY(0px); }
-    .cta-btn-dot{
-      width:10px;height:10px;border-radius:999px;
-      background:linear-gradient(135deg,#f59e0b,var(--arancio));
+      line-height: 1.45;
+      max-width: 85ch;
     }
 
-    /* ========= plans table ========= */
+    .features{
+      margin-top: 18px;
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    .feature{
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+      padding: 0;
+    }
+    .feature .icon{
+      width:30px;height:30px;border-radius: 12px;
+      display:flex;align-items:center;justify-content:center;
+      font-weight:900;color: var(--blu);
+      border:1px solid rgba(14,33,102,0.14);
+      background: rgba(239,246,255,0.70);
+      flex:0 0 30px;
+    }
+    .feature .t{
+      font-weight:900;
+      color:#111827;
+      margin: 1px 0 4px 0;
+      font-size: 15px;
+    }
+    .feature .d{
+      margin:0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.35;
+    }
+
+    /* ===== plans section ===== */
+    .plans-grid{
+      margin-top: 22px;
+      display:grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 22px;
+      align-items:start;
+    }
+    .note{
+      margin-top: 18px;
+      border-left: 3px solid rgba(14,33,102,0.18);
+      padding: 10px 12px;
+      color: #374151;
+      background: rgba(248,250,252,0.70);
+      border-radius: 12px;
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
     table{ border-collapse:collapse; width:100%; }
     .cs-table{
       width:100%;
-      border-radius:18px;
+      border-radius: 16px;
       overflow:hidden;
-      border:1px solid #e5e7eb;
-      background: rgba(255,255,255,0.88);
-      box-shadow: var(--shadow-soft);
-      backdrop-filter: blur(6px);
+      border:1px solid rgba(15,23,42,0.10);
+      background: rgba(255,255,255,0.85);
+      box-shadow: var(--shadow);
     }
     .cs-table th, .cs-table td{
-      border:1px solid #e5e7eb;
-      padding:12px 12px;
+      border:1px solid rgba(15,23,42,0.08);
+      padding: 12px 12px;
       font-size: 13px;
       vertical-align: middle;
     }
@@ -497,179 +474,180 @@
       border:1px solid #bbf7d0;
     }
 
-    .conditions{
-      border-radius:18px;
-      border:1px dashed #cbd5f5;
-      background: rgba(248,250,252,0.92);
-      padding: 14px 16px;
-      font-size: 12.8px;
-      color: var(--grigio);
-      line-height: 1.35;
-      box-shadow: 0 18px 55px rgba(15,23,42,0.06);
-      backdrop-filter: blur(6px);
-    }
-
-    /* ========= packages ========= */
-    .packages-head{
-      display:flex;
-      align-items:flex-start;
-      justify-content:space-between;
-      gap: 12px;
-      flex-wrap:wrap;
-    }
-    .h-title{
-      margin:0;
-      font-size: clamp(28px, 3.2vw, 42px);
-      line-height:1.05;
-      color:var(--blu);
-      letter-spacing:-0.6px;
-    }
-    .h-title span{ color:var(--viola); }
-    .h-sub{
-      margin: 10px 0 0 0;
-      color: var(--muted);
-      font-size: 15px;
-      line-height: 1.35;
-      max-width: 80ch;
-    }
-
-    .cards{
-      margin-top: 18px;
+    /* ===== packages ===== */
+    .pkg-grid{
+      margin-top: 22px;
       display:grid;
       grid-template-columns: 1fr 1.05fr 1fr;
       gap: 16px;
       align-items:stretch;
     }
-
-    .card{
-      border-radius:20px;
-      padding:14px 16px;
-      border:1px solid #e5e7eb;
-      background: rgba(255,255,255,0.88);
-      box-shadow: var(--shadow-soft);
-      backdrop-filter: blur(6px);
+    .pkg{
+      border: 1px solid rgba(15,23,42,0.10);
+      border-radius: 16px;
+      padding: 16px 14px;
+      background: rgba(255,255,255,0.78);
+      box-shadow: var(--shadow);
       display:flex;
       flex-direction:column;
-      gap:10px;
+      gap: 10px;
       min-height: 100%;
     }
-    .card.featured{
-      border-radius:22px;
-      padding:16px 18px;
-      border:2px solid rgba(137,35,173,0.25);
+    .pkg.featured{
+      border: 2px solid rgba(137,35,173,0.22);
       background:
-        radial-gradient(circle at 0% 0%, rgba(25,198,255,0.18) 0, transparent 55%),
-        radial-gradient(circle at 100% 0%, rgba(137,35,173,0.16) 0, transparent 55%),
-        rgba(255,255,255,0.92);
-      box-shadow: 0 28px 80px rgba(137,35,173,0.14);
-      backdrop-filter: blur(8px);
-      transform: translateY(-6px);
+        radial-gradient(circle at 0% 0%, rgba(25,198,255,0.10) 0, transparent 55%),
+        radial-gradient(circle at 100% 0%, rgba(137,35,173,0.10) 0, transparent 55%),
+        rgba(255,255,255,0.88);
+      box-shadow: 0 28px 80px rgba(137,35,173,0.10);
     }
+    .pkg-top{ display:flex; justify-content:space-between; align-items:flex-start; gap:10px; }
+    .pkg h3{ margin:0; font-size: 18px; font-weight:900; color:#111827; }
+    .pkg p{ margin: 4px 0 0 0; color: var(--muted); font-size: 13px; line-height: 1.35; }
 
-    .card-top{
+    .price{
+      margin-top: 8px;
+      border: 1px solid rgba(249,115,22,0.22);
+      background: rgba(255,247,237,0.75);
+      border-radius: 14px;
+      padding: 10px 12px;
       display:flex;
+      align-items:center;
       justify-content:space-between;
-      align-items:flex-start;
       gap:10px;
+      flex-wrap:wrap;
     }
-    .card-name{
-      font-weight:900;
-      color:#111827;
-      font-size:18px;
-      margin:0;
+    .price .p{
+      font-weight: 900;
+      color: var(--arancio-txt);
     }
-    .card-desc{
-      margin-top:4px;
-      color:var(--muted);
-      font-size:13px;
-      line-height:1.25;
+    .price .tag{
+      font-weight: 900;
+      color: var(--blu);
+      font-size: 12px;
+      border: 1px solid rgba(14,33,102,0.16);
+      background: rgba(239,246,255,0.80);
+      border-radius: 999px;
+      padding: 7px 10px;
     }
 
     .mini-kpis{
+      margin-top: 10px;
       display:flex;
-      gap:10px;
-      margin-top:6px;
+      gap: 10px;
     }
-    .mini-kpis .kpi-box{ flex:1; }
-    .mini-kpis .kpi-value{ font-size:20px; }
+    .mini-kpis .kpi{ flex:1; box-shadow:none; background: rgba(255,255,255,0.70); }
+    .mini-kpis .kpi .val{ font-size: 20px; }
 
-    .inc-title{
-      margin-top:4px;
-      color:#111827;
-      font-weight:900;
-      font-size:13px;
-    }
-    .inc{
-      margin:0;
-      padding-left:18px;
-      color:var(--muted);
-      font-size:13px;
-      line-height:1.35;
+    .inc-title{ margin-top: 6px; font-weight:900; color:#111827; font-size: 13px; }
+    ul.inc{
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.35;
     }
 
-    .card-bottom{
-      margin-top:auto;
-      display:flex;
-      gap:10px;
-      align-items:center;
-      justify-content:space-between;
-      flex-wrap:wrap;
-    }
-
-    /* ========= footer CTA ========= */
     .tip{
       margin-top: 18px;
+      border: 1px solid rgba(249,115,22,0.18);
+      background: linear-gradient(135deg, rgba(255,247,237,0.90), rgba(255,255,255,0.92));
+      border-radius: 16px;
+      padding: 12px 14px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 10px;
+      flex-wrap:wrap;
+      box-shadow: var(--shadow);
+    }
+    .tip .t{
+      font-weight: 900;
+      color: var(--arancio-txt);
+      font-size: 15px;
+    }
+    .tip .t .hi{ color: var(--arancio); }
+    .tip .s{
+      font-weight: 900;
+      color: var(--blu);
+      font-size: 13px;
+      border: 1px solid rgba(14,33,102,0.16);
+      background: rgba(239,246,255,0.80);
+      border-radius: 999px;
+      padding: 8px 10px;
     }
 
-    /* ========= reveal animations ========= */
+    /* ===== reveal ===== */
     .reveal{
       opacity:0;
       transform: translateY(14px);
       transition: opacity .6s ease, transform .6s ease;
       will-change: opacity, transform;
     }
-    .reveal.is-in{
-      opacity:1;
-      transform: translateY(0px);
-    }
+    .reveal.is-in{ opacity:1; transform: translateY(0px); }
 
-    /* ========= responsive ========= */
+    /* ===== responsive ===== */
     @media (max-width: 980px){
-      .hero{ grid-template-columns: 1fr; }
-      .value-grid{ grid-template-columns: 1fr; }
-      .kpi{ grid-template-columns: 1fr 1fr; }
-      .cards{ grid-template-columns: 1fr; }
-      .card.featured{ transform: none; }
+      .hero-grid{ grid-template-columns: 1fr; }
+      .kpi-grid{ grid-template-columns: 1fr 1fr; }
+      .features{ grid-template-columns: 1fr; }
+      .plans-grid{ grid-template-columns: 1fr; }
+      .pkg-grid{ grid-template-columns: 1fr; }
+      .mini-kpis{ flex-direction: column; }
     }
     @media (max-width: 560px){
-      .pad{ padding: 18px; }
-      .kpi{ grid-template-columns: 1fr; }
+      nav a{ padding: 10px 8px; }
       .brand{ min-width: 0; }
-      .nav a{ padding: 9px 10px; font-size: 12px; }
-      .mega-main, .mega-sub{ white-space:normal; }
+      .kpi-grid{ grid-template-columns: 1fr; }
     }
+
+    /* ===== footer ===== */
+    footer{
+      padding: 26px 0 40px;
+      color: var(--muted);
+      font-size: 12px;
+      border-top: 1px solid rgba(15,23,42,0.08);
+      background: #ffffff;
+    }
+    .foot{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 12px;
+      flex-wrap:wrap;
+    }
+    .backtop{
+      text-decoration:none;
+      font-weight:900;
+      color: var(--blu);
+      padding: 10px 12px;
+      border-radius: 10px;
+    }
+    .backtop:hover{ background: rgba(14,33,102,0.06); }
+
   </style>
 </head>
 
 <body>
 
-  <!-- ===== TOPBAR ===== -->
-  <header class="topbar">
-    <div class="wrap">
-      <div class="topbar-inner">
+  <!-- ===== HEADER ===== -->
+  <header>
+    <div class="container">
+      <div class="header-inner">
         <div class="brand">
           <span class="mark"></span>
           <div>
             <div class="title">Offerta ZeroStart Migliorshop</div>
-            <div class="sub">Landing one-page (web)</div>
+            <div class="sub">Sito one-page (scroll)</div>
           </div>
         </div>
 
-        <nav class="nav" aria-label="Navigazione">
+        <nav aria-label="Menu">
           <a href="#offerta">Offerta</a>
+          <a href="#vantaggi">Vantaggi</a>
           <a href="#piani">Piani</a>
           <a href="#pacchetti">Pacchetti</a>
-          <a class="primary" href="https://calendar.app.google/uFHDD9vTSKsrS3dp7" target="_blank" rel="noopener noreferrer">
+          <a class="nav-cta" href="https://calendar.app.google/uFHDD9vTSKsrS3dp7" target="_blank" rel="noopener noreferrer">
             <span class="dot"></span> Prenota call
           </a>
         </nav>
@@ -677,438 +655,381 @@
     </div>
   </header>
 
-  <!-- ===== HERO / OFFER ===== -->
-  <main>
-    <section id="offerta">
-      <div class="wrap">
-        <div class="surface">
-          <div class="soft-bg">
-            <div class="pad">
+  <!-- ===== HERO / OFFERTA ===== -->
+  <div class="section--tint hero" id="offerta">
+    <div class="container">
+      <div class="pill-row reveal">
+        <div class="pill"><span class="pill-dot"></span>Offerta ZeroStart Migliorshop</div>
+        <div class="pill-red"><span class="pill-red-dot"></span>Valida fino all’ 11/02/2026</div>
+      </div>
 
-              <div class="row" style="justify-content:space-between;">
-                <div class="pill-row">
-                  <div class="pill"><span class="pill-dot"></span>Offerta ZeroStart Migliorshop</div>
-                  <div class="pill-red"><span class="pill-red-dot"></span>Valida fino all’ 11/02/2026</div>
-                </div>
-                <img class="logo" src="http://img.mailinblue.com/9212108/images/68cc492abd5f0_1758218538.png" alt="Logo Migliorshop">
-              </div>
+      <div class="hero-grid">
+        <div class="reveal">
+          <h1>Lancia il tuo e-commerce <span>senza costi</span> di avvio.</h1>
+          <p class="lead">
+            Sito, piattaforma e grossista sono inclusi: investi solo in Content &amp; Strategy per partire forte, misurare e scalare.
+          </p>
 
-              <div class="hero">
-                <!-- LEFT -->
-                <div class="reveal">
-                  <div class="trust-line">
-                    <span class="trust-chip"><span class="trust-dot"></span>Nessuna commissione sul venduto</span>
-                    <span class="trust-chip"><span class="trust-dot"></span>Sito gratis</span>
-                    <span class="trust-chip"><span class="trust-dot"></span>Piattaforma inclusa</span>
-                    <span class="trust-chip"><span class="trust-dot"></span>Grossista compreso</span>
-                  </div>
+          <div class="trust-line">
+            <span class="trust-chip"><span class="trust-dot"></span>Nessuna commissione sul venduto</span>
+            <span class="trust-chip"><span class="trust-dot"></span>Sito gratis</span>
+            <span class="trust-chip"><span class="trust-dot"></span>Piattaforma inclusa</span>
+            <span class="trust-chip"><span class="trust-dot"></span>Grossista compreso</span>
+          </div>
 
-                  <h1 class="hero-title">Lancia il tuo e-commerce <span>senza costi</span> di avvio.</h1>
+          <div class="hero-actions">
+            <a class="btn primary" href="https://calendar.app.google/uFHDD9vTSKsrS3dp7" target="_blank" rel="noopener noreferrer">
+              <span class="btn-dot"></span> Blocca offerta
+            </a>
+            <a class="btn" href="#piani">Vedi piani</a>
+          </div>
 
-                  <p class="hero-sub">
-                    Sito, piattaforma e grossista sono inclusi: investi solo in Content &amp; Strategy per partire forte, misurare e scalare.
-                  </p>
+          <div class="mega">
+            <div class="main">Avvia gratis · <span class="hi">Risparmi oltre 12.500€</span></div>
+            <div class="sub">Investi solo in ciò che ti fa guadagnare</div>
+          </div>
+        </div>
 
-                  <div class="value-grid">
-                    <div class="value-item">
-                      <div class="value-icon">€</div>
-                      <div>
-                        <div class="value-title">Zero costi inutili</div>
-                        <div class="value-desc">Sito + piattaforma + grossista gratuiti. Paghi solo il piano che ti fa vendere di più.</div>
-                      </div>
-                    </div>
-                    <div class="value-item">
-                      <div class="value-icon">✓</div>
-                      <div>
-                        <div class="value-title">Massima flessibilità</div>
-                        <div class="value-desc">Contratto annuale o triennale: più durata = più risparmio garantito.</div>
-                      </div>
-                    </div>
-                  </div>
+        <div class="reveal">
+          <div class="pill-row" style="justify-content:space-between;">
+            <div class="badge-orange"><span class="badge-dot"></span>Cosa ottieni subito</div>
+            <img class="logo" src="http://img.mailinblue.com/9212108/images/68cc492abd5f0_1758218538.png" alt="Logo Migliorshop">
+          </div>
 
-                  <div class="mega-badge">
-                    <div class="mega-main">Avvia gratis · <span class="mega-highlight">Risparmi oltre 12.500€</span></div>
-                    <div class="mega-sub">Investi solo in ciò che ti fa guadagnare</div>
-                  </div>
-                </div>
+          <div style="margin-top:12px;">
+            <div class="what-title">Pronto a vendere</div>
+            <div class="what-sub">In 30–40 giorni lavorativi.</div>
+          </div>
 
-                <!-- RIGHT -->
-                <aside class="side reveal">
-                  <div>
-                    <h2 class="side-title">Cosa ottieni subito</h2>
-                    <div class="side-sub">In 30–40 giorni lavorativi, pronto a vendere.</div>
-                  </div>
-
-                  <div class="kpi">
-                    <div class="kpi-box">
-                      <div class="kpi-label">Setup iniziale</div>
-                      <div class="kpi-value">€ 0</div>
-                      <div class="kpi-chip"><span class="kpi-dot"></span>ZeroStart attivo</div>
-                    </div>
-                    <div class="kpi-box">
-                      <div class="kpi-label">Commissioni</div>
-                      <div class="kpi-value">0%</div>
-                      <div class="kpi-chip"><span class="kpi-dot"></span>Sul venduto</div>
-                    </div>
-                    <div class="kpi-box">
-                      <div class="kpi-label">Piattaforma</div>
-                      <div class="kpi-value">Inclusa</div>
-                      <div class="kpi-chip"><span class="kpi-dot"></span>Gestione facile</div>
-                    </div>
-                    <div class="kpi-box">
-                      <div class="kpi-label">Grossista</div>
-                      <div class="kpi-value">Incluso</div>
-                      <div class="kpi-chip"><span class="kpi-dot"></span>Catalogo pronto</div>
-                    </div>
-                  </div>
-
-                  <div class="cta">
-                    <div>
-                      <div class="cta-title">Blocca l’offerta e parti <span>senza costi</span></div>
-                      <div class="cta-sub">Scegli un piano Content &amp; Strategy e fissiamo il prossimo step.</div>
-                    </div>
-                    <a class="cta-btn" href="https://calendar.app.google/uFHDD9vTSKsrS3dp7" target="_blank" rel="noopener noreferrer">
-                      <span class="cta-btn-dot"></span>Blocca offerta
-                    </a>
-                  </div>
-                </aside>
-              </div>
-
+          <div class="kpi-grid">
+            <div class="kpi">
+              <div class="label">Setup iniziale</div>
+              <div class="val">€ 0</div>
+              <div class="chip"><span class="d"></span>ZeroStart attivo</div>
             </div>
+            <div class="kpi">
+              <div class="label">Commissioni</div>
+              <div class="val">0%</div>
+              <div class="chip"><span class="d"></span>Sul venduto</div>
+            </div>
+            <div class="kpi">
+              <div class="label">Piattaforma</div>
+              <div class="val">Inclusa</div>
+              <div class="chip"><span class="d"></span>Gestione facile</div>
+            </div>
+            <div class="kpi">
+              <div class="label">Grossista</div>
+              <div class="val">Incluso</div>
+              <div class="chip"><span class="d"></span>Catalogo pronto</div>
+            </div>
+          </div>
+
+          <div class="hero-actions" style="margin-top:14px;">
+            <a class="btn primary" href="https://calendar.app.google/uFHDD9vTSKsrS3dp7" target="_blank" rel="noopener noreferrer">
+              <span class="btn-dot"></span> Prenota call
+            </a>
+            <a class="btn" href="#pacchetti">Confronta pacchetti</a>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </div>
 
-    <!-- ===== PLANS ===== -->
-    <section id="piani">
-      <div class="wrap">
-        <div class="surface">
-          <div class="soft-bg">
-            <div class="pad">
+  <!-- ===== VANTAGGI (testo + 2 punti) ===== -->
+  <section id="vantaggi" class="divider">
+    <div class="container">
+      <h2 class="reveal">Perché <span>ZeroStart</span></h2>
+      <p class="subhead reveal">
+        Sito + piattaforma + grossista gratuiti: paghi solo ciò che serve per crescere (Content &amp; Strategy).
+      </p>
 
-              <div class="row" style="justify-content:space-between;">
-                <div class="pill-row">
-                  <div class="pill"><span class="pill-dot"></span>Piani Content &amp; Strategy</div>
-                  <div class="badge-orange"><span class="badge-dot"></span>Risparmi fino a 3.000€ / anno</div>
-                </div>
-                <img class="logo" src="http://img.mailinblue.com/9212108/images/68cc492abd5f0_1758218538.png" alt="Logo Migliorshop">
-              </div>
-
-              <div class="hero" style="grid-template-columns: 0.95fr 1.05fr;">
-                <!-- LEFT -->
-                <div class="reveal" style="display:flex; flex-direction:column; gap:12px;">
-                  <div>
-                    <div class="trust-line">
-                      <span class="trust-chip"><span class="trust-dot"></span>Zero costi di avvio</span>
-                      <span class="trust-chip"><span class="trust-dot"></span>Scalabilità</span>
-                      <span class="trust-chip"><span class="trust-dot"></span>Ottimizzazione</span>
-                    </div>
-
-                    <h2 class="hero-title" style="font-size: clamp(30px, 3.6vw, 42px); margin-top:14px;">
-                      Scegli il piano<br><span>più adatto</span> a te
-                    </h2>
-                    <p class="hero-sub" style="font-size:15px;">
-                      Annuale = più flessibile. Triennale = più conveniente, con risparmi annui certi.
-                    </p>
-
-                    <div class="mega-badge" style="margin-top:16px;">
-                      <div class="mega-main">Triennale · <span class="mega-highlight">più conveniente</span></div>
-                      <div class="mega-sub">Risparmi annui certi</div>
-                    </div>
-                  </div>
-
-                  <div class="conditions">
-                    <strong style="color:var(--blu);">Note</strong><br>
-                    Prezzi IVA esclusa. Offerta valida previa selezione di un piano (Basic/Standard/Premium).
-                    Campagne pubblicitarie e Farmadati (200€/anno) non inclusi.
-                  </div>
-
-                  <div class="cta">
-                    <div>
-                      <div class="cta-title">Vuoi partire <span>subito</span>?</div>
-                      <div class="cta-sub">Fissiamo un appuntamento e definiamo il piano migliore.</div>
-                    </div>
-                    <a class="cta-btn" href="https://calendar.app.google/uFHDD9vTSKsrS3dp7" target="_blank" rel="noopener noreferrer">
-                      <span class="cta-btn-dot"></span>Prenota call
-                    </a>
-                  </div>
-                </div>
-
-                <!-- RIGHT -->
-                <div class="reveal">
-                  <table class="cs-table" aria-label="Tabella piani Content & Strategy">
-                    <thead>
-                      <tr>
-                        <th>Pacchetto</th>
-                        <th class="cs-col-plan cs-annual">
-                          <span class="cs-plan-title" style="color:var(--blu);">Annuale</span>
-                          <span class="cs-badge">(12 mesi)</span>
-                        </th>
-                        <th class="cs-col-plan cs-triennial">
-                          <span class="cs-plan-title" style="color:var(--viola);">Triennale</span>
-                          <span class="cs-badge">(36 mesi)</span>
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>
-                          <div class="cs-name">Content &amp; Strategy Basic</div>
-                          <div class="cs-desc">Per chi si affaccia all’e-commerce</div>
-                        </td>
-                        <td class="cs-col-plan cs-annual"><span class="cs-price">399€ / mese</span></td>
-                        <td class="cs-col-plan cs-triennial">
-                          <div class="cs-price">299€ / mese</div>
-                          <div class="cs-saving"><span class="save-pill">Risparmi 1.200€ / anno</span></div>
-                        </td>
-                      </tr>
-
-                      <tr>
-                        <td>
-                          <div class="cs-name">Content &amp; Strategy Standard</div>
-                          <div class="cs-desc">Per chi punta in alto</div>
-                        </td>
-                        <td class="cs-col-plan cs-annual"><span class="cs-price">799€ / mese</span></td>
-                        <td class="cs-col-plan cs-triennial">
-                          <div class="cs-price">599€ / mese</div>
-                          <div class="cs-saving"><span class="save-pill">Risparmi 2.400€ / anno</span></div>
-                        </td>
-                      </tr>
-
-                      <tr>
-                        <td>
-                          <div class="cs-name">Content &amp; Strategy Premium</div>
-                          <div class="cs-desc">Per chi vuole il meglio</div>
-                        </td>
-                        <td class="cs-col-plan cs-annual"><span class="cs-price">1.049€ / mese</span></td>
-                        <td class="cs-col-plan cs-triennial">
-                          <div class="cs-price">799€ / mese</div>
-                          <div class="cs-saving"><span class="save-pill">Risparmi 3.000€ / anno</span></div>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-
-              </div>
-
-            </div>
+      <div class="features">
+        <div class="feature reveal">
+          <div class="icon">€</div>
+          <div>
+            <div class="t">Zero costi inutili</div>
+            <p class="d">Sito + piattaforma + grossista gratuiti. Paghi solo il piano che ti fa vendere di più.</p>
+          </div>
+        </div>
+        <div class="feature reveal">
+          <div class="icon">✓</div>
+          <div>
+            <div class="t">Massima flessibilità</div>
+            <p class="d">Contratto annuale o triennale: più durata = più risparmio garantito.</p>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- ===== PACKAGES ===== -->
-    <section id="pacchetti">
-      <div class="wrap">
-        <div class="surface">
-          <div class="soft-bg">
-            <div class="pad">
-
-              <div class="row" style="justify-content:space-between;">
-                <div class="pill-row">
-                  <div class="pill"><span class="pill-dot"></span>I 3 pacchetti: Basic · Standard · Premium</div>
-                  <div class="badge-orange"><span class="badge-dot"></span>Consigliato: Standard</div>
-                </div>
-                <img class="logo" src="http://img.mailinblue.com/9212108/images/68cc492abd5f0_1758218538.png" alt="Logo Migliorshop">
-              </div>
-
-              <div class="packages-head reveal">
-                <div>
-                  <h2 class="h-title">Scegli il pacchetto <span>che ti fa crescere</span></h2>
-                  <p class="h-sub">
-                    Tre livelli, stesso obiettivo: partire bene, ottimizzare in modo continuo e scalare con una strategia chiara.
-                  </p>
-                </div>
-                <div class="cta" style="margin-top:0; max-width: 520px;">
-                  <div>
-                    <div class="cta-title">Vuoi partire <span>subito</span>?</div>
-                    <div class="cta-sub">Fissiamo un appuntamento e definiamo il piano migliore.</div>
-                  </div>
-                  <a class="cta-btn" href="https://calendar.app.google/uFHDD9vTSKsrS3dp7" target="_blank" rel="noopener noreferrer">
-                    <span class="cta-btn-dot"></span>Prenota call
-                  </a>
-                </div>
-              </div>
-
-              <div class="cards">
-                <!-- BASIC -->
-                <article class="card reveal">
-                  <div class="card-top">
-                    <div>
-                      <h3 class="card-name">Basic</h3>
-                      <div class="card-desc">Per partire senza stress e validare.</div>
-                    </div>
-                    <div class="trust-chip" style="border-color:#dbeafe;background:#eff6ff;color:var(--blu);">
-                      <span class="trust-dot" style="background:linear-gradient(135deg,var(--azzurro),var(--blu));"></span>
-                      Starter
-                    </div>
-                  </div>
-
-                  <div class="mega-badge" style="margin:4px 0 0 0; padding:10px 12px;">
-                    <div class="mega-main" style="font-size:14px;">399€ / mese</div>
-                    <div class="mega-sub" style="font-size:12px;">Setup + base</div>
-                  </div>
-
-                  <div class="mini-kpis">
-                    <div class="kpi-box">
-                      <div class="kpi-label">Contenuti/mese</div>
-                      <div class="kpi-value">8</div>
-                      <div class="kpi-chip"><span class="kpi-dot"></span>SEO base</div>
-                    </div>
-                    <div class="kpi-box">
-                      <div class="kpi-label">Call strategia</div>
-                      <div class="kpi-value">1</div>
-                      <div class="kpi-chip"><span class="kpi-dot"></span>60 min</div>
-                    </div>
-                  </div>
-
-                  <div class="inc-title">Include</div>
-                  <ul class="inc">
-                    <li>Setup tracking (GA4 + eventi principali)</li>
-                    <li>Ottimizzazione home + 5 schede prodotto</li>
-                    <li>8 contenuti/mese (blog o landing)</li>
-                    <li>1 report mensile con priorità</li>
-                    <li>Supporto via email (48h)</li>
-                  </ul>
-
-                  <div class="card-bottom">
-                    <div class="kpi-chip" style="border-color:#bbf7d0;background:#ecfdf5;color:var(--verde);">
-                      <span class="kpi-dot"></span>Ideale per test
-                    </div>
-                    <div style="font-size:12.5px; color:var(--muted); font-weight:900;">+ crescita “safe”</div>
-                  </div>
-                </article>
-
-                <!-- STANDARD -->
-                <article class="card featured reveal">
-                  <div class="card-top">
-                    <div>
-                      <h3 class="card-name" style="font-size:19px;">Standard</h3>
-                      <div class="card-desc">Per crescere in modo costante e misurabile.</div>
-                    </div>
-                    <div class="pill" style="background:#fdf2ff;border-color:#f5d0fe;color:var(--viola); box-shadow:none;">
-                      <span class="pill-dot"></span>Best choice
-                    </div>
-                  </div>
-
-                  <div class="mega-badge" style="margin:4px 0 0 0; padding:11px 13px;">
-                    <div class="mega-main" style="font-size:14px;">799€ / mese</div>
-                    <div class="mega-sub" style="font-size:12px;">Growth</div>
-                  </div>
-
-                  <div class="mini-kpis">
-                    <div class="kpi-box">
-                      <div class="kpi-label">Contenuti/mese</div>
-                      <div class="kpi-value">16</div>
-                      <div class="kpi-chip"><span class="kpi-dot"></span>SEO + CRO</div>
-                    </div>
-                    <div class="kpi-box">
-                      <div class="kpi-label">Call strategia</div>
-                      <div class="kpi-value">2</div>
-                      <div class="kpi-chip"><span class="kpi-dot"></span>Roadmap</div>
-                    </div>
-                  </div>
-
-                  <div class="inc-title">Include</div>
-                  <ul class="inc">
-                    <li>Setup tracking completo + dashboard KPI</li>
-                    <li>Ottimizzazione categorie + 15 schede prodotto</li>
-                    <li>16 contenuti/mese (landing + blog + microcopy)</li>
-                    <li>2 test CRO/mese (checkout, schede, CTA)</li>
-                    <li>Report + call: priorità settimanali</li>
-                    <li>Supporto WhatsApp (24h)</li>
-                  </ul>
-
-                  <div class="card-bottom">
-                    <div class="cta-btn" style="box-shadow:none; padding:10px 12px;">
-                      <span class="cta-btn-dot"></span>Consigliato
-                    </div>
-                    <div class="kpi-chip" style="border-color:#bbf7d0;background:#ecfdf5;color:var(--verde);">
-                      <span class="kpi-dot"></span>+ performance
-                    </div>
-                  </div>
-                </article>
-
-                <!-- PREMIUM -->
-                <article class="card reveal" style="border-color: rgba(249,115,22,0.28); box-shadow: 0 18px 55px rgba(249,115,22,0.10);">
-                  <div class="card-top">
-                    <div>
-                      <h3 class="card-name">Premium</h3>
-                      <div class="card-desc">Per chi vuole il massimo (scaling + iterazioni).</div>
-                    </div>
-                    <div class="badge-orange" style="box-shadow:none;">
-                      <span class="badge-dot"></span>Elite
-                    </div>
-                  </div>
-
-                  <div class="mega-badge" style="margin:4px 0 0 0; padding:10px 12px;">
-                    <div class="mega-main" style="font-size:14px;">1.049€ / mese</div>
-                    <div class="mega-sub" style="font-size:12px;">Scale</div>
-                  </div>
-
-                  <div class="mini-kpis">
-                    <div class="kpi-box">
-                      <div class="kpi-label">Contenuti/mese</div>
-                      <div class="kpi-value">28</div>
-                      <div class="kpi-chip"><span class="kpi-dot"></span>SEO avanzata</div>
-                    </div>
-                    <div class="kpi-box">
-                      <div class="kpi-label">Call strategia</div>
-                      <div class="kpi-value">4</div>
-                      <div class="kpi-chip"><span class="kpi-dot"></span>Weekly</div>
-                    </div>
-                  </div>
-
-                  <div class="inc-title">Include</div>
-                  <ul class="inc">
-                    <li>Audit completo + piano 90 giorni</li>
-                    <li>Ottimizzazione full-catalog (priorità top seller)</li>
-                    <li>28 contenuti/mese (landing, blog, email, ads copy)</li>
-                    <li>4 test CRO/mese + heatmap review</li>
-                    <li>Supporto prioritario (entro 6h)</li>
-                    <li>Workshop mensile (team + roadmap)</li>
-                  </ul>
-
-                  <div class="card-bottom">
-                    <div class="kpi-chip" style="border-color:#fed7aa;background:#fff7ed;color:var(--arancio-txt);">
-                      <span class="kpi-dot" style="background:linear-gradient(135deg,#f59e0b,var(--arancio));"></span>
-                      Scaling
-                    </div>
-                    <div style="font-size:12.5px; color:var(--muted); font-weight:900;">+ iterazioni</div>
-                  </div>
-                </article>
-              </div>
-
-              <div class="mega-badge tip reveal">
-                <div class="mega-main" style="font-size:15px;">
-                  Tip: con <span class="mega-highlight">contratto triennale</span> massimizzi il risparmio
-                </div>
-                <div class="mega-sub">Scegli “Standard” per l’equilibrio migliore</div>
-              </div>
-
-            </div>
-          </div>
-        </div>
-
-        <div class="spacer"></div>
-
-        <div class="wrap" style="padding: 0 0 34px;">
-          <div class="row" style="justify-content:space-between;">
-            <div class="muted" style="font-size:12px;">
-              © ZeroStart Migliorshop — informazioni e prezzi come da presentazione (IVA esclusa).
-            </div>
-            <a class="muted" style="font-size:12px; text-decoration:none; font-weight:900;" href="#offerta">Torna su ↑</a>
-          </div>
-        </div>
-
+  <!-- ===== PIANI ===== -->
+  <section id="piani" class="section--alt divider">
+    <div class="container">
+      <div class="pill-row reveal" style="justify-content:space-between;">
+        <div class="pill"><span class="pill-dot"></span>Piani Content &amp; Strategy</div>
+        <div class="badge-orange"><span class="badge-dot"></span>Risparmi fino a 3.000€ / anno</div>
       </div>
-    </section>
-  </main>
+
+      <div class="plans-grid">
+        <div class="reveal">
+          <h2 style="margin-top:14px;">Scegli il piano <span>più adatto</span> a te</h2>
+          <p class="subhead">
+            Annuale = più flessibile. Triennale = più conveniente, con risparmi annui certi.
+          </p>
+
+          <div class="tip" style="margin-top:14px;">
+            <div class="t">Triennale · <span class="hi">più conveniente</span></div>
+            <div class="s">Risparmi annui certi</div>
+          </div>
+
+          <div class="note">
+            <strong style="color:var(--blu);">Note</strong><br>
+            Prezzi IVA esclusa. Offerta valida previa selezione di un piano (Basic/Standard/Premium).
+            Campagne pubblicitarie e Farmadati (200€/anno) non inclusi.
+          </div>
+
+          <div class="hero-actions">
+            <a class="btn primary" href="https://calendar.app.google/uFHDD9vTSKsrS3dp7" target="_blank" rel="noopener noreferrer">
+              <span class="btn-dot"></span> Prenota call
+            </a>
+            <a class="btn" href="#pacchetti">Vedi pacchetti</a>
+          </div>
+        </div>
+
+        <div class="reveal">
+          <table class="cs-table" aria-label="Tabella piani Content & Strategy">
+            <thead>
+              <tr>
+                <th>Pacchetto</th>
+                <th class="cs-col-plan cs-annual">
+                  <span class="cs-plan-title" style="color:var(--blu);">Annuale</span>
+                  <span class="cs-badge">(12 mesi)</span>
+                </th>
+                <th class="cs-col-plan cs-triennial">
+                  <span class="cs-plan-title" style="color:var(--viola);">Triennale</span>
+                  <span class="cs-badge">(36 mesi)</span>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <div class="cs-name">Content &amp; Strategy Basic</div>
+                  <div class="cs-desc">Per chi si affaccia all’e-commerce</div>
+                </td>
+                <td class="cs-col-plan cs-annual"><span class="cs-price">399€ / mese</span></td>
+                <td class="cs-col-plan cs-triennial">
+                  <div class="cs-price">299€ / mese</div>
+                  <div class="cs-saving"><span class="save-pill">Risparmi 1.200€ / anno</span></div>
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  <div class="cs-name">Content &amp; Strategy Standard</div>
+                  <div class="cs-desc">Per chi punta in alto</div>
+                </td>
+                <td class="cs-col-plan cs-annual"><span class="cs-price">799€ / mese</span></td>
+                <td class="cs-col-plan cs-triennial">
+                  <div class="cs-price">599€ / mese</div>
+                  <div class="cs-saving"><span class="save-pill">Risparmi 2.400€ / anno</span></div>
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  <div class="cs-name">Content &amp; Strategy Premium</div>
+                  <div class="cs-desc">Per chi vuole il meglio</div>
+                </td>
+                <td class="cs-col-plan cs-annual"><span class="cs-price">1.049€ / mese</span></td>
+                <td class="cs-col-plan cs-triennial">
+                  <div class="cs-price">799€ / mese</div>
+                  <div class="cs-saving"><span class="save-pill">Risparmi 3.000€ / anno</span></div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PACCHETTI ===== -->
+  <section id="pacchetti" class="divider">
+    <div class="container">
+      <div class="pill-row reveal" style="justify-content:space-between;">
+        <div class="pill"><span class="pill-dot"></span>I 3 pacchetti: Basic · Standard · Premium</div>
+        <div class="badge-orange"><span class="badge-dot"></span>Consigliato: Standard</div>
+      </div>
+
+      <h2 class="reveal" style="margin-top:14px;">Scegli il pacchetto <span>che ti fa crescere</span></h2>
+      <p class="subhead reveal">
+        Tre livelli, stesso obiettivo: partire bene, ottimizzare in modo continuo e scalare con una strategia chiara.
+      </p>
+
+      <div class="pkg-grid">
+        <!-- BASIC -->
+        <article class="pkg reveal">
+          <div class="pkg-top">
+            <div>
+              <h3>Basic</h3>
+              <p>Per partire senza stress e validare.</p>
+            </div>
+            <div class="trust-chip" style="border-color:#dbeafe;background:#eff6ff;color:var(--blu);">
+              <span class="trust-dot" style="background:linear-gradient(135deg,var(--azzurro),var(--blu));"></span>
+              Starter
+            </div>
+          </div>
+
+          <div class="price">
+            <div class="p">399€ / mese</div>
+            <div class="tag">Setup + base</div>
+          </div>
+
+          <div class="mini-kpis">
+            <div class="kpi">
+              <div class="label">Contenuti/mese</div>
+              <div class="val">8</div>
+              <div class="chip"><span class="d"></span>SEO base</div>
+            </div>
+            <div class="kpi">
+              <div class="label">Call strategia</div>
+              <div class="val">1</div>
+              <div class="chip"><span class="d"></span>60 min</div>
+            </div>
+          </div>
+
+          <div class="inc-title">Include</div>
+          <ul class="inc">
+            <li>Setup tracking (GA4 + eventi principali)</li>
+            <li>Ottimizzazione home + 5 schede prodotto</li>
+            <li>8 contenuti/mese (blog o landing)</li>
+            <li>1 report mensile con priorità</li>
+            <li>Supporto via email (48h)</li>
+          </ul>
+
+          <div style="margin-top:auto; display:flex; justify-content:space-between; gap:10px; align-items:center; flex-wrap:wrap;">
+            <div class="trust-chip"><span class="trust-dot"></span>Ideale per test</div>
+            <div style="font-size:12.5px; color:var(--muted); font-weight:900;">+ crescita “safe”</div>
+          </div>
+        </article>
+
+        <!-- STANDARD -->
+        <article class="pkg featured reveal">
+          <div class="pkg-top">
+            <div>
+              <h3>Standard</h3>
+              <p>Per crescere in modo costante e misurabile.</p>
+            </div>
+            <div class="pill" style="background:#fdf2ff;border-color:#f5d0fe;color:var(--viola); box-shadow:none;">
+              <span class="pill-dot"></span>Best choice
+            </div>
+          </div>
+
+          <div class="price">
+            <div class="p">799€ / mese</div>
+            <div class="tag">Growth</div>
+          </div>
+
+          <div class="mini-kpis">
+            <div class="kpi">
+              <div class="label">Contenuti/mese</div>
+              <div class="val">16</div>
+              <div class="chip"><span class="d"></span>SEO + CRO</div>
+            </div>
+            <div class="kpi">
+              <div class="label">Call strategia</div>
+              <div class="val">2</div>
+              <div class="chip"><span class="d"></span>Roadmap</div>
+            </div>
+          </div>
+
+          <div class="inc-title">Include</div>
+          <ul class="inc">
+            <li>Setup tracking completo + dashboard KPI</li>
+            <li>Ottimizzazione categorie + 15 schede prodotto</li>
+            <li>16 contenuti/mese (landing + blog + microcopy)</li>
+            <li>2 test CRO/mese (checkout, schede, CTA)</li>
+            <li>Report + call: priorità settimanali</li>
+            <li>Supporto WhatsApp (24h)</li>
+          </ul>
+
+          <div style="margin-top:auto; display:flex; justify-content:space-between; gap:10px; align-items:center; flex-wrap:wrap;">
+            <a class="btn primary" href="https://calendar.app.google/uFHDD9vTSKsrS3dp7" target="_blank" rel="noopener noreferrer" style="box-shadow:none;">
+              <span class="btn-dot"></span> Consigliato
+            </a>
+            <div class="trust-chip"><span class="trust-dot"></span>+ performance</div>
+          </div>
+        </article>
+
+        <!-- PREMIUM -->
+        <article class="pkg reveal" style="border-color: rgba(249,115,22,0.22);">
+          <div class="pkg-top">
+            <div>
+              <h3>Premium</h3>
+              <p>Per chi vuole il massimo (scaling + iterazioni).</p>
+            </div>
+            <div class="badge-orange" style="box-shadow:none;">
+              <span class="badge-dot"></span>Elite
+            </div>
+          </div>
+
+          <div class="price" style="border-color: rgba(249,115,22,0.22);">
+            <div class="p">1.049€ / mese</div>
+            <div class="tag">Scale</div>
+          </div>
+
+          <div class="mini-kpis">
+            <div class="kpi">
+              <div class="label">Contenuti/mese</div>
+              <div class="val">28</div>
+              <div class="chip"><span class="d"></span>SEO avanzata</div>
+            </div>
+            <div class="kpi">
+              <div class="label">Call strategia</div>
+              <div class="val">4</div>
+              <div class="chip"><span class="d"></span>Weekly</div>
+            </div>
+          </div>
+
+          <div class="inc-title">Include</div>
+          <ul class="inc">
+            <li>Audit completo + piano 90 giorni</li>
+            <li>Ottimizzazione full-catalog (priorità top seller)</li>
+            <li>28 contenuti/mese (landing, blog, email, ads copy)</li>
+            <li>4 test CRO/mese + heatmap review</li>
+            <li>Supporto prioritario (entro 6h)</li>
+            <li>Workshop mensile (team + roadmap)</li>
+          </ul>
+
+          <div style="margin-top:auto; display:flex; justify-content:space-between; gap:10px; align-items:center; flex-wrap:wrap;">
+            <div class="badge-orange" style="box-shadow:none;">
+              <span class="badge-dot"></span>Scaling
+            </div>
+            <div style="font-size:12.5px; color:var(--muted); font-weight:900;">+ iterazioni</div>
+          </div>
+        </article>
+      </div>
+
+      <div class="tip reveal">
+        <div class="t">Tip: con <span class="hi">contratto triennale</span> massimizzi il risparmio</div>
+        <div class="s">Scegli “Standard” per l’equilibrio migliore</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <div class="container">
+      <div class="foot">
+        <div>Prezzi IVA esclusa. Offerta valida previa selezione di un piano (Basic/Standard/Premium). Campagne pubblicitarie e Farmadati (200€/anno) non inclusi.</div>
+        <a class="backtop" href="#offerta">Torna su ↑</a>
+      </div>
+    </div>
+  </footer>
 
   <script>
-    // Reveal on scroll
+    // Reveal on scroll (soft)
     (function(){
       const els = Array.from(document.querySelectorAll('.reveal'));
       const io = new IntersectionObserver((entries) => {
@@ -1118,33 +1039,8 @@
             io.unobserve(e.target);
           }
         });
-      }, { threshold: 0.15 });
-
+      }, { threshold: 0.12 });
       els.forEach(el => io.observe(el));
-    })();
-
-    // Active nav "soft" (optional polish)
-    (function(){
-      const links = Array.from(document.querySelectorAll('.nav a[href^="#"]'));
-      const sections = links
-        .map(a => document.querySelector(a.getAttribute('href')))
-        .filter(Boolean);
-
-      const setActive = (id) => {
-        links.forEach(a => {
-          const on = a.getAttribute('href') === '#' + id;
-          a.style.borderColor = on ? 'rgba(255,255,255,0.26)' : 'rgba(255,255,255,0.14)';
-          a.style.background = on ? 'rgba(255,255,255,0.10)' : 'rgba(255,255,255,0.06)';
-        });
-      };
-
-      const io = new IntersectionObserver((entries) => {
-        const vis = entries.filter(e => e.isIntersecting).sort((a,b) => b.intersectionRatio - a.intersectionRatio)[0];
-        if(vis && vis.target && vis.target.id) setActive(vis.target.id);
-      }, { threshold: [0.15, 0.35, 0.6] });
-
-      sections.forEach(s => io.observe(s));
-      setActive('offerta');
     })();
   </script>
 
