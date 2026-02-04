@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Offerta ZeroStart Migliorshop — Slides Full</title>
+  <title>Gestione Strategica e Operativa eCommerce — Presentazione</title>
 
   <!-- Google Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -84,7 +84,7 @@
       inset: 12mm;
       display:flex;
       flex-direction:column;
-      gap: 10mm;
+      gap: 8mm;
     }
 
     /* ===== Header pill + logo ===== */
@@ -133,6 +133,11 @@
       height: 34px;
       display:block;
       filter: drop-shadow(0 10px 18px rgba(15,23,42,0.10));
+    }
+    .logo-lg{
+      height: 52px;
+      display:block;
+      filter: drop-shadow(0 12px 24px rgba(15,23,42,0.12));
     }
 
     /* ===== Slide 1 layout ===== */
@@ -360,7 +365,7 @@
     .grid-2{
       display:grid;
       grid-template-columns: 0.9fr 1.1fr;
-      gap: 12mm;
+      gap: 10mm;
       flex:1;
       min-height: 0;
       align-items: stretch;
@@ -441,6 +446,237 @@
       line-height: 1.35;
       box-shadow: 0 18px 55px rgba(15,23,42,0.06);
       backdrop-filter: blur(6px);
+    }
+
+    /* ===== New layouts ===== */
+    .cover-grid{
+      display:grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 10mm;
+      align-items: stretch;
+      flex:1;
+    }
+    .cover-card{
+      border-radius:26px;
+      border:1px solid #e2e8f0;
+      background:
+        radial-gradient(circle at 0% 0%, rgba(25,198,255,0.18) 0, transparent 55%),
+        radial-gradient(circle at 100% 0%, rgba(137,35,173,0.14) 0, transparent 55%),
+        linear-gradient(180deg, rgba(255,255,255,0.95) 0%, rgba(246,247,255,0.98) 100%);
+      padding: 18px 20px;
+      box-shadow: 0 28px 80px rgba(15,23,42,0.10);
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      gap: 12px;
+    }
+    .cover-title{
+      margin:0;
+      font-size: 44px;
+      line-height: 1.05;
+      color: var(--blu);
+      letter-spacing:-0.6px;
+    }
+    .cover-sub{
+      margin:0;
+      font-size: 16px;
+      color: var(--muted);
+      line-height:1.35;
+    }
+    .cover-image{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 20px;
+      border: none;
+      box-shadow: none;
+    }
+
+    .benefit-grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 3mm;
+    }
+    .benefit-card{
+      border-radius:14px;
+      border:1px solid #e2e8f0;
+      background: rgba(255,255,255,0.9);
+      padding:10px 12px;
+      box-shadow: 0 18px 50px rgba(15,23,42,0.06);
+    }
+    .benefit-card h3{
+      margin:0 0 4px 0;
+      font-size: 14px;
+      color:#111827;
+      font-weight: 900;
+    }
+    .benefit-card p{
+      margin:0;
+      font-size: 12.5px;
+      color: var(--muted);
+      line-height:1.3;
+    }
+
+    .step-grid{
+      display:grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6mm;
+      margin-top: 3mm;
+      flex:1;
+    }
+    .step-card{
+      border-radius:16px;
+      border:1px solid #e5e7eb;
+      background: rgba(255,255,255,0.9);
+      padding:12px 14px;
+      box-shadow: 0 18px 55px rgba(15,23,42,0.08);
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+    }
+    .step-num{
+      font-size: 12px;
+      font-weight:900;
+      color: var(--viola);
+      letter-spacing: 0.4px;
+    }
+    .step-title{
+      font-size: 14px;
+      font-weight:900;
+      color:#111827;
+      margin:0;
+    }
+    .step-desc{
+      font-size: 12.5px;
+      color: var(--muted);
+      line-height:1.3;
+      margin:0;
+    }
+
+    .package-grid{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6mm;
+      margin-top: 3mm;
+      flex:1;
+    }
+    .package-card{
+      border-radius:18px;
+      padding:12px 14px;
+      border:1px solid #e5e7eb;
+      background: rgba(255,255,255,0.92);
+      box-shadow: 0 18px 55px rgba(15,23,42,0.08);
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+    }
+    .package-card.featured{
+      border:2px solid rgba(137,35,173,0.25);
+      background:
+        radial-gradient(circle at 0% 0%, rgba(25,198,255,0.18) 0, transparent 55%),
+        radial-gradient(circle at 100% 0%, rgba(137,35,173,0.16) 0, transparent 55%),
+        rgba(255,255,255,0.95);
+      box-shadow: 0 28px 80px rgba(137,35,173,0.14);
+      transform: translateY(-2mm);
+    }
+    .package-title{
+      font-size: 16px;
+      font-weight:900;
+      color:#111827;
+      margin:0;
+    }
+    .package-price{
+      font-size: 18px;
+      font-weight:900;
+      color: var(--blu);
+      margin:0;
+    }
+    .package-sub{
+      font-size: 12px;
+      color: var(--muted);
+      margin:0;
+    }
+    .package-list{
+      margin:0;
+      padding-left: 18px;
+      font-size: 12px;
+      color: var(--muted);
+      line-height:1.35;
+    }
+    .package-tag{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid #dbeafe;
+      background:#eff6ff;
+      color: var(--blu);
+      font-size:12px;
+      font-weight:900;
+      white-space:nowrap;
+    }
+
+    .logo-grid{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-top: 4mm;
+    }
+    .logo-chip{
+      border-radius:16px;
+      border:1px solid #e2e8f0;
+      background: rgba(255,255,255,0.9);
+      padding:12px;
+      text-align:center;
+      font-weight:900;
+      color:#111827;
+      font-size: 14px;
+      box-shadow: 0 18px 50px rgba(15,23,42,0.06);
+    }
+    .info-card{
+      border-radius:14px;
+      border:1px solid #e2e8f0;
+      background: rgba(255,255,255,0.9);
+      padding:10px 12px;
+      box-shadow: 0 18px 50px rgba(15,23,42,0.06);
+    }
+    .info-card h4{
+      margin:0 0 4px 0;
+      font-size: 13px;
+      font-weight:900;
+      color:#111827;
+    }
+    .info-card p{
+      margin:0;
+      font-size:12px;
+      color:var(--muted);
+      line-height:1.3;
+    }
+    .info-row{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+    .quote-card{
+      border-radius:20px;
+      border:1px solid #e2e8f0;
+      background: rgba(255,255,255,0.92);
+      padding:16px 18px;
+      box-shadow: 0 18px 55px rgba(15,23,42,0.08);
+    }
+    .quote-card p{
+      margin:0;
+      font-size:14px;
+      color:#111827;
+      line-height:1.4;
+    }
+    .quote-card .who{
+      margin-top:8px;
+      font-size:12.5px;
+      color:var(--muted);
+      font-weight:900;
     }
 
     /* =======================================================================
@@ -689,6 +925,13 @@
       #deck .slide.is-active .hero-sub,
       #deck .slide.is-active .trust-line,
       #deck .slide.is-active .value-item,
+      #deck .slide.is-active .benefit-card,
+      #deck .slide.is-active .info-card,
+      #deck .slide.is-active .step-card,
+      #deck .slide.is-active .package-card,
+      #deck .slide.is-active .logo-chip,
+      #deck .slide.is-active .quote-card,
+      #deck .slide.is-active .cover-card,
       #deck .slide.is-active .kpi-box,
       #deck .slide.is-active .cta,
       #deck .slide.is-active .cs-table,
@@ -786,7 +1029,7 @@
         <div class="brand">
           <span class="mark"></span>
           <div>
-            <div class="title">Offerta ZeroStart Migliorshop</div>
+            <div class="title">Gestione Strategica e Operativa eCommerce</div>
           </div>
         </div>
 
@@ -812,12 +1055,42 @@
       <div class="viewer" id="viewer">
         <!-- Banner visibile SOLO web -->
         <div class="web-banner" aria-hidden="true">
-          <span class="chip"><span class="spark"></span> Offerta attiva</span>
-          <span class="big">Risparmi fino a <strong>12.500€</strong></span>
+          <span class="chip"><span class="spark"></span> Nuovo servizio</span>
+          <span class="big">Più risultati, meno complessità operativa</span>
         </div>
 
         <div class="stage" id="stage">
           <main id="deck">
+
+            <!-- ===================== SLIDE 0 ===================== -->
+            <div class="slide bg-soft">
+              <div class="pad">
+
+                <div class="top-bar">
+                  <div class="pill-row">
+                    <img class="logo-lg" src="http://img.mailinblue.com/9212108/images/68cc492abd5f0_1758218538.png" alt="Logo Migliorshop">
+                  </div>
+                </div>
+
+                <div class="cover-grid">
+                  <div class="cover-card">
+                    <h1 class="cover-title">Il Miglior partner per la tua <span>farmacia online</span></h1>
+                    <p class="cover-sub">Brochure strategia per l’eCommerce farmacia</p>
+                    <div class="trust-line">
+                      <span class="trust-chip"><span class="trust-dot"></span>Strategia + Operatività</span>
+                      <span class="trust-chip"><span class="trust-dot"></span>Focus performance</span>
+                      <span class="trust-chip"><span class="trust-dot"></span>Metodo scalabile</span>
+                    </div>
+                    <div class="mega-badge" style="margin-top:4mm;">
+                      <div class="mega-main">Risultati chiari · <span class="mega-highlight">Zero complessità</span></div>
+                      <div class="mega-sub">Tu guidi la visione, noi eseguiamo</div>
+                    </div>
+                  </div>
+                  <img class="cover-image" src="https://img.mailinblue.com/143672/images/content_library/original/67bc8109711fdda28670fa53.png" alt="Professionista farmacia online">
+                </div>
+
+              </div>
+            </div>
 
             <!-- ===================== SLIDE 1 ===================== -->
             <div class="slide bg-soft">
@@ -825,8 +1098,8 @@
 
                 <div class="top-bar">
                   <div class="pill-row">
-                    <div class="pill"><span class="pill-dot"></span>Offerta ZeroStart Migliorshop</div>
-                    <div class="pill-red"><span class="pill-red-dot"></span>Valida fino all’ 11/02/2026</div>
+                    <div class="pill"><span class="pill-dot"></span>Gestione strategica e operativa eCommerce</div>
+                    <div class="pill-red"><span class="pill-red-dot"></span>Servizio operativo per eCommerce B2B</div>
                   </div>
                   <img class="logo" src="http://img.mailinblue.com/9212108/images/68cc492abd5f0_1758218538.png" alt="Logo Migliorshop">
                 </div>
@@ -835,78 +1108,102 @@
                   <!-- LEFT -->
                   <div>
                     <div class="trust-line">
-                      <span class="trust-chip"><span class="trust-dot"></span>Nessuna commissione sul venduto</span>
-                      <span class="trust-chip"><span class="trust-dot"></span>Sito gratis</span>
-                      <span class="trust-chip"><span class="trust-dot"></span>Piattaforma inclusa</span>
-                      <span class="trust-chip"><span class="trust-dot"></span>Grossista compreso</span>
+                      <span class="trust-chip"><span class="trust-dot"></span>Tempo risparmiato</span>
+                      <span class="trust-chip"><span class="trust-dot"></span>Performance misurabili</span>
+                      <span class="trust-chip"><span class="trust-dot"></span>Gestione semplificata</span>
+                      <span class="trust-chip"><span class="trust-dot"></span>Operatività concreta</span>
                     </div>
 
-                    <h1 class="hero-title">Lancia il tuo e-commerce <span>senza costi</span> di avvio.</h1>
+                    <h1 class="hero-title">Gestiamo le strategie e le operazioni del tuo <span>eCommerce</span></h1>
 
                     <p class="hero-sub">
-                      Sito, piattaforma e grossista sono inclusi: investi solo in Content &amp; Strategy per partire forte, misurare e scalare.
+                      Più vendite. Più margine. Meno tempo perso.
                     </p>
 
                     <div class="value-grid">
                       <div class="value-item">
-                        <div class="value-icon">€</div>
+                        <div class="value-icon">⏱</div>
                         <div>
-                          <div class="value-title">Zero costi inutili</div>
-                          <div class="value-desc">Sito + piattaforma + grossista gratuiti. Paghi solo il piano che ti fa vendere di più.</div>
+                          <div class="value-title">Noi eseguiamo</div>
+                          <div class="value-desc">Applichiamo le strategie al posto tuo, mese dopo mese.</div>
                         </div>
                       </div>
                       <div class="value-item">
-                        <div class="value-icon">✓</div>
+                        <div class="value-icon">📈</div>
                         <div>
-                          <div class="value-title">Massima flessibilità</div>
-                          <div class="value-desc">Contratto annuale o triennale: più durata = più risparmio garantito.</div>
+                          <div class="value-title">Performance in crescita</div>
+                          <div class="value-desc">Volumi, conversioni e margini sotto controllo.</div>
                         </div>
                       </div>
                     </div>
 
+                    <div class="benefit-grid" style="margin-top:5mm;">
+                      <div class="info-card">
+                        <h4>Obiettivi condivisi</h4>
+                        <p>Definiamo KPI, priorità e mix canali per una crescita sostenibile.</p>
+                      </div>
+                      <div class="info-card">
+                        <h4>Operatività continua</h4>
+                        <p>Gestione quotidiana delle attività e aggiornamenti costanti.</p>
+                      </div>
+                      <div class="info-card">
+                        <h4>Controllo manageriale</h4>
+                        <p>Report sintetici, insight pratici e azioni correttive rapide.</p>
+                      </div>
+                      <div class="info-card">
+                        <h4>Focus su margini</h4>
+                        <p>Regole per proteggere redditività e stock strategico.</p>
+                      </div>
+                    </div>
+
                     <div class="mega-badge">
-                      <div class="mega-main">Avvia gratis · <span class="mega-highlight">Risparmi oltre 12.500€</span></div>
-                      <div class="mega-sub">Investi solo in ciò che ti fa guadagnare</div>
+                      <div class="mega-main">Operatività completa · <span class="mega-highlight">Senza complessità</span></div>
+                      <div class="mega-sub">Tu defini gli obiettivi, noi li mettiamo a terra</div>
                     </div>
                   </div>
 
                   <!-- RIGHT -->
                   <div class="side">
                     <div>
-                      <h2 class="side-title">Cosa ottieni subito</h2>
-                      <div class="side-sub">In 30–40 giorni lavorativi, pronto a vendere.</div>
+                      <h2 class="side-title">Risultati attesi</h2>
+                      <div class="side-sub">Servizio continuo, operativo e misurabile.</div>
                     </div>
 
                     <div class="kpi">
                       <div class="kpi-box">
-                        <div class="kpi-label">Setup iniziale</div>
-                        <div class="kpi-value">€ 0</div>
-                        <div class="kpi-chip"><span class="kpi-dot"></span>ZeroStart attivo</div>
+                        <div class="kpi-label">Tempo risparmiato</div>
+                        <div class="kpi-value">30%+</div>
+                        <div class="kpi-chip"><span class="kpi-dot"></span>Operatività delegata</div>
                       </div>
                       <div class="kpi-box">
-                        <div class="kpi-label">Commissioni</div>
-                        <div class="kpi-value">0%</div>
-                        <div class="kpi-chip"><span class="kpi-dot"></span>Sul venduto</div>
+                        <div class="kpi-label">Conversioni</div>
+                        <div class="kpi-value">+15%</div>
+                        <div class="kpi-chip"><span class="kpi-dot"></span>Azioni mirate</div>
                       </div>
                       <div class="kpi-box">
-                        <div class="kpi-label">Piattaforma</div>
-                        <div class="kpi-value">Inclusa</div>
-                        <div class="kpi-chip"><span class="kpi-dot"></span>Gestione facile</div>
+                        <div class="kpi-label">Margine medio</div>
+                        <div class="kpi-value">+8%</div>
+                        <div class="kpi-chip"><span class="kpi-dot"></span>Regole di protezione</div>
                       </div>
                       <div class="kpi-box">
-                        <div class="kpi-label">Grossista</div>
-                        <div class="kpi-value">Incluso</div>
-                        <div class="kpi-chip"><span class="kpi-dot"></span>Catalogo pronto</div>
+                        <div class="kpi-label">Controllo</div>
+                        <div class="kpi-value">Sempre</div>
+                        <div class="kpi-chip"><span class="kpi-dot"></span>Report e dashboard</div>
                       </div>
+                    </div>
+
+                    <div class="conditions" style="margin-top:4mm;">
+                      <strong style="color:var(--blu);">In sintesi</strong><br>
+                      Un team operativo dedicato che gestisce attività strategiche e operative per liberare risorse interne e migliorare le performance.
                     </div>
 
                     <div class="cta">
                       <div>
-                        <div class="cta-title">Blocca l’offerta e parti <span>senza costi</span></div>
-                        <div class="cta-sub">Scegli un piano Content &amp; Strategy e fissiamo il prossimo step.</div>
+                        <div class="cta-title">Meno gestione. <span>Più risultati</span></div>
+                        <div class="cta-sub">Parliamone e costruiamo la strategia giusta.</div>
                       </div>
                       <a class="cta-btn" href="https://calendar.app.google/uFHDD9vTSKsrS3dp7" target="_blank" rel="noopener noreferrer">
-                        <span class="cta-btn-dot"></span>Blocca offerta
+                        <span class="cta-btn-dot"></span>Prenota call
                       </a>
                     </div>
                   </div>
@@ -921,8 +1218,8 @@
 
                 <div class="top-bar">
                   <div class="pill-row">
-                    <div class="pill"><span class="pill-dot"></span>Piani Content &amp; Strategy</div>
-                    <div class="badge-orange"><span class="badge-dot"></span>Risparmi fino a 3.000€ / anno</div>
+                    <div class="pill"><span class="pill-dot"></span>Promessa e benefici</div>
+                    <div class="badge-orange"><span class="badge-dot"></span>Risultati concreti e misurabili</div>
                   </div>
                   <img class="logo" src="http://img.mailinblue.com/9212108/images/68cc492abd5f0_1758218538.png" alt="Logo Migliorshop">
                 </div>
@@ -932,32 +1229,40 @@
                   <div style="display:flex; flex-direction:column; gap:10px;">
                     <div>
                       <div class="trust-line">
-                        <span class="trust-chip"><span class="trust-dot"></span>Zero costi di avvio</span>
-                        <span class="trust-chip"><span class="trust-dot"></span>Scalabilità</span>
-                        <span class="trust-chip"><span class="trust-dot"></span>Ottimizzazione</span>
+                        <span class="trust-chip"><span class="trust-dot"></span>Operatività concreta</span>
+                        <span class="trust-chip"><span class="trust-dot"></span>Decisioni rapide</span>
+                        <span class="trust-chip"><span class="trust-dot"></span>Controllo costante</span>
                       </div>
 
-                      <h1 class="hero-title" style="font-size:40px;">Scegli il piano<br><span>più adatto</span> a te</h1>
+                      <h1 class="hero-title" style="font-size:40px;">Perché questo servizio <span>funziona</span></h1>
                       <p class="hero-sub" style="font-size:15px;">
-                        Annuale = più flessibile. Triennale = più conveniente, con risparmi annui certi.
+                        Non facciamo solo consulenza: applichiamo direttamente le strategie e ti liberiamo dall’operatività.
                       </p>
-
-                      <div class="mega-badge" style="margin-top:8mm;">
-                        <div class="mega-main">Triennale · <span class="mega-highlight">più conveniente</span></div>
-                        <div class="mega-sub">Risparmi annui certi</div>
-                      </div>
                     </div>
 
-                    <div class="conditions">
-                      <strong style="color:var(--blu);">Note</strong><br>
-                      Prezzi IVA esclusa. Offerta valida previa selezione di un piano (Basic/Standard/Premium).
-                      Campagne pubblicitarie e Farmadati (200€/anno) non inclusi.
+                    <div class="benefit-grid">
+                      <div class="info-card">
+                        <h4>Riduzione complessità</h4>
+                        <p>Processi chiari, ruoli definiti e priorità settimanali.</p>
+                      </div>
+                      <div class="info-card">
+                        <h4>Allineamento continuo</h4>
+                        <p>Call mensili e roadmap condivisa per restare focalizzati.</p>
+                      </div>
+                      <div class="info-card">
+                        <h4>Efficienza operativa</h4>
+                        <p>Attività eseguite con tempi rapidi e monitoraggio costante.</p>
+                      </div>
+                      <div class="info-card">
+                        <h4>Risultati misurabili</h4>
+                        <p>Dashboard con KPI e indicatori di miglioramento chiari.</p>
+                      </div>
                     </div>
 
                     <div class="cta">
                       <div>
-                        <div class="cta-title">Vuoi partire <span>subito</span>?</div>
-                        <div class="cta-sub">Fissiamo un appuntamento e definiamo il piano migliore.</div>
+                        <div class="cta-title">Pronto a <span>delegare</span>?</div>
+                        <div class="cta-sub">Sblocca il tempo del tuo team e focalizzati sul core business.</div>
                       </div>
                       <a class="cta-btn" href="https://calendar.app.google/uFHDD9vTSKsrS3dp7" target="_blank" rel="noopener noreferrer">
                         <span class="cta-btn-dot"></span>Prenota call
@@ -967,58 +1272,29 @@
 
                   <!-- RIGHT -->
                   <div>
-                    <table class="cs-table">
-                      <thead>
-                        <tr>
-                          <th>Pacchetto</th>
-                          <th class="cs-col-plan cs-annual">
-                            <span class="cs-plan-title" style="color:var(--blu);">Annuale</span>
-                            <span class="cs-badge">(12 mesi)</span>
-                          </th>
-                          <th class="cs-col-plan cs-triennial">
-                            <span class="cs-plan-title" style="color:var(--viola);">Triennale</span>
-                            <span class="cs-badge">(36 mesi)</span>
-                          </th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td>
-                            <div class="cs-name">Content &amp; Strategy Basic</div>
-                            <div class="cs-desc">Per chi si affaccia all’e-commerce</div>
-                          </td>
-                          <td class="cs-col-plan cs-annual"><span class="cs-price">399€ / mese</span></td>
-                          <td class="cs-col-plan cs-triennial">
-                            <div class="cs-price">299€ / mese</div>
-                            <div class="cs-saving"><span class="save-pill">Risparmi 1.200€ / anno</span></div>
-                          </td>
-                        </tr>
+                    <div class="benefit-grid">
+                      <div class="benefit-card">
+                        <h3>Risparmi tempo</h3>
+                        <p>Applichiamo noi le strategie operative al posto tuo.</p>
+                      </div>
+                      <div class="benefit-card">
+                        <h3>Aumenti le performance</h3>
+                        <p>Più volumi, più conversioni, margini protetti.</p>
+                      </div>
+                      <div class="benefit-card">
+                        <h3>Decisioni guidate dai dati</h3>
+                        <p>Analisi continue su catalogo, budget e campagne.</p>
+                      </div>
+                      <div class="benefit-card">
+                        <h3>Meno complessità</h3>
+                        <p>Regole automatiche, controllo costante, meno errori.</p>
+                      </div>
+                    </div>
 
-                        <tr>
-                          <td>
-                            <div class="cs-name">Content &amp; Strategy Standard</div>
-                            <div class="cs-desc">Per chi punta in alto</div>
-                          </td>
-                          <td class="cs-col-plan cs-annual"><span class="cs-price">799€ / mese</span></td>
-                          <td class="cs-col-plan cs-triennial">
-                            <div class="cs-price">599€ / mese</div>
-                            <div class="cs-saving"><span class="save-pill">Risparmi 2.400€ / anno</span></div>
-                          </td>
-                        </tr>
-
-                        <tr>
-                          <td>
-                            <div class="cs-name">Content &amp; Strategy Premium</div>
-                            <div class="cs-desc">Per chi vuole il meglio</div>
-                          </td>
-                          <td class="cs-col-plan cs-annual"><span class="cs-price">1.049€ / mese</span></td>
-                          <td class="cs-col-plan cs-triennial">
-                            <div class="cs-price">799€ / mese</div>
-                            <div class="cs-saving"><span class="save-pill">Risparmi 3.000€ / anno</span></div>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
+                    <div class="conditions" style="margin-top:4mm;">
+                      <strong style="color:var(--blu);">Approccio operativo</strong><br>
+                      Ogni mese interveniamo su catalogo, pricing e campagne in base ai dati. Niente slide teoriche: solo azioni concrete.
+                    </div>
                   </div>
 
                 </div>
@@ -1032,227 +1308,319 @@
 
                 <div class="top-bar">
                   <div class="pill-row">
-                    <div class="pill"><span class="pill-dot"></span>I 3 pacchetti: Basic · Standard · Premium</div>
-                    <div class="badge-orange"><span class="badge-dot"></span>Consigliato: Standard</div>
+                    <div class="pill"><span class="pill-dot"></span>Come funziona</div>
+                    <div class="badge-orange"><span class="badge-dot"></span>Processo semplice in 4 step</div>
                   </div>
                   <img class="logo" src="http://img.mailinblue.com/9212108/images/68cc492abd5f0_1758218538.png" alt="Logo Migliorshop">
                 </div>
 
-                <div style="display:flex; flex-direction:column; gap:8mm; flex:1; min-height:0;">
+                <div style="display:flex; flex-direction:column; gap:6mm; flex:1; min-height:0;">
 
                   <div>
                     <h1 class="hero-title" style="font-size:42px; margin:0;">
-                      Scegli il pacchetto <span>che ti fa crescere</span>
+                      Un flusso chiaro, <span>sempre sotto controllo</span>
                     </h1>
                     <p class="hero-sub" style="font-size:15px; max-width:85%;">
-                      Tre livelli, stesso obiettivo: partire bene, ottimizzare in modo continuo e scalare con una strategia chiara.
+                      Dall’allineamento iniziale all’ottimizzazione continua, lavoriamo con processi snelli e misurabili.
                     </p>
                   </div>
 
-                  <!-- Cards 3 colonne -->
-                  <div style="display:grid; grid-template-columns: 1fr 1.05fr 1fr; gap:10mm; flex:1; min-height:0; align-items:stretch;">
+                  <div class="step-grid">
+                    <div class="step-card">
+                      <div class="step-num">STEP 01</div>
+                      <h3 class="step-title">Allineamento strategico</h3>
+                      <p class="step-desc">Definizione obiettivi, margini e priorità.</p>
+                    </div>
+                    <div class="step-card">
+                      <div class="step-num">STEP 02</div>
+                      <h3 class="step-title">Regole e strumenti</h3>
+                      <p class="step-desc">Offerte, filtri, logiche di prezzo.</p>
+                    </div>
+                    <div class="step-card">
+                      <div class="step-num">STEP 03</div>
+                      <h3 class="step-title">Operatività mensile</h3>
+                      <p class="step-desc">Le strategie le applichiamo noi.</p>
+                    </div>
+                    <div class="step-card">
+                      <div class="step-num">STEP 04</div>
+                      <h3 class="step-title">Monitoraggio continuo</h3>
+                      <p class="step-desc">Performance, budget e catalogo sempre sotto controllo.</p>
+                    </div>
+                  </div>
 
-                    <!-- BASIC -->
-                    <div style="
-                        border-radius:20px;
-                        padding:14px 16px;
-                        border:1px solid #e5e7eb;
-                        background: rgba(255,255,255,0.88);
-                        box-shadow: 0 18px 55px rgba(15,23,42,0.08);
-                        backdrop-filter: blur(6px);
-                        display:flex;
-                        flex-direction:column;
-                        gap:10px;
-                      ">
-                      <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:10px;">
-                        <div>
-                          <div style="font-weight:900; color:#111827; font-size:18px;">Basic</div>
-                          <div style="margin-top:4px; color:var(--muted); font-size:13px;">
-                            Per partire senza stress e validare.
-                          </div>
-                        </div>
-                        <div class="trust-chip" style="border-color:#dbeafe;background:#eff6ff;color:var(--blu);">
-                          <span class="trust-dot" style="background:linear-gradient(135deg,var(--azzurro),var(--blu));"></span>
-                          Starter
-                        </div>
+                  <div class="kpi" style="grid-template-columns: 1fr 1fr 1fr; margin-top:1mm;">
+                    <div class="kpi-box">
+                      <div class="kpi-label">Deliverable</div>
+                      <div class="kpi-value" style="font-size:20px;">Report mensile</div>
+                      <div class="kpi-chip"><span class="kpi-dot"></span>Azioni prioritarie</div>
+                    </div>
+                    <div class="kpi-box">
+                      <div class="kpi-label">Cadenza</div>
+                      <div class="kpi-value" style="font-size:20px;">Aggiornamenti</div>
+                      <div class="kpi-chip"><span class="kpi-dot"></span>Follow-up continuo</div>
+                    </div>
+                    <div class="kpi-box">
+                      <div class="kpi-label">Responsabilità</div>
+                      <div class="kpi-value" style="font-size:20px;">Noi eseguiamo</div>
+                      <div class="kpi-chip"><span class="kpi-dot"></span>Tu approvi</div>
+                    </div>
+                  </div>
+
+                </div>
+
+              </div>
+            </div>
+
+            <!-- ===================== SLIDE 4 ===================== -->
+            <div class="slide bg-soft">
+              <div class="pad">
+
+                <div class="top-bar">
+                  <div class="pill-row">
+                    <div class="pill"><span class="pill-dot"></span>Pacchetti di servizio</div>
+                    <div class="badge-orange"><span class="badge-dot"></span>Prezzi chiari e trasparenti</div>
+                  </div>
+                  <img class="logo" src="http://img.mailinblue.com/9212108/images/68cc492abd5f0_1758218538.png" alt="Logo Migliorshop">
+                </div>
+
+                <div style="display:flex; flex-direction:column; gap:5mm; flex:1; min-height:0;">
+                  <div>
+                    <h1 class="hero-title" style="font-size:40px; margin:0;">Scegli il livello <span>più adatto</span></h1>
+                    <p class="hero-sub" style="font-size:15px; max-width:85%;">
+                      Tre pacchetti per accompagnare la crescita, con attività operative già incluse.
+                    </p>
+                  </div>
+
+                  <div class="info-row">
+                    <div class="info-card">
+                      <h4>Servizio continuativo</h4>
+                      <p>Operatività mensile, con priorità condivise e interventi mirati.</p>
+                    </div>
+                    <div class="info-card">
+                      <h4>Strumenti inclusi</h4>
+                      <p>Utilizziamo i tool già presenti per applicare subito le strategie.</p>
+                    </div>
+                    <div class="info-card">
+                      <h4>Focus margini</h4>
+                      <p>Regole di protezione e controllo costante del rendimento.</p>
+                    </div>
+                  </div>
+
+                  <div class="package-grid">
+                    <div class="package-card">
+                      <div style="display:flex; align-items:center; justify-content:space-between; gap:10px;">
+                        <h3 class="package-title">Standard</h3>
+                        <span class="package-tag"><span class="pill-dot"></span>Base</span>
                       </div>
-
-                      <div class="mega-badge" style="margin:4px 0 0 0; padding:10px 12px;">
-                        <div class="mega-main" style="font-size:14px;">399€ / mese</div>
-                        <div class="mega-sub" style="font-size:12px;">Setup + base</div>
-                      </div>
-
-                      <div style="display:flex; gap:10px; margin-top:6px;">
-                        <div class="kpi-box" style="flex:1;">
-                          <div class="kpi-label">Contenuti/mese</div>
-                          <div class="kpi-value" style="font-size:20px;">8</div>
-                          <div class="kpi-chip"><span class="kpi-dot"></span>SEO base</div>
-                        </div>
-                        <div class="kpi-box" style="flex:1;">
-                          <div class="kpi-label">Call strategia</div>
-                          <div class="kpi-value" style="font-size:20px;">1</div>
-                          <div class="kpi-chip"><span class="kpi-dot"></span>60 min</div>
-                        </div>
-                      </div>
-
-                      <div style="margin-top:4px; color:#111827; font-weight:900; font-size:13px;">Include</div>
-                      <ul style="margin:0; padding-left:18px; color:var(--muted); font-size:13px; line-height:1.35;">
-                        <li>Setup tracking (GA4 + eventi principali)</li>
-                        <li>Ottimizzazione home + 5 schede prodotto</li>
-                        <li>8 contenuti/mese (blog o landing)</li>
-                        <li>1 report mensile con priorità</li>
-                        <li>Supporto via email (48h)</li>
+                      <p class="package-price">390€ / mese</p>
+                      <p class="package-sub">Per partire con metodo e continuità.</p>
+                      <ul class="package-list">
+                        <li>30 min consulenza strategica / mese</li>
+                        <li>30 min strategie operative applicate / mese</li>
+                        <li>Strategie di offerta base</li>
+                        <li>Regole di protezione del margine</li>
+                        <li>Analisi base catalogo e anomalie stock</li>
                       </ul>
-
-                      <div style="margin-top:auto; display:flex; gap:10px; align-items:center; justify-content:space-between;">
-                        <div class="kpi-chip" style="border-color:#bbf7d0;background:#ecfdf5;color:var(--verde);">
-                          <span class="kpi-dot"></span>Ideale per test
-                        </div>
-                        <div style="font-size:12.5px; color:var(--muted); font-weight:900;">
-                          + crescita “safe”
-                        </div>
-                      </div>
                     </div>
 
-                    <!-- STANDARD (featured) -->
-                    <div style="
-                        border-radius:22px;
-                        padding:16px 18px;
-                        border:2px solid rgba(137,35,173,0.25);
-                        background:
-                          radial-gradient(circle at 0% 0%, rgba(25,198,255,0.18) 0, transparent 55%),
-                          radial-gradient(circle at 100% 0%, rgba(137,35,173,0.16) 0, transparent 55%),
-                          rgba(255,255,255,0.92);
-                        box-shadow: 0 28px 80px rgba(137,35,173,0.14);
-                        backdrop-filter: blur(8px);
-                        display:flex;
-                        flex-direction:column;
-                        gap:10px;
-                        transform: translateY(-2mm);
-                      ">
-                      <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:10px;">
-                        <div>
-                          <div style="font-weight:900; color:#111827; font-size:19px;">Standard</div>
-                          <div style="margin-top:4px; color:var(--muted); font-size:13px;">
-                            Per crescere in modo costante e misurabile.
-                          </div>
-                        </div>
+                    <div class="package-card featured">
+                      <div style="display:flex; align-items:center; justify-content:space-between; gap:10px;">
+                        <h3 class="package-title">Plus</h3>
                         <div class="pill" style="background:#fdf2ff;border-color:#f5d0fe;color:var(--viola); box-shadow:none;">
-                          <span class="pill-dot"></span>Best choice
+                          <span class="pill-dot"></span>Più richiesto
                         </div>
                       </div>
-
-                      <div class="mega-badge" style="margin:4px 0 0 0; padding:11px 13px;">
-                        <div class="mega-main" style="font-size:14px;">799€ / mese</div>
-                        <div class="mega-sub" style="font-size:12px;">Growth</div>
-                      </div>
-
-                      <div style="display:flex; gap:10px; margin-top:6px;">
-                        <div class="kpi-box" style="flex:1;">
-                          <div class="kpi-label">Contenuti/mese</div>
-                          <div class="kpi-value" style="font-size:20px;">16</div>
-                          <div class="kpi-chip"><span class="kpi-dot"></span>SEO + CRO</div>
-                        </div>
-                        <div class="kpi-box" style="flex:1;">
-                          <div class="kpi-label">Call strategia</div>
-                          <div class="kpi-value" style="font-size:20px;">2</div>
-                          <div class="kpi-chip"><span class="kpi-dot"></span>Roadmap</div>
-                        </div>
-                      </div>
-
-                      <div style="margin-top:4px; color:#111827; font-weight:900; font-size:13px;">Include</div>
-                      <ul style="margin:0; padding-left:18px; color:var(--muted); font-size:13px; line-height:1.35;">
-                        <li>Setup tracking completo + dashboard KPI</li>
-                        <li>Ottimizzazione categorie + 15 schede prodotto</li>
-                        <li>16 contenuti/mese (landing + blog + microcopy)</li>
-                        <li>2 test CRO/mese (checkout, schede, CTA)</li>
-                        <li>Report + call: priorità settimanali</li>
-                        <li>Supporto WhatsApp (24h)</li>
+                      <p class="package-price">690€ / mese</p>
+                      <p class="package-sub">Per crescere con ottimizzazioni avanzate.</p>
+                      <ul class="package-list">
+                        <li>1 ora consulenza strategica / mese</li>
+                        <li>60 min strategie operative applicate / mese</li>
+                        <li>Strategie avanzate su offerte e pricing</li>
+                        <li>Ottimizzazione budget Trovaprezzi</li>
+                        <li>Analisi trend e scrematura prodotti ad alte/basse performance</li>
                       </ul>
-
-                      <div style="margin-top:auto; display:flex; gap:10px; align-items:center; justify-content:space-between;">
-                        <div class="cta-btn" style="box-shadow:none; padding:10px 12px;">
-                          <span class="cta-btn-dot"></span>Consigliato
-                        </div>
-                        <div class="kpi-chip" style="border-color:#bbf7d0;background:#ecfdf5;color:var(--verde);">
-                          <span class="kpi-dot"></span>+ performance
-                        </div>
-                      </div>
                     </div>
 
-                    <!-- PREMIUM -->
-                    <div style="
-                        border-radius:20px;
-                        padding:14px 16px;
-                        border:1px solid rgba(249,115,22,0.28);
-                        background: rgba(255,255,255,0.88);
-                        box-shadow: 0 18px 55px rgba(249,115,22,0.10);
-                        backdrop-filter: blur(6px);
-                        display:flex;
-                        flex-direction:column;
-                        gap:10px;
-                      ">
-                      <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:10px;">
-                        <div>
-                          <div style="font-weight:900; color:#111827; font-size:18px;">Premium</div>
-                          <div style="margin-top:4px; color:var(--muted); font-size:13px;">
-                            Per chi vuole il massimo (scaling + iterazioni).
-                          </div>
-                        </div>
-                        <div class="badge-orange" style="box-shadow:none;">
-                          <span class="badge-dot"></span>Elite
-                        </div>
+                    <div class="package-card" style="border-color: rgba(249,115,22,0.28);">
+                      <div style="display:flex; align-items:center; justify-content:space-between; gap:10px;">
+                        <h3 class="package-title">Premium</h3>
+                        <span class="badge-orange" style="box-shadow:none;">
+                          <span class="badge-dot"></span>Full control
+                        </span>
                       </div>
-
-                      <div class="mega-badge" style="margin:4px 0 0 0; padding:10px 12px;">
-                        <div class="mega-main" style="font-size:14px;">1.049€ / mese</div>
-                        <div class="mega-sub" style="font-size:12px;">Scale</div>
-                      </div>
-
-                      <div style="display:flex; gap:10px; margin-top:6px;">
-                        <div class="kpi-box" style="flex:1;">
-                          <div class="kpi-label">Contenuti/mese</div>
-                          <div class="kpi-value" style="font-size:20px;">28</div>
-                          <div class="kpi-chip"><span class="kpi-dot"></span>SEO avanzata</div>
-                        </div>
-                        <div class="kpi-box" style="flex:1;">
-                          <div class="kpi-label">Call strategia</div>
-                          <div class="kpi-value" style="font-size:20px;">4</div>
-                          <div class="kpi-chip"><span class="kpi-dot"></span>Weekly</div>
-                        </div>
-                      </div>
-
-                      <div style="margin-top:4px; color:#111827; font-weight:900; font-size:13px;">Include</div>
-                      <ul style="margin:0; padding-left:18px; color:var(--muted); font-size:13px; line-height:1.35;">
-                        <li>Audit completo + piano 90 giorni</li>
-                        <li>Ottimizzazione full-catalog (priorità top seller)</li>
-                        <li>28 contenuti/mese (landing, blog, email, ads copy)</li>
-                        <li>4 test CRO/mese + heatmap review</li>
-                        <li>Supporto prioritario (entro 6h)</li>
-                        <li>Workshop mensile (team + roadmap)</li>
+                      <p class="package-price">890€ / mese</p>
+                      <p class="package-sub">Per chi vuole massime performance e controllo.</p>
+                      <ul class="package-list">
+                        <li>2 ore consulenza strategica / mese</li>
+                        <li>90 min strategie operative applicate / mese</li>
+                        <li>Analisi completa del catalogo e competitività</li>
+                        <li>Ottimizzazione Google Ads</li>
+                        <li>Controllo avanzato di performance, budget e anomalie</li>
                       </ul>
-
-                      <div style="margin-top:auto; display:flex; gap:10px; align-items:center; justify-content:space-between;">
-                        <div class="kpi-chip" style="border-color:#fed7aa;background:#fff7ed;color:var(--arancio-txt);">
-                          <span class="kpi-dot" style="background:linear-gradient(135deg,#f59e0b,var(--arancio));"></span>
-                          Scaling
-                        </div>
-                        <div style="font-size:12.5px; color:var(--muted); font-weight:900;">
-                          + iterazioni
-                        </div>
-                      </div>
                     </div>
-
                   </div>
 
-                  <!-- Footer CTA piccolo -->
-                  <div class="mega-badge" style="justify-content:space-between;">
-                    <div class="mega-main" style="font-size:15px;">
-                      Tip: con <span class="mega-highlight">contratto triennale</span> massimizzi il risparmio
+                  <div class="conditions">
+                    <strong style="color:var(--blu);">Nota</strong><br>
+                    Le strategie devono rientrare negli strumenti disponibili. Non sono incluse personalizzazioni o programmi su misura.
+                    Gli strumenti restano ad uso esclusivo del fornitore. Tutti i prezzi sono IVA esclusa.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- ===================== SLIDE 5 ===================== -->
+            <div class="slide bg-soft">
+              <div class="pad">
+
+                <div class="top-bar">
+                  <div class="pill-row">
+                    <div class="pill"><span class="pill-dot"></span>Autorevolezza</div>
+                    <div class="badge-orange"><span class="badge-dot"></span>Social proof</div>
+                  </div>
+                  <img class="logo" src="http://img.mailinblue.com/9212108/images/68cc492abd5f0_1758218538.png" alt="Logo Migliorshop">
+                </div>
+
+                <div class="grid">
+                  <div>
+                    <h1 class="hero-title" style="font-size:40px;">Un approccio scelto da chi gestisce eCommerce <span>complessi</span></h1>
+                    <p class="hero-sub" style="font-size:15px; max-width:90%;">
+                      Un approccio scelto da chi gestisce eCommerce complessi e orientati alla performance.
+                      Trovi in allegato le testate che hanno scritto recensioni.
+                    </p>
+
+                    <div class="quote-card" style="margin-top:4mm;">
+                      <p>“Abbiamo ridotto la complessità operativa e aumentato il controllo sulle performance in pochi mesi.”</p>
+                      <div class="who">Direzione eCommerce · Cliente B2B</div>
                     </div>
-                    <div class="mega-sub">Scegli “Standard” per l’equilibrio migliore</div>
+
+                    <div class="logo-grid">
+                      <div class="logo-chip">Testata Partner 1</div>
+                      <div class="logo-chip">Testata Partner 2</div>
+                      <div class="logo-chip">Testata Partner 3</div>
+                      <div class="logo-chip">Media 4</div>
+                      <div class="logo-chip">Media 5</div>
+                      <div class="logo-chip">Media 6</div>
+                    </div>
                   </div>
 
+                  <div class="side" style="justify-content:center;">
+                    <div class="info-card">
+                      <h4>Perché ci scelgono</h4>
+                      <p>Esperienza su cataloghi complessi, pricing dinamico e gestione multicanale.</p>
+                    </div>
+                    <div class="kpi-box">
+                      <div class="kpi-label">Focus</div>
+                      <div class="kpi-value">B2B eCommerce</div>
+                      <div class="kpi-chip"><span class="kpi-dot"></span>Performance-first</div>
+                    </div>
+                    <div class="kpi-box">
+                      <div class="kpi-label">Metodo</div>
+                      <div class="kpi-value">Operativo</div>
+                      <div class="kpi-chip"><span class="kpi-dot"></span>Strategie applicate</div>
+                    </div>
+                    <div class="kpi-box">
+                      <div class="kpi-label">Risultato</div>
+                      <div class="kpi-value">Crescita</div>
+                      <div class="kpi-chip"><span class="kpi-dot"></span>Controllo &amp; margini</div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- ===================== SLIDE 6 ===================== -->
+            <div class="slide bg-soft">
+              <div class="pad">
+
+                <div class="top-bar">
+                  <div class="pill-row">
+                    <div class="pill"><span class="pill-dot"></span>Chiudiamo con la CTA</div>
+                    <div class="badge-orange"><span class="badge-dot"></span>Prossimo step</div>
+                  </div>
+                  <img class="logo" src="http://img.mailinblue.com/9212108/images/68cc492abd5f0_1758218538.png" alt="Logo Migliorshop">
+                </div>
+
+                <div class="grid">
+                  <div>
+                    <h1 class="hero-title" style="font-size:46px;">Meno gestione. <span>Più risultati.</span></h1>
+                    <p class="hero-sub" style="font-size:16px; max-width:90%;">
+                      Parliamone e costruiamo la strategia giusta per il tuo eCommerce.
+                    </p>
+                    <div class="mega-badge" style="margin-top:8mm;">
+                      <div class="mega-main">Partenza veloce · <span class="mega-highlight">Operatività inclusa</span></div>
+                      <div class="mega-sub">Ti liberiamo tempo, tu guidi la visione</div>
+                    </div>
+
+                    <div class="info-row" style="margin-top:6mm;">
+                      <div class="info-card">
+                        <h4>Call iniziale</h4>
+                        <p>Raccogliamo obiettivi, KPI e priorità operative.</p>
+                      </div>
+                      <div class="info-card">
+                        <h4>Piano 90 giorni</h4>
+                        <p>Roadmap con interventi, timing e responsabilità.</p>
+                      </div>
+                      <div class="info-card">
+                        <h4>Kickoff operativo</h4>
+                        <p>Avvio attività e monitoraggio settimanale.</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="side">
+                    <div class="cta">
+                      <div>
+                        <div class="cta-title">Prenota la tua <span>call</span></div>
+                        <div class="cta-sub">30 minuti per capire obiettivi e priorità.</div>
+                      </div>
+                      <a class="cta-btn" href="https://calendar.app.google/uFHDD9vTSKsrS3dp7" target="_blank" rel="noopener noreferrer">
+                        <span class="cta-btn-dot"></span>Parliamone
+                      </a>
+                    </div>
+
+                    <div class="kpi-box">
+                      <div class="kpi-label">Tempistiche</div>
+                      <div class="kpi-value">Onboarding rapido</div>
+                      <div class="kpi-chip"><span class="kpi-dot"></span>Setup operativo</div>
+                    </div>
+                    <div class="kpi-box">
+                      <div class="kpi-label">Approccio</div>
+                      <div class="kpi-value">Hands-on</div>
+                      <div class="kpi-chip"><span class="kpi-dot"></span>No solo consulenza</div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- ===================== SLIDE 7 ===================== -->
+            <div class="slide bg-soft">
+              <div class="pad">
+
+                <div class="top-bar">
+                  <div class="pill-row">
+                    <img class="logo-lg" src="http://img.mailinblue.com/9212108/images/68cc492abd5f0_1758218538.png" alt="Logo Migliorshop">
+                  </div>
+                </div>
+
+                <div class="cover-grid">
+                  <div class="cover-card">
+                    <h1 class="cover-title">Il Miglior partner per la tua <span>farmacia online</span></h1>
+                    <p class="cover-sub">Brochure strategia per l’eCommerce farmacia</p>
+                    <div class="trust-line">
+                      <span class="trust-chip"><span class="trust-dot"></span>Strategia chiara</span>
+                      <span class="trust-chip"><span class="trust-dot"></span>Operatività continua</span>
+                      <span class="trust-chip"><span class="trust-dot"></span>Risultati misurabili</span>
+                    </div>
+                    <div class="mega-badge" style="margin-top:4mm;">
+                      <div class="mega-main">Controllo totale · <span class="mega-highlight">Più performance</span></div>
+                      <div class="mega-sub">Parliamone e attiviamo il percorso</div>
+                    </div>
+                  </div>
+                  <img class="cover-image" src="https://img.mailinblue.com/143672/images/content_library/original/67bc8109711fdda28670fa53.png" alt="Professionista farmacia online">
                 </div>
 
               </div>
@@ -1601,7 +1969,7 @@
             pdf.addImage(imgData, 'JPEG', 0, 0, 297, 167, undefined, 'FAST');
           }
 
-          const filename = 'Offerta-ZeroStart-Migliorshop.pdf';
+          const filename = 'Gestione-Strategica-eCommerce.pdf';
           pdf.save(filename);
         }catch(err){
           // fallback: stampa
