@@ -3,12 +3,16 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>ZeroStart Migliorshop — Slides Full</title>
+  <title>Offerta ZeroStart Migliorshop — Slides Full</title>
 
   <!-- Google Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
+
+  <!-- PDF libs (solo web) -->
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
 
   <style>
     /* ===== PRINT / VIVLIOSTYLE =====
@@ -41,8 +45,10 @@
 
       --card-bd:#e2e5f3;
 
-      /* Web viewer scaling */
+      /* Web viewer scaling + pan */
       --web-scale: 1;
+      --pan-x: 0px;
+      --pan-y: 0px;
     }
 
     body{
@@ -59,7 +65,7 @@
       position: relative;
       overflow: hidden;
       page-break-after: always;
-      transform-origin: center center; /* FIX: centering friendly */
+      transform-origin: center center;
     }
     .slide:last-child{ page-break-after: auto; }
 
@@ -466,7 +472,7 @@
       }
 
       .web-topbar-inner{
-        max-width: 1400px; /* FIX: più largo */
+        max-width: 1400px;
         margin: 0 auto;
         padding: 14px 16px;
         display:flex;
@@ -493,11 +499,7 @@
         font-size: 14px;
         line-height: 1.2;
       }
-      .brand .sub{
-        color: rgba(234,240,255,0.70);
-        font-size: 12px;
-        margin-top: 2px;
-      }
+      .brand .sub{ display:none; } /* RIMOSSO: "Viewer web + PDF (stesso file)" */
 
       .web-actions{
         display:flex;
@@ -534,6 +536,7 @@
         width:8px;height:8px;border-radius:999px;
         background: linear-gradient(135deg, #f59e0b, var(--arancio));
       }
+      .web-btn[disabled]{ opacity:.55; cursor:not-allowed; transform:none !important; }
 
       .kbd{
         font-size: 11px;
@@ -550,11 +553,11 @@
         display:flex;
         align-items:center;
         justify-content:center;
-        padding: 22px 16px 28px;
+        padding: 18px 16px 28px;
       }
 
       .viewer{
-        width: min(1400px, 100%); /* FIX: più largo di default */
+        width: min(1400px, 100%);
         border-radius: 20px;
         border: 1px solid rgba(255,255,255,0.10);
         background: rgba(255,255,255,0.04);
@@ -562,9 +565,52 @@
           0 50px 140px rgba(0,0,0,0.55),
           0 18px 60px rgba(15,23,42,0.30);
         padding: 14px;
+        position: relative;
       }
 
-      /* FIX: stage centrato e con altezza definita */
+      /* Banner (solo web, NON deve andare in stampa) */
+      .web-banner{
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        gap:10px;
+        margin: 2px 2px 10px;
+        padding: 10px 12px;
+        border-radius: 16px;
+        border: 1px solid rgba(249,115,22,0.22);
+        background:
+          radial-gradient(circle at 10% 0%, rgba(25,198,255,0.20) 0, transparent 55%),
+          radial-gradient(circle at 100% 0%, rgba(137,35,173,0.18) 0, transparent 55%),
+          linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));
+        color: rgba(234,240,255,0.92);
+        box-shadow: 0 24px 70px rgba(0,0,0,0.35);
+      }
+      .web-banner .chip{
+        display:inline-flex;
+        align-items:center;
+        gap:8px;
+        padding: 8px 12px;
+        border-radius: 999px;
+        border: 1px solid rgba(255,255,255,0.16);
+        background: rgba(255,255,255,0.06);
+        font-weight: 900;
+        font-size: 12.5px;
+        letter-spacing: -0.1px;
+        white-space: nowrap;
+      }
+      .web-banner .chip .spark{
+        width: 9px; height: 9px; border-radius: 999px;
+        background: linear-gradient(135deg, var(--azzurro), var(--arancio));
+        box-shadow: 0 10px 26px rgba(25,198,255,0.18);
+      }
+      .web-banner .big{
+        font-weight: 900;
+        font-size: 13px;
+        letter-spacing: -0.2px;
+        white-space: nowrap;
+      }
+
+      /* Stage */
       .stage{
         position: relative;
         overflow: hidden;
@@ -572,19 +618,21 @@
         background: rgba(0,0,0,0.20);
         border: 1px solid rgba(255,255,255,0.10);
 
-        display:flex;                 /* FIX: center */
-        align-items:center;           /* FIX */
-        justify-content:center;       /* FIX */
-        height: min(76vh, 820px);     /* FIX: più alto */
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        height: min(76vh, 820px);
+        touch-action: pan-y; /* consenti scroll verticale pagina */
       }
 
       /* mostra una slide alla volta in web */
       #deck .slide{ display:none; }
       #deck .slide.is-active{ display:block; }
 
-      /* scala in web */
+      /* scala + pan in web */
       #deck .slide{
-        transform: scale(var(--web-scale));
+        transform: translate3d(var(--pan-x), var(--pan-y), 0) scale(var(--web-scale));
+        will-change: transform;
       }
 
       /* progress bar */
@@ -603,7 +651,7 @@
       }
 
       .footer-hint{
-        max-width: 1400px; /* FIX: più largo */
+        max-width: 1400px;
         margin: 0 auto;
         padding: 0 16px 18px;
         color: rgba(234,240,255,0.70);
@@ -613,18 +661,89 @@
         gap: 12px;
         flex-wrap:wrap;
       }
-      .footer-hint a{ color: rgba(234,240,255,0.90); text-decoration:none; font-weight:900; }
 
-      /* FULLSCREEN MODE */
-      html.is-fs .viewer{
-        width: min(1900px, 98vw); /* FIX: molto più largo in fullscreen */
+      /* RIMOSSO: link rapido (non lo mostriamo proprio) */
+      .footer-hint .quick{ display:none; }
+
+      /* Animazioni (più belle) */
+      @keyframes slideIn {
+        from { opacity: 0; transform: translate3d(var(--pan-x), calc(var(--pan-y) + 18px), 0) scale(var(--web-scale)); filter: blur(8px); }
+        to   { opacity: 1; transform: translate3d(var(--pan-x), var(--pan-y), 0) scale(var(--web-scale)); filter: blur(0px); }
       }
-      html.is-fs .viewer-wrap{
-        padding: 10px 10px 14px;
+      @keyframes floaty {
+        0%,100% { transform: translateY(0px); }
+        50% { transform: translateY(-3px); }
       }
-      html.is-fs .stage{
-        height: calc(100vh - 140px); /* FIX: usa più viewport */
+
+      #deck .slide.is-active{
+        animation: slideIn 520ms cubic-bezier(.2,.8,.2,1) both;
       }
+      /* piccoli micro-movimenti su pill/badge (solo web) */
+      #deck .slide.is-active .pill,
+      #deck .slide.is-active .badge-orange,
+      #deck .slide.is-active .pill-red{
+        animation: floaty 4.4s ease-in-out 700ms infinite;
+      }
+      /* reveal progressivo */
+      #deck .slide.is-active .hero-title,
+      #deck .slide.is-active .hero-sub,
+      #deck .slide.is-active .trust-line,
+      #deck .slide.is-active .value-item,
+      #deck .slide.is-active .kpi-box,
+      #deck .slide.is-active .cta,
+      #deck .slide.is-active .cs-table,
+      #deck .slide.is-active .conditions{
+        opacity: 0;
+        transform: translateY(10px);
+        animation: revealUp 520ms cubic-bezier(.2,.8,.2,1) forwards;
+      }
+      @keyframes revealUp{
+        to { opacity: 1; transform: translateY(0px); }
+      }
+      #deck .slide.is-active .trust-line{ animation-delay: 120ms; }
+      #deck .slide.is-active .hero-title{ animation-delay: 170ms; }
+      #deck .slide.is-active .hero-sub{ animation-delay: 220ms; }
+      #deck .slide.is-active .value-item:nth-child(1){ animation-delay: 260ms; }
+      #deck .slide.is-active .value-item:nth-child(2){ animation-delay: 320ms; }
+      #deck .slide.is-active .kpi-box:nth-child(1){ animation-delay: 260ms; }
+      #deck .slide.is-active .kpi-box:nth-child(2){ animation-delay: 300ms; }
+      #deck .slide.is-active .kpi-box:nth-child(3){ animation-delay: 340ms; }
+      #deck .slide.is-active .kpi-box:nth-child(4){ animation-delay: 380ms; }
+      #deck .slide.is-active .cta{ animation-delay: 420ms; }
+      #deck .slide.is-active .cs-table{ animation-delay: 300ms; }
+      #deck .slide.is-active .conditions{ animation-delay: 360ms; }
+
+      @media (prefers-reduced-motion: reduce){
+        *{ animation: none !important; transition: none !important; }
+      }
+
+      /* Overlay loading PDF */
+      .pdf-overlay{
+        position:absolute;
+        inset: 14px;
+        border-radius: 18px;
+        background: rgba(0,0,0,0.46);
+        border: 1px solid rgba(255,255,255,0.14);
+        backdrop-filter: blur(10px);
+        display:none;
+        align-items:center;
+        justify-content:center;
+        flex-direction:column;
+        gap: 10px;
+        z-index: 20;
+        color: rgba(234,240,255,0.92);
+        text-align:center;
+        padding: 18px;
+      }
+      .pdf-overlay.is-on{ display:flex; }
+      .spinner{
+        width: 38px; height: 38px;
+        border-radius: 999px;
+        border: 3px solid rgba(255,255,255,0.16);
+        border-top-color: rgba(25,198,255,0.90);
+        animation: spin 900ms linear infinite;
+      }
+      @keyframes spin { to { transform: rotate(360deg); } }
 
       @media (max-width: 560px){
         .brand{ min-width: 0; }
@@ -632,6 +751,8 @@
         .web-btn{ padding: 9px 10px; font-size: 12px; }
         .viewer{ padding: 10px; }
         .stage{ height: min(74vh, 640px); }
+        .web-banner{ padding: 10px; }
+        .web-banner .big{ font-size: 12.5px; }
       }
     }
 
@@ -641,7 +762,7 @@
       .web-shell{ display:block !important; }
 
       /* nascondi solo UI */
-      .web-topbar, .footer-hint, .progress{ display:none !important; }
+      .web-topbar, .footer-hint, .progress, .web-banner, .pdf-overlay{ display:none !important; }
 
       /* rimuovi cornici/padding in stampa */
       .viewer-wrap{ padding:0 !important; }
@@ -665,22 +786,21 @@
         <div class="brand">
           <span class="mark"></span>
           <div>
-            <div class="title">ZeroStart Migliorshop</div>
-            <div class="sub">Viewer web + PDF (stesso file)</div>
+            <div class="title">Offerta ZeroStart Migliorshop</div>
           </div>
         </div>
 
         <div class="web-actions">
-          <button class="web-btn" id="prevBtn" type="button" title="Slide precedente (←)">← Prev</button>
-          <button class="web-btn" id="nextBtn" type="button" title="Slide successiva (→)">Next →</button>
+          <button class="web-btn" id="prevBtn" type="button" title="Slide precedente (←)">← Precedente</button>
+          <button class="web-btn" id="nextBtn" type="button" title="Slide successiva (→)">Successiva →</button>
 
           <button class="web-btn" id="zoomOutBtn" type="button" title="Zoom -">−</button>
           <button class="web-btn" id="zoomInBtn" type="button" title="Zoom +">+</button>
 
-          <button class="web-btn" id="fsBtn" type="button" title="Fullscreen">⛶</button>
+          <!-- FULLSCREEN RIMOSSO -->
 
-          <button class="web-btn primary" id="printBtn" type="button" title="Stampa / Salva PDF">
-            <span class="dot"></span> PDF
+          <button class="web-btn primary" id="pdfBtn" type="button" title="Genera e scarica il PDF">
+            <span class="dot"></span> Salva in PDF
           </button>
 
           <span class="kbd">← →</span>
@@ -689,7 +809,13 @@
     </div>
 
     <div class="viewer-wrap">
-      <div class="viewer">
+      <div class="viewer" id="viewer">
+        <!-- Banner visibile SOLO web -->
+        <div class="web-banner" aria-hidden="true">
+          <span class="chip"><span class="spark"></span> Offerta attiva</span>
+          <span class="big">Risparmi fino a <strong>12.500€</strong></span>
+        </div>
+
         <div class="stage" id="stage">
           <main id="deck">
 
@@ -1138,14 +1264,19 @@
         <div class="progress" aria-hidden="true">
           <div id="progressBar"></div>
         </div>
+
+        <!-- Overlay PDF -->
+        <div class="pdf-overlay" id="pdfOverlay" aria-live="polite">
+          <div class="spinner" aria-hidden="true"></div>
+          <div style="font-weight:900;">Sto generando il PDF…</div>
+          <div style="opacity:.85; font-size:12.5px;">Non chiudere la pagina (qualche secondo).</div>
+        </div>
       </div>
     </div>
 
     <div class="footer-hint">
-      <div>Scorciatoie: <span class="kbd">←</span> <span class="kbd">→</span> · <span class="kbd">F</span> fullscreen · <span class="kbd">P</span> PDF</div>
-      <div>
-        Link rapido: <a href="?s=1">S1</a> · <a href="?s=2">S2</a> · <a href="?s=3">S3</a>
-      </div>
+      <div>Scorciatoie: <span class="kbd">←</span> <span class="kbd">→</span> · <span class="kbd">+</span> <span class="kbd">-</span> zoom · <span class="kbd">P</span> PDF</div>
+      <div class="quick"></div>
     </div>
   </div>
 
@@ -1159,12 +1290,20 @@
       const nextBtn = document.getElementById('nextBtn');
       const zoomInBtn = document.getElementById('zoomInBtn');
       const zoomOutBtn = document.getElementById('zoomOutBtn');
-      const fsBtn = document.getElementById('fsBtn');
-      const printBtn = document.getElementById('printBtn');
+      const pdfBtn = document.getElementById('pdfBtn');
       const stage = document.getElementById('stage');
+      const pdfOverlay = document.getElementById('pdfOverlay');
 
       let index = 0;
+
+      // scale: valore corrente applicato
       let scale = 1;
+
+      // baseFit: scala "fit" calcolata (serve per capire se sto zoomando)
+      let baseFit = 1;
+
+      // pan per slide (in px)
+      const pans = slides.map(() => ({x:0, y:0}));
 
       function clamp(n, a, b){ return Math.max(a, Math.min(b, n)); }
 
@@ -1180,6 +1319,18 @@
         window.history.replaceState({}, '', u.toString());
       }
 
+      function setPanVars(){
+        const p = pans[index] || {x:0,y:0};
+        document.documentElement.style.setProperty('--pan-x', (p.x|0) + 'px');
+        document.documentElement.style.setProperty('--pan-y', (p.y|0) + 'px');
+      }
+
+      function resetPan(i){
+        if(!pans[i]) return;
+        pans[i].x = 0;
+        pans[i].y = 0;
+      }
+
       function show(i){
         index = clamp(i, 0, slides.length - 1);
         slides.forEach((el, k) => el.classList.toggle('is-active', k === index));
@@ -1190,11 +1341,16 @@
         }
 
         setParamS(index + 1);
-        fitToViewport();
+
+        // reset pan quando cambi slide (più “pulito”)
+        resetPan(index);
+        setPanVars();
+
+        fitToViewport(true);
       }
 
-      // --- Smart fit: usa offsetWidth/Height (più stabile del rect)
-      function fitToViewport(){
+      // --- Smart fit
+      function fitToViewport(forceFit){
         const active = slides[index];
         if(!active) return;
 
@@ -1207,10 +1363,39 @@
         const pad = 18;
         const s = Math.min((vw - pad) / slideW, (vh - pad) / slideH);
 
-        const maxScale = document.fullscreenElement ? 1.45 : 1.15; // FIX: più grande in fullscreen
-        scale = clamp(s, 0.35, maxScale);
+        baseFit = clamp(s, 0.35, 1.15);
 
-        document.documentElement.style.setProperty('--web-scale', scale.toFixed(3));
+        if(forceFit){
+          scale = baseFit;
+          document.documentElement.style.setProperty('--web-scale', scale.toFixed(3));
+        }else{
+          // se l'utente ha zoomato, non lo "rompiamo" — ma garantiamo un minimo
+          scale = clamp(scale, 0.35, 1.6);
+          document.documentElement.style.setProperty('--web-scale', scale.toFixed(3));
+        }
+
+        clampPanToBounds();
+        setPanVars();
+      }
+
+      function clampPanToBounds(){
+        const active = slides[index];
+        if(!active) return;
+
+        // dimensioni stage e slide scalata
+        const vw = stage.clientWidth;
+        const vh = stage.clientHeight;
+
+        const slideW = active.offsetWidth * scale;
+        const slideH = active.offsetHeight * scale;
+
+        // se la slide è più piccola dello stage -> pan zero
+        const maxX = Math.max(0, (slideW - vw) / 2);
+        const maxY = Math.max(0, (slideH - vh) / 2);
+
+        const p = pans[index];
+        p.x = clamp(p.x, -maxX, maxX);
+        p.y = clamp(p.y, -maxY, maxY);
       }
 
       function next(){ show(index + 1); }
@@ -1221,25 +1406,25 @@
       nextBtn?.addEventListener('click', next);
 
       zoomInBtn?.addEventListener('click', () => {
-        scale = clamp(scale + 0.08, 0.35, document.fullscreenElement ? 1.6 : 1.4);
+        scale = clamp(scale + 0.10, 0.35, 1.6);
         document.documentElement.style.setProperty('--web-scale', scale.toFixed(3));
+        clampPanToBounds();
+        setPanVars();
       });
       zoomOutBtn?.addEventListener('click', () => {
-        scale = clamp(scale - 0.08, 0.35, document.fullscreenElement ? 1.6 : 1.4);
+        scale = clamp(scale - 0.10, 0.35, 1.6);
         document.documentElement.style.setProperty('--web-scale', scale.toFixed(3));
-      });
 
-      fsBtn?.addEventListener('click', async () => {
-        try{
-          if(!document.fullscreenElement){
-            await document.documentElement.requestFullscreen();
-          }else{
-            await document.exitFullscreen();
-          }
-        }catch(e){}
-      });
+        // se torni vicino al fit, reset pan (sensazione “centrata”)
+        if(scale <= baseFit + 0.02){
+          scale = baseFit;
+          document.documentElement.style.setProperty('--web-scale', scale.toFixed(3));
+          resetPan(index);
+        }
 
-      printBtn?.addEventListener('click', () => window.print());
+        clampPanToBounds();
+        setPanVars();
+      });
 
       // Keyboard
       document.addEventListener('keydown', (e) => {
@@ -1248,15 +1433,61 @@
 
         if(e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' '){ e.preventDefault(); next(); }
         if(e.key === 'ArrowLeft'  || e.key === 'PageUp'){ e.preventDefault(); prev(); }
-        if(e.key.toLowerCase() === 'f'){ fsBtn?.click(); }
-        if(e.key.toLowerCase() === 'p'){ printBtn?.click(); }
-        if(e.key === '+'){ zoomInBtn?.click(); }
-        if(e.key === '-'){ zoomOutBtn?.click(); }
+        if(e.key.toLowerCase() === 'p'){ e.preventDefault(); pdfBtn?.click(); }
+        if(e.key === '+'){ e.preventDefault(); zoomInBtn?.click(); }
+        if(e.key === '-'){ e.preventDefault(); zoomOutBtn?.click(); }
       });
 
-      // Swipe (mobile)
+      // ---- PAN (drag) quando zoom > fit
+      let isDragging = false;
+      let dragStartX = 0, dragStartY = 0;
+      let panStartX = 0, panStartY = 0;
+
+      function canPan(){
+        return scale > (baseFit + 0.03);
+      }
+
+      stage.addEventListener('pointerdown', (e) => {
+        if(!canPan()) return;
+        isDragging = true;
+        stage.setPointerCapture?.(e.pointerId);
+
+        dragStartX = e.clientX;
+        dragStartY = e.clientY;
+
+        const p = pans[index];
+        panStartX = p.x;
+        panStartY = p.y;
+
+        // feedback cursore
+        stage.style.cursor = 'grabbing';
+      });
+
+      stage.addEventListener('pointermove', (e) => {
+        if(!isDragging) return;
+        const dx = e.clientX - dragStartX;
+        const dy = e.clientY - dragStartY;
+
+        const p = pans[index];
+        p.x = panStartX + dx;
+        p.y = panStartY + dy;
+
+        clampPanToBounds();
+        setPanVars();
+      });
+
+      function endDrag(){
+        isDragging = false;
+        stage.style.cursor = '';
+      }
+      stage.addEventListener('pointerup', endDrag);
+      stage.addEventListener('pointercancel', endDrag);
+      stage.addEventListener('pointerleave', endDrag);
+
+      // Swipe (mobile) SOLO se non stai pannando
       let startX = 0, startY = 0, isTouch = false;
       stage.addEventListener('touchstart', (e) => {
+        if(canPan()) return; // se zoomato, lasciamo il drag/pan
         const t = e.touches[0];
         startX = t.clientX; startY = t.clientY;
         isTouch = true;
@@ -1273,12 +1504,129 @@
         }
       }, {passive:true});
 
-      // Resize & Fullscreen change
-      window.addEventListener('resize', () => fitToViewport());
-      document.addEventListener('fullscreenchange', () => {
-        document.documentElement.classList.toggle('is-fs', !!document.fullscreenElement); // FIX: classe per CSS fullscreen
-        setTimeout(fitToViewport, 80);
-      });
+      // Pinch zoom (mobile) - molto semplice
+      let pinchDist0 = 0;
+      stage.addEventListener('touchstart', (e) => {
+        if(e.touches.length === 2){
+          const a = e.touches[0], b = e.touches[1];
+          pinchDist0 = Math.hypot(b.clientX - a.clientX, b.clientY - a.clientY);
+        }
+      }, {passive:true});
+
+      stage.addEventListener('touchmove', (e) => {
+        if(e.touches.length !== 2) return;
+        const a = e.touches[0], b = e.touches[1];
+        const d = Math.hypot(b.clientX - a.clientX, b.clientY - a.clientY);
+        if(!pinchDist0) pinchDist0 = d;
+
+        const ratio = d / pinchDist0;
+        const nextScale = clamp(scale * ratio, 0.35, 1.6);
+
+        // aggiorna
+        scale = nextScale;
+        document.documentElement.style.setProperty('--web-scale', scale.toFixed(3));
+        clampPanToBounds();
+        setPanVars();
+
+        pinchDist0 = d;
+      }, {passive:true});
+
+      stage.addEventListener('touchend', (e) => {
+        if(e.touches.length < 2) pinchDist0 = 0;
+        // se torni vicino al fit, recentra
+        if(scale <= baseFit + 0.02){
+          scale = baseFit;
+          document.documentElement.style.setProperty('--web-scale', scale.toFixed(3));
+          resetPan(index);
+          setPanVars();
+        }
+      }, {passive:true});
+
+      // Resize
+      window.addEventListener('resize', () => fitToViewport(false));
+
+      // ===== PDF: genera e scarica (NON stampa) =====
+      async function generatePdf(){
+        const { jsPDF } = window.jspdf || {};
+        if(!jsPDF || !window.html2canvas){
+          // fallback: se qualche CDN non carica, fai la stampa.
+          window.print();
+          return;
+        }
+
+        pdfBtn.disabled = true;
+        pdfOverlay?.classList.add('is-on');
+
+        // salva stato viewer
+        const prevIndex = index;
+        const prevScale = scale;
+        const prevFit = baseFit;
+
+        // forza render pulito: scala 1 e pan 0
+        scale = 1;
+        document.documentElement.style.setProperty('--web-scale', '1');
+        document.documentElement.style.setProperty('--pan-x', '0px');
+        document.documentElement.style.setProperty('--pan-y', '0px');
+
+        // prepara pdf in mm con dimensione identica alle slide
+        const pdf = new jsPDF({
+          orientation: 'landscape',
+          unit: 'mm',
+          format: [297, 167]
+        });
+
+        try{
+          for(let i=0;i<slides.length;i++){
+            // mostra slide i
+            slides.forEach((el, k) => el.classList.toggle('is-active', k === i));
+
+            // piccolo wait per layout
+            await new Promise(r => setTimeout(r, 60));
+
+            const slideEl = slides[i];
+
+            // html2canvas
+            const canvas = await html2canvas(slideEl, {
+              scale: 2,               // qualità
+              useCORS: true,          // immagini esterne
+              backgroundColor: null,  // mantiene trasparenze/gradients
+              logging: false
+            });
+
+            const imgData = canvas.toDataURL('image/jpeg', 0.92);
+
+            if(i > 0) pdf.addPage([297,167], 'landscape');
+
+            // riempi tutta pagina (297x167)
+            pdf.addImage(imgData, 'JPEG', 0, 0, 297, 167, undefined, 'FAST');
+          }
+
+          const filename = 'Offerta-ZeroStart-Migliorshop.pdf';
+          pdf.save(filename);
+        }catch(err){
+          // fallback: stampa
+          try{ window.print(); }catch(e){}
+        }finally{
+          // ripristina
+          slides.forEach((el, k) => el.classList.toggle('is-active', k === prevIndex));
+          index = prevIndex;
+
+          // torna a fit
+          baseFit = prevFit;
+          fitToViewport(true);
+
+          // ripristina scala utente (se aveva zoomato)
+          scale = prevScale;
+          document.documentElement.style.setProperty('--web-scale', scale.toFixed(3));
+          resetPan(index);
+          setPanVars();
+
+          pdfOverlay?.classList.remove('is-on');
+          pdfBtn.disabled = false;
+        }
+      }
+
+      pdfBtn?.addEventListener('click', generatePdf);
 
       // init
       const initial = clamp(getParamS() - 1, 0, slides.length - 1);
