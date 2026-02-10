@@ -198,6 +198,12 @@
     .btn-text-regular{
       font-weight:400 !important;
     }
+
+    .btn-cta-label{
+      font-size:13px;
+      font-weight:900;
+      line-height:1;
+    }
     /* Hero */
     .hero{ padding: 26px 0 12px; }
     .hero-card{
@@ -362,7 +368,7 @@
       width: clamp(140px, 24vw, 240px);
       height: 4px;
       border-radius:999px;
-      margin: 48px auto 40px;
+      margin: 36px auto 30px;
       background: var(--viola);
     }
     .section-head p{
@@ -845,8 +851,6 @@
           <div class="reveal">
             <div class="kicker-row">
               <span class="chip chip-green"><span class="dot"></span>Strategie applicate da noi</span>
-              <span class="chip chip-orange"><span class="dot"></span>Crescita sostenibile</span>
-              <span class="chip"><span class="dot"></span>Controllo prezzi & margini</span>
             </div>
 
             <h1>
@@ -860,7 +864,7 @@
             </p>
 
             <div class="hero-cta">
-              <a class="btn btn-primary btn-no-shadow" href="https://calendar.app.google/prohXQNL1gghERp96" target="_blank" rel="noopener noreferrer"><span class="btn-dot"></span><strong>Scopri come funziona</strong></a>
+              <a class="btn btn-primary btn-no-shadow" href="https://calendar.app.google/prohXQNL1gghERp96" target="_blank" rel="noopener noreferrer"><span class="btn-dot"></span><span class="btn-cta-label">Scopri come funziona</span></a>
             </div>
           </div>
 
@@ -1224,7 +1228,7 @@
       position: relative;
       margin-top: 48px;
       display: grid;
-      gap: 56px; /* leggermente più compatto senza liste */
+      gap: 36px; /* compattato verticalmente */
     }
 
     .flow-line{
@@ -1247,7 +1251,7 @@
       display:grid;
       grid-template-columns: 1fr auto 1fr;
       align-items:center;
-      gap: 24px;
+      gap: 16px;
     }
 
     .flow-step.left{
@@ -1275,7 +1279,7 @@
 
     .flow-card{
       border-radius: 28px;
-      padding: 26px 28px; /* più compatto verticalmente */
+      padding: 20px 24px; /* più compatto verticalmente */
       background: #ffffff;
       border: 1px solid rgba(226,229,243,1);
       box-shadow: 0 20px 60px rgba(15,23,42,0.12);
@@ -1498,7 +1502,7 @@
                 <div style="color:var(--muted);font-size:12px;">
                   Inviando accetti di essere ricontattato per questa richiesta.
                 </div>
-                <button class="btn btn-primary btn-no-shadow" type="submit"><span class="btn-dot"></span><strong>Invia richiesta</strong></button>
+                <button class="btn btn-primary btn-no-shadow" type="submit"><span class="btn-dot"></span><span class="btn-cta-label">Invia richiesta</span></button>
               </div>
 
               <div id="formMsg" style="display:none;margin-top:6px;border-radius:14px;padding:12px 12px;border:1px solid var(--verde-bd);background:var(--verde-bg);color:var(--verde);font-weight:900;font-size:13px;">
@@ -1527,7 +1531,7 @@
               </a>
 
               <a class="btn btn-primary btn-no-shadow" href="https://calendar.app.google/prohXQNL1gghERp96" target="_blank" rel="noopener noreferrer" style="justify-content:flex-start;">
-                <span class="btn-dot"></span><strong>Prenota una call</strong>
+                <span class="btn-dot"></span><span class="btn-cta-label">Prenota una call</span>
               </a>
             </div>
           </div>
