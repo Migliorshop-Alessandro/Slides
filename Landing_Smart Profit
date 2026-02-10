@@ -1132,38 +1132,188 @@
   </style>
 </section>
 
-  <!-- Come funziona -->
-  <section id="funziona">
-    <div class="wrap">
-      <div class="section-head reveal">
-        <div>
-          <h2>Come funziona</h2>
+ <!-- Come funziona -->
+<section id="funziona">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div>
+        <h2>Come funziona</h2>
+        <p>
+          Un percorso strutturato, progressivo e guidato da noi: dalla definizione iniziale
+          fino all’ottimizzazione continua delle performance.
+        </p>
+      </div>
+    </div>
+
+    <!-- Percorso verticale immersivo -->
+    <div class="flow reveal">
+      <div class="flow-line" aria-hidden="true"></div>
+
+      <!-- STEP 1 -->
+      <div class="flow-step left">
+        <div class="flow-card">
+          <div class="flow-badge">Step 1</div>
+          <h3>Allineamento strategico iniziale</h3>
           <p>
-            Partiamo con un allineamento strategico iniziale. Poi definiamo, condividiamo e applichiamo una strategia completa,
-            monitorando costantemente performance e anomalie.
+            Partiamo da un confronto strutturato per definire il perimetro operativo,
+            gli obiettivi di crescita, le politiche di margine e i vincoli da rispettare.
+          </p>
+        </div>
+        <div class="flow-dot"></div>
+      </div>
+
+      <!-- STEP 2 -->
+      <div class="flow-step right">
+        <div class="flow-dot"></div>
+        <div class="flow-card accent">
+          <div class="flow-badge">Step 2</div>
+          <h3>Costruzione e applicazione della strategia</h3>
+          <p>
+            Progettiamo una strategia strategico/operativa su misura,
+            calibrata sul tuo scenario e sul piano scelto.
+            Dopo la condivisione, la applichiamo e la gestiamo direttamente noi.
           </p>
         </div>
       </div>
 
-      <div class="steps">
-        <div class="step reveal">
-          <div class="num">1</div>
-          <h3>Allineamento strategico iniziale</h3>
-          <p>Definiamo perimetro operativo, obiettivi di crescita, politiche di margine e vincoli operativi.</p>
+      <!-- STEP 3 -->
+      <div class="flow-step left">
+        <div class="flow-card soft">
+          <div class="flow-badge">Step 3</div>
+          <h3>Monitoraggio continuo e ottimizzazione</h3>
+          <p>
+            Controlliamo costantemente l’andamento delle attività,
+            individuiamo anomalie e ottimizziamo le strategie nel tempo,
+            condividendo risultati e andamento con la Farmacia.
+          </p>
         </div>
-        <div class="step reveal">
-          <div class="num">2</div>
-          <h3>Strategia strategico/operativa</h3>
-          <p>Costruiamo una strategia calibrata sul tuo scenario e sul piano scelto. Dopo approvazione, la gestiamo nel tempo.</p>
-        </div>
-        <div class="step reveal">
-          <div class="num">3</div>
-          <h3>Monitoraggio e condivisione risultati</h3>
-          <p>Verifichiamo l’efficacia, individuiamo anomalie, ottimizziamo progressivamente e condividiamo i risultati con la Farmacia.</p>
-        </div>
+        <div class="flow-dot"></div>
       </div>
     </div>
-  </section>
+  </div>
+
+  <style>
+    /* ---- COME FUNZIONA (layout verticale immersivo) ---- */
+    #funziona{
+      padding: 80px 0;
+    }
+
+    .flow{
+      position: relative;
+      margin-top: 48px;
+      display: grid;
+      gap: 56px; /* leggermente più compatto senza liste */
+    }
+
+    .flow-line{
+      position:absolute;
+      left:50%;
+      top:0;
+      bottom:0;
+      width:2px;
+      transform: translateX(-50%);
+      background: linear-gradient(
+        180deg,
+        rgba(25,198,255,0.0),
+        rgba(25,198,255,0.6),
+        rgba(137,35,173,0.6),
+        rgba(137,35,173,0.0)
+      );
+    }
+
+    .flow-step{
+      display:grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items:center;
+      gap: 24px;
+    }
+
+    .flow-step.left{
+      grid-template-areas: "card dot .";
+    }
+    .flow-step.right{
+      grid-template-areas: ". dot card";
+    }
+
+    .flow-step.left .flow-card,
+    .flow-step.right .flow-card{
+      grid-area: card;
+    }
+    .flow-dot{ grid-area: dot; }
+
+    .flow-dot{
+      width:18px;
+      height:18px;
+      border-radius:999px;
+      background: #fff;
+      border: 3px solid var(--azzurro);
+      box-shadow: 0 0 0 6px rgba(25,198,255,0.15);
+      z-index:2;
+    }
+
+    .flow-card{
+      border-radius: 28px;
+      padding: 26px 28px; /* più compatto verticalmente */
+      background: #ffffff;
+      border: 1px solid rgba(226,229,243,1);
+      box-shadow: 0 20px 60px rgba(15,23,42,0.12);
+      position:relative;
+    }
+
+    .flow-card.accent{
+      background:
+        radial-gradient(circle at 100% 0%, rgba(137,35,173,0.18), transparent 60%),
+        #ffffff;
+    }
+
+    .flow-card.soft{
+      background:
+        radial-gradient(circle at 0% 100%, rgba(25,198,255,0.18), transparent 60%),
+        #ffffff;
+    }
+
+    .flow-badge{
+      display:inline-block;
+      margin-bottom: 10px;
+      padding: 6px 12px;
+      border-radius:999px;
+      font-weight:900;
+      font-size:12px;
+      color: var(--blu);
+      background: rgba(239,246,255,0.9);
+      border:1px solid rgba(14,33,102,0.14);
+    }
+
+    .flow-card h3{
+      margin: 0 0 8px;
+      font-size: 20px;
+      color: var(--blu);
+      letter-spacing:-0.3px;
+    }
+
+    .flow-card p{
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height:1.5;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px){
+      .flow-line{ left: 10px; transform:none; }
+      .flow-step{
+        grid-template-columns: auto 1fr;
+        grid-template-areas: "dot card";
+      }
+      .flow-step.left,
+      .flow-step.right{
+        grid-template-areas: "dot card";
+      }
+    }
+  </style>
+</section>
+
+
 
   <!-- Prezzi -->
   <section id="prezzi">
