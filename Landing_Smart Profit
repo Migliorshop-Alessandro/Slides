@@ -160,6 +160,15 @@
       transition: transform .18s ease, box-shadow .18s ease, background .18s ease, border-color .18s ease;
       white-space:nowrap;
       cursor:pointer;
+      font-family: inherit;
+    }
+    button.btn{
+      appearance:none;
+      -webkit-appearance:none;
+      font-family: inherit;
+      font-size:13px;
+      font-weight:900;
+      line-height:1;
     }
     .btn:hover{
       transform: translateY(-1px);
@@ -837,6 +846,51 @@
       .sat.s3{ left: 6%; bottom: 16px; }
     }
     @media (max-width: 560px){
+      .topbar-inner{
+        display:grid;
+        grid-template-columns: auto 1fr;
+        gap: 8px 10px;
+        align-items:center;
+        padding: 10px 0;
+      }
+      .brand{
+        display:contents;
+        min-width:0;
+      }
+      .logo-link{
+        grid-column:1;
+        grid-row:1 / span 2;
+        align-self:center;
+      }
+      .logo-link img{ height:32px; }
+      .brand-title{
+        grid-column:2;
+        grid-row:1;
+        gap:0;
+      }
+      .brand-title strong{ font-size:15px; }
+      .brand-title span{ display:none; }
+      .nav{
+        grid-column:2;
+        grid-row:2;
+        justify-content:flex-start;
+      }
+      .nav a.btn{
+        padding:8px 12px;
+        font-size:12px;
+      }
+
+      #attivazione .grid{
+        grid-template-columns: 1fr;
+      }
+      #attivazione .attivazione-form,
+      #attivazione .attivazione-direct{
+        grid-column: 1 / -1 !important;
+      }
+      #attivazione .form-row-2{
+        grid-template-columns: 1fr !important;
+      }
+
       .sat.s1, .sat.s2, .sat.s3{
         position:relative;
         left:auto; right:auto; top:auto; bottom:auto;
@@ -848,8 +902,28 @@
     }
 
     /* Reveal */
-    .reveal{ opacity:0; transform: translateY(10px); transition: opacity .55s ease, transform .55s ease; }
-    .reveal.in{ opacity:1; transform:none; }
+    .reveal{
+      opacity:0;
+      transform: translateY(var(--reveal-distance, 14px)) scale(.985);
+      filter: blur(3px);
+      transition:
+        opacity .5s ease,
+        transform .6s cubic-bezier(.2,.65,.2,1),
+        filter .6s ease;
+      transition-delay: var(--reveal-delay, 0s);
+      will-change: opacity, transform, filter;
+    }
+    .reveal.in{ opacity:1; transform:none; filter:none; }
+
+    @media (prefers-reduced-motion: reduce){
+      .reveal,
+      .reveal.in{
+        opacity:1;
+        transform:none;
+        filter:none;
+        transition:none;
+      }
+    }
 
     /* Form focus */
     input, textarea, select{
@@ -1516,12 +1590,12 @@
 
       <!-- ✅ form + contatto diretto affiancati -->
       <div class="grid">
-        <div class="card reveal" style="grid-column: span 7;">
+        <div class="card reveal attivazione-form" style="grid-column: span 7;">
           <div class="inner" id="form">
             <h3 style="margin:0 0 8px;color:var(--blu);letter-spacing:-0.15px;">Richiesta rapida</h3>
 
             <form onsubmit="return handleSubmit(event)" style="display:grid;gap:10px;">
-              <div style="display:grid;grid-template-columns: 1fr 1fr; gap:10px;">
+              <div class="form-row-2" style="display:grid;grid-template-columns: 1fr 1fr; gap:10px;">
                 <label style="display:grid;gap:6px;">
                   <span style="font-size:12px;color:var(--muted2);font-weight:900;">Nome e cognome</span>
                   <input required name="name" placeholder="Es. Mario Rossi"
@@ -1534,7 +1608,7 @@
                 </label>
               </div>
 
-              <div style="display:grid;grid-template-columns: 1fr 1fr; gap:10px;">
+              <div class="form-row-2" style="display:grid;grid-template-columns: 1fr 1fr; gap:10px;">
                 <label style="display:grid;gap:6px;">
                   <span style="font-size:12px;color:var(--muted2);font-weight:900;">Telefono</span>
                   <input name="phone" placeholder="Es. +39 ..."
@@ -1566,7 +1640,7 @@
           </div>
         </div>
 
-        <div class="card reveal" style="grid-column: span 5;">
+        <div class="card reveal attivazione-direct" style="grid-column: span 5;">
           <div class="inner">
             <h3 style="margin:0 0 10px;color:var(--blu);letter-spacing:-0.15px;">Contatto diretto</h3>
 
@@ -1599,8 +1673,13 @@
   </section>
 
   <script>
-    // Reveal on scroll
+    // Reveal on scroll (più progressivo e leggero)
     const revealEls = Array.from(document.querySelectorAll('.reveal'));
+    revealEls.forEach((el, idx)=>{
+      const localOrder = idx % 4;
+      el.style.setProperty('--reveal-delay', `${localOrder * 70}ms`);
+      el.style.setProperty('--reveal-distance', `${10 + localOrder * 2}px`);
+    });
     const io = new IntersectionObserver((entries)=>{
       entries.forEach(e=>{
         if(e.isIntersecting){
@@ -1608,7 +1687,7 @@
           io.unobserve(e.target);
         }
       });
-    }, { threshold: 0.12 });
+    }, { threshold: 0.16, rootMargin: '0px 0px -8% 0px' });
     revealEls.forEach(el=>io.observe(el));
 
     // Demo submit handler
