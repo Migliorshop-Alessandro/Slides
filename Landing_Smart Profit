@@ -1044,255 +1044,126 @@
       </div>
     </div>
 
-    <!-- ✅ Layout: stacked cards allineate (stessa posizione di partenza) -->
-    <div class="sp-overview reveal">
-      <!-- Ribbon verticale decorativa -->
-      <div class="sp-ribbon" aria-hidden="true">
-        <div class="sp-ribbon-line"></div>
-        <div class="sp-ribbon-dot d1"></div>
-        <div class="sp-ribbon-dot d2"></div>
-        <div class="sp-ribbon-dot d3"></div>
+    <div class="spv-overview reveal">
+      <div class="spv-cards-row">
+        <article class="spv-card c1">
+          <div class="spv-icon" aria-hidden="true">⏱</div>
+          <h3>Risparmi tempo operativo</h3>
+          <p>Strategie applicate e mantenute attive senza richiedere interventi continui alla Farmacia.</p>
+        </article>
+
+        <article class="spv-card c2">
+          <div class="spv-icon" aria-hidden="true">🛡</div>
+          <h3>Proteggi i margini</h3>
+          <p>Regole su ricarico minimo, durata offerte, soglie e limiti di acquisto per restare in controllo.</p>
+        </article>
+
+        <article class="spv-card c3">
+          <div class="spv-icon" aria-hidden="true">🎯</div>
+          <h3>Interventi selettivi</h3>
+          <p>Azioni mirate su prodotti, Minsan e marche, evitando impatti inutili sull’intero catalogo.</p>
+        </article>
       </div>
 
-      <div class="sp-stack">
-        <!-- Card 1 -->
-        <article class="sp-card">
-          <div class="sp-card-head">
-            <div class="sp-ico i1">⏱</div>
-            <div class="sp-title">
-              <h3>Risparmi tempo operativo</h3>
-              <p>Strategie applicate e mantenute attive senza richiedere interventi continui alla Farmacia.</p>
-            </div>
-          </div>
-
-          <div class="sp-meta">
-            <span class="sp-pill"><span class="sp-pill-dot"></span>Hands-off operativo</span>
-            <span class="sp-pill"><span class="sp-pill-dot"></span>Azioni nel tempo</span>
-          </div>
-        </article>
-
-        <!-- Card 2 -->
-        <article class="sp-card">
-          <div class="sp-card-head">
-            <div class="sp-ico i2">🛡</div>
-            <div class="sp-title">
-              <h3>Proteggi i margini</h3>
-              <p>Regole su ricarico minimo, durata offerte, soglie e limiti di acquisto per restare in controllo.</p>
-            </div>
-          </div>
-
-          <div class="sp-meta">
-            <span class="sp-pill sp-pill-green"><span class="sp-pill-dot"></span>Controllo ricarico</span>
-            <span class="sp-pill sp-pill-green"><span class="sp-pill-dot"></span>Vincoli &amp; limiti</span>
-          </div>
-        </article>
-
-        <!-- Card 3 -->
-        <article class="sp-card">
-          <div class="sp-card-head">
-            <div class="sp-ico i3">🎯</div>
-            <div class="sp-title">
-              <h3>Interventi selettivi</h3>
-              <p>Azioni mirate su prodotti, Minsan e marche, evitando impatti inutili sull’intero catalogo.</p>
-            </div>
-          </div>
-
-          <div class="sp-meta">
-            <span class="sp-pill sp-pill-orange"><span class="sp-pill-dot"></span>Prodotti / Minsan</span>
-            <span class="sp-pill sp-pill-orange"><span class="sp-pill-dot"></span>Marche</span>
-          </div>
-        </article>
+      <div class="spv-pill-grid" aria-label="Punti chiave">
+        <article class="spv-pill-item"><h4>Risparmi tempo operativo</h4><p>Azioni gestite senza carico extra.</p></article>
+        <article class="spv-pill-item"><h4>Proteggi i margini</h4><p>Regole sempre sotto controllo.</p></article>
+        <article class="spv-pill-item"><h4>Interventi selettivi</h4><p>Focus solo dove serve.</p></article>
+        <article class="spv-pill-item"><h4>Prezzi dinamici</h4><p>Adattamento continuo.</p></article>
+        <article class="spv-pill-item"><h4>Alert immediati</h4><p>Notifiche su eventi critici.</p></article>
+        <article class="spv-pill-item"><h4>Controllo promo</h4><p>Durata e limiti definiti.</p></article>
+        <article class="spv-pill-item"><h4>Focus catalogo</h4><p>Interventi su cluster utili.</p></article>
+        <article class="spv-pill-item"><h4>Decisioni veloci</h4><p>Dati più chiari, più rapidi.</p></article>
+        <article class="spv-pill-item"><h4>Crescita stabile</h4><p>Performance nel tempo.</p></article>
       </div>
     </div>
   </div>
 
   <style>
-    /* ---- PANORAMICA (solo questa sezione) ---- */
-    .sp-overview{
-      position:relative;
+    .spv-overview{
       border-radius: var(--r28);
       border: 1px solid rgba(226,229,243,1);
       background:
-        radial-gradient(circle at 0% 0%, rgba(25,198,255,0.16), transparent 55%),
-        radial-gradient(circle at 100% 0%, rgba(137,35,173,0.14), transparent 58%),
-        radial-gradient(circle at 50% 120%, rgba(249,115,22,0.10), transparent 55%),
+        radial-gradient(circle at 0% 0%, rgba(25,198,255,0.14), transparent 55%),
+        radial-gradient(circle at 100% 0%, rgba(137,35,173,0.12), transparent 58%),
         linear-gradient(180deg, rgba(255,255,255,0.98), rgba(255,255,255,0.70));
       box-shadow: 0 16px 60px rgba(15,23,42,0.08);
       padding: 18px;
-      overflow:hidden;
-    }
-
-    /* Ribbon */
-    .sp-ribbon{
-      position:absolute;
-      left: 18px;
-      top: 18px;
-      bottom: 18px;
-      width: 24px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      pointer-events:none;
-      opacity:0.95;
-    }
-    .sp-ribbon-line{
-      position:absolute;
-      top: 8px;
-      bottom: 8px;
-      width: 2px;
-      border-radius: 999px;
-      background: linear-gradient(180deg, rgba(25,198,255,0.55), rgba(137,35,173,0.55));
-      box-shadow: 0 16px 46px rgba(137,35,173,0.10);
-    }
-    .sp-ribbon-dot{
-      position:absolute;
-      width: 12px; height: 12px;
-      border-radius: 999px;
-      border: 1px solid rgba(14,33,102,0.12);
-      background: #fff;
-      box-shadow: 0 14px 26px rgba(15,23,42,0.10);
-    }
-    .sp-ribbon-dot:after{
-      content:"";
-      position:absolute;
-      inset:2px;
-      border-radius:999px;
-      background: linear-gradient(135deg, var(--azzurro), var(--viola));
-    }
-    .sp-ribbon-dot.d1{ top: 20px; }
-    .sp-ribbon-dot.d2{ top: 50%; transform: translateY(-50%); }
-    .sp-ribbon-dot.d3{ bottom: 20px; }
-
-    /* ✅ Stack allineato: niente “gradini” */
-    .sp-stack{
-      margin-left: 44px; /* spazio ribbon */
       display:grid;
+      gap: 14px;
+    }
+    .spv-cards-row{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
       gap: 12px;
     }
-
-    .sp-card{
-      border-radius: 24px;
+    .spv-card{
+      border-radius: 22px;
       border: 1px solid rgba(226,229,243,1);
-      background: #ffffff;
-      box-shadow: 0 14px 44px rgba(15,23,42,0.10);
-      padding: 16px;
-      position:relative;
-      overflow:hidden;
-      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
-      transform: none !important; /* ✅ forza allineamento identico */
+      padding: 18px;
+      min-height: 190px;
+      box-shadow: 0 10px 30px rgba(15,23,42,0.06);
     }
-    .sp-card:hover{
-      transform: translateY(-2px) !important;
-      box-shadow: 0 18px 58px rgba(15,23,42,0.14);
-      border-color: rgba(14,33,102,0.16);
+    .spv-card.c1{ background: linear-gradient(180deg, #f4effa, #efe7f7); }
+    .spv-card.c2{ background: linear-gradient(180deg, #f6f0e3, #f4eddc); }
+    .spv-card.c3{ background: linear-gradient(180deg, #e6f4ee, #deefe7); }
+    .spv-icon{
+      font-size: 22px;
+      margin-bottom: 10px;
+      filter: saturate(1.1);
     }
-
-    .sp-card:before{
-      content:"";
-      position:absolute;
-      right:-60px;
-      top:-60px;
-      width: 180px; height: 180px;
-      border-radius: 999px;
-      background: radial-gradient(circle at 35% 35%, rgba(25,198,255,0.16), transparent 55%);
-      opacity:0.9;
+    .spv-card h3{
+      margin:0 0 8px;
+      font-size: 22px;
+      line-height:1.1;
+      color: #17233b;
+      letter-spacing:-0.3px;
     }
-    /* variazione alone per card 2 e 3 senza spostamenti */
-    .sp-card:nth-child(2):before{
-      background: radial-gradient(circle at 35% 35%, rgba(137,35,173,0.14), transparent 55%);
-    }
-    .sp-card:nth-child(3):before{
-      background: radial-gradient(circle at 35% 35%, rgba(249,115,22,0.10), transparent 55%);
-    }
-
-    .sp-card-head{
-      display:flex;
-      gap: 12px;
-      align-items:flex-start;
-      position:relative;
-      z-index:1;
-    }
-
-    .sp-ico{
-      width: 44px; height: 44px;
-      border-radius: 18px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-weight: 900;
-      color:#fff;
-      flex: 0 0 auto;
-      box-shadow: 0 14px 30px rgba(15,23,42,0.10);
-      margin-top:1px;
-    }
-    .sp-ico.i1{ background: linear-gradient(135deg, var(--blu), var(--viola)); }
-    .sp-ico.i2{ background: linear-gradient(135deg, var(--viola), var(--azzurro)); }
-    .sp-ico.i3{ background: linear-gradient(135deg, #f59e0b, var(--arancio)); }
-
-    .sp-title h3{
-      margin:0 0 6px;
-      font-size: 16px;
-      letter-spacing:-0.2px;
-      color: var(--blu);
-    }
-    .sp-title p{
+    .spv-card p{
       margin:0;
-      color: var(--muted);
-      font-size: 13px;
-      max-width: 78ch;
+      font-size: 15px;
+      line-height:1.38;
+      color: #334155;
     }
 
-    .sp-meta{
-      margin-top: 12px;
-      display:flex;
-      flex-wrap:wrap;
-      gap: 8px;
-      position:relative;
-      z-index:1;
+    .spv-pill-grid{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 10px;
+      margin-top: 2px;
     }
-    .sp-pill{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding: 7px 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(14,33,102,0.14);
-      background: rgba(239,246,255,0.85);
+    .spv-pill-item{
+      border-radius: 16px;
+      border: 1px solid rgba(203,213,245,0.95);
+      background: #ffffff;
+      padding: 10px 12px;
+      min-height: 72px;
+      box-shadow: 0 8px 22px rgba(15,23,42,0.05);
+    }
+    .spv-pill-item h4{
+      margin:0;
       color: var(--blu);
-      font-weight: 900;
+      font-size: 14px;
+      line-height:1.2;
+      letter-spacing:-0.1px;
+    }
+    .spv-pill-item p{
+      margin:4px 0 0;
+      color: var(--muted);
       font-size: 12px;
-      white-space:nowrap;
-    }
-    .sp-pill-dot{
-      width:8px;height:8px;border-radius:999px;
-      background: linear-gradient(135deg, var(--azzurro), var(--viola));
-      box-shadow: 0 6px 14px rgba(137,35,173,0.12);
+      line-height:1.3;
     }
 
-    .sp-pill-green{
-      border-color: var(--verde-bd);
-      background: var(--verde-bg);
-      color: var(--verde);
+    @media (max-width: 1000px){
+      .spv-cards-row{ grid-template-columns: 1fr; }
+      .spv-pill-grid{ grid-template-columns: repeat(2, minmax(0,1fr)); }
     }
-    .sp-pill-green .sp-pill-dot{
-      background: linear-gradient(135deg, #34d399, var(--verde));
-      box-shadow: 0 6px 14px rgba(21,128,61,0.12);
-    }
-
-    .sp-pill-orange{
-      border-color: var(--arancio-bd);
-      background: var(--arancio-bg);
-      color: var(--arancio-txt);
-    }
-    .sp-pill-orange .sp-pill-dot{
-      background: linear-gradient(135deg, #f59e0b, var(--arancio));
-      box-shadow: 0 6px 14px rgba(249,115,22,0.16);
-    }
-
-    /* Responsive */
-    @media (max-width: 900px){
-      .sp-stack{ margin-left: 0; }
-      .sp-ribbon{ display:none; }
+    @media (max-width: 620px){
+      .spv-overview{ padding: 14px; }
+      .spv-card{ min-height: auto; }
+      .spv-card h3{ font-size: 19px; }
+      .spv-pill-grid{ grid-template-columns: 1fr; }
+      .spv-pill-item{ min-height: unset; }
     }
   </style>
 </section>
@@ -1582,7 +1453,7 @@
       .quote-mark-open{ top:14px; left:10px; }
       .quote-mark-close{ right:10px; bottom:10px; }
       .quote-content{ gap:16px; }
-      .quote-answer{ font-size: clamp(30px, 9vw, 42px); }
+      .quote-answer{ font-size: clamp(24px, 7.2vw, 34px); }
     }
   </style>
 
@@ -1714,7 +1585,7 @@
 
             <div style="display:grid;gap:10px;">
               <div class="note" style="display:flex;align-items:center;gap:10px;">
-                <strong style="color:var(--blu);">Il tuo account manager:</strong>
+                <strong style="color:var(--blu);font-size:13px;">Il tuo account manager:</strong>
                 <span style="color:var(--muted2);font-weight:900;font-size:13px;">Alessandro Idà</span>
               </div>
 
