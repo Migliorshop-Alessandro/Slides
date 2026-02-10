@@ -286,10 +286,10 @@
     }
     .hero h1{
       margin:0;
-      font-size: clamp(29px, 3.2vw, 48px);
-      line-height:1.04;
-      letter-spacing:-0.5px;
-      color: var(--blu);
+      font-size: clamp(24px, 4.2vw, 52px);
+      line-height:1;
+      letter-spacing:-0.7px;
+      color: var(--viola);
     }
     .hero h1 .accent{
       color: var(--viola);
@@ -306,6 +306,16 @@
       border-radius:999px;
       background: linear-gradient(90deg, rgba(25,198,255,0.18), rgba(137,35,173,0.20));
       z-index:-1;
+    }
+
+    .hero-tagline{
+      margin: 0;
+      font-size: clamp(22px, 2.7vw, 40px);
+      line-height:1.08;
+      letter-spacing:-0.4px;
+      color: var(--blu);
+      font-weight:900;
+      max-width: 22ch;
     }
 
     .hero-answer-wrap{
@@ -431,7 +441,8 @@
       margin:0;
       color: var(--muted);
       max-width: 78ch;
-      font-size: 14px;
+      font-size: 16px;
+      line-height:1.45;
     }
 
     .grid{
@@ -823,6 +834,47 @@
     }
     .card .inner{ padding: 16px; }
 
+    .hero-main-cta{
+      padding: 12px 18px;
+    }
+    .hero-main-cta .btn-cta-label{
+      font-size:15px;
+    }
+
+    .direct-appointment-btn{
+      width:100%;
+      padding:12px 14px;
+      min-height:46px;
+    }
+
+    .attivazione-demo-btn{
+      font-size:34px;
+      padding:16px 44px;
+      border-radius:999px;
+      line-height:1;
+      min-width:360px;
+      justify-content:center;
+      background:linear-gradient(135deg,#9f35c5,#6f3ec5);
+      border:none;
+      color:#fff;
+      box-shadow:none;
+      animation: pulse-demo 1.9s ease-in-out infinite;
+      transition: transform .18s ease, filter .18s ease, background .18s ease, color .18s ease;
+    }
+    .attivazione-demo-btn:hover,
+    .attivazione-demo-btn:focus-visible{
+      background: linear-gradient(135deg,#8b2fbe,#6337c2) !important;
+      color:#ffffff !important;
+      border:none !important;
+      box-shadow:none !important;
+      filter: brightness(1.02);
+      outline:none;
+    }
+    @keyframes pulse-demo{
+      0%,100%{ transform: scale(1); }
+      50%{ transform: scale(1.035); }
+    }
+
     /* ✅ footer centrato */
     .site-footer{
       padding: 22px 0 26px;
@@ -847,50 +899,44 @@
     }
     @media (max-width: 560px){
       .topbar-inner{
-        display:grid;
-        grid-template-columns: auto 1fr;
-        gap: 8px 10px;
+        display:flex;
+        flex-direction:row;
+        gap: 10px;
         align-items:center;
+        justify-content:center;
         padding: 10px 0;
       }
       .brand{
-        display:contents;
+        display:flex;
+        align-items:center;
+        gap:8px;
         min-width:0;
       }
       .logo-link{
-        grid-column:1;
-        grid-row:1 / span 2;
         align-self:center;
       }
       .logo-link img{ height:32px; }
-      .brand-title{
-        grid-column:2;
-        grid-row:1;
-        gap:0;
-      }
-      .brand-title strong{ font-size:15px; }
-      .brand-title span{ display:none; }
+      .brand-title{ display:none; }
       .nav{
-        grid-column:2;
-        grid-row:2;
-        justify-content:flex-start;
+        justify-content:center;
       }
       .nav a.btn{
         padding:8px 12px;
         font-size:12px;
       }
+      .attivazione-demo-btn{
+        min-width:0;
+        width:100%;
+        font-size:26px;
+      }
 
       #attivazione .grid{
         grid-template-columns: 1fr;
       }
-      #attivazione .attivazione-form,
-      #attivazione .attivazione-direct{
+      #attivazione .attivazione-direct,
+      #attivazione .attivazione-cta{
         grid-column: 1 / -1 !important;
       }
-      #attivazione .form-row-2{
-        grid-template-columns: 1fr !important;
-      }
-
       .sat.s1, .sat.s2, .sat.s3{
         position:relative;
         left:auto; right:auto; top:auto; bottom:auto;
@@ -970,20 +1016,10 @@
       <div class="hero-card">
         <div class="hero-inner">
           <div class="reveal">
-            <div class="kicker-row">
-              <span class="chip chip-green"><span class="dot"></span>Smart Profit</span>
-            </div>
-
             <div class="hero-title-block">
-              <h1>
-                Quante ore ti servirebbero per <span class="accent">quintuplicare gli ordini</span>
-                mantenendo il margine al sicuro?
-              </h1>
+              <h1><span class="accent">Smart Profit</span></h1>
 
-              <div class="hero-answer-wrap">
-                <span class="hero-answer-link" aria-hidden="true">↳</span>
-                <p>Nessuna. <span>Lo facciamo noi per te.</span></p>
-              </div>
+              <p class="hero-tagline">Moltiplica gli ordini fino a 5 volte proteggendo il margine</p>
 
               <p class="hero-sub">
                 Tu mantieni controllo, strategia e visione: noi attiviamo, ottimizziamo e facciamo crescere le performance,
@@ -992,7 +1028,7 @@
             </div>
 
             <div class="hero-cta">
-              <a class="btn btn-primary btn-no-shadow" href="https://calendar.app.google/prohXQNL1gghERp96" target="_blank" rel="noopener noreferrer"><span class="btn-dot"></span><span class="btn-cta-label">Scopri come funziona</span></a>
+              <a class="btn btn-primary btn-no-shadow hero-main-cta" href="https://calendar.app.google/prohXQNL1gghERp96" target="_blank" rel="noopener noreferrer"><span class="btn-dot"></span><span class="btn-cta-label">Scopri come funziona</span></a>
             </div>
           </div>
 
@@ -1037,255 +1073,163 @@
       </div>
     </div>
 
-    <!-- ✅ Layout: stacked cards allineate (stessa posizione di partenza) -->
-    <div class="sp-overview reveal">
-      <!-- Ribbon verticale decorativa -->
-      <div class="sp-ribbon" aria-hidden="true">
-        <div class="sp-ribbon-line"></div>
-        <div class="sp-ribbon-dot d1"></div>
-        <div class="sp-ribbon-dot d2"></div>
-        <div class="sp-ribbon-dot d3"></div>
+    <div class="spv-overview reveal">
+      <div class="spv-cards-row">
+        <article class="spv-card c1">
+          <div class="spv-icon" aria-hidden="true">◷</div>
+          <h3>Risparmi tempo operativo</h3>
+          <p>Strategie applicate e mantenute attive senza richiedere interventi continui alla Farmacia.</p>
+        </article>
+
+        <article class="spv-card c2">
+          <div class="spv-icon" aria-hidden="true">◈</div>
+          <h3>Proteggi i margini</h3>
+          <p>Regole su ricarico minimo, durata offerte, soglie e limiti di acquisto per restare in controllo.</p>
+        </article>
+
+        <article class="spv-card c3">
+          <div class="spv-icon" aria-hidden="true">◎</div>
+          <h3>Interventi selettivi</h3>
+          <p>Azioni mirate su prodotti, Minsan e marche, evitando impatti inutili sull’intero catalogo.</p>
+        </article>
       </div>
 
-      <div class="sp-stack">
-        <!-- Card 1 -->
-        <article class="sp-card">
-          <div class="sp-card-head">
-            <div class="sp-ico i1">⏱</div>
-            <div class="sp-title">
-              <h3>Risparmi tempo operativo</h3>
-              <p>Strategie applicate e mantenute attive senza richiedere interventi continui alla Farmacia.</p>
-            </div>
-          </div>
-
-          <div class="sp-meta">
-            <span class="sp-pill"><span class="sp-pill-dot"></span>Hands-off operativo</span>
-            <span class="sp-pill"><span class="sp-pill-dot"></span>Azioni nel tempo</span>
-          </div>
-        </article>
-
-        <!-- Card 2 -->
-        <article class="sp-card">
-          <div class="sp-card-head">
-            <div class="sp-ico i2">🛡</div>
-            <div class="sp-title">
-              <h3>Proteggi i margini</h3>
-              <p>Regole su ricarico minimo, durata offerte, soglie e limiti di acquisto per restare in controllo.</p>
-            </div>
-          </div>
-
-          <div class="sp-meta">
-            <span class="sp-pill sp-pill-green"><span class="sp-pill-dot"></span>Controllo ricarico</span>
-            <span class="sp-pill sp-pill-green"><span class="sp-pill-dot"></span>Vincoli &amp; limiti</span>
-          </div>
-        </article>
-
-        <!-- Card 3 -->
-        <article class="sp-card">
-          <div class="sp-card-head">
-            <div class="sp-ico i3">🎯</div>
-            <div class="sp-title">
-              <h3>Interventi selettivi</h3>
-              <p>Azioni mirate su prodotti, Minsan e marche, evitando impatti inutili sull’intero catalogo.</p>
-            </div>
-          </div>
-
-          <div class="sp-meta">
-            <span class="sp-pill sp-pill-orange"><span class="sp-pill-dot"></span>Prodotti / Minsan</span>
-            <span class="sp-pill sp-pill-orange"><span class="sp-pill-dot"></span>Marche</span>
-          </div>
-        </article>
+      <div class="spv-pill-groups" aria-label="Punti chiave">
+        <div class="spv-pill-col">
+          <article class="spv-pill-item"><h4>Automazioni operative</h4><p>Setup e monitoraggio continui.</p></article>
+          <article class="spv-pill-item"><h4>Regole attive</h4><p>Nessun intervento manuale ripetuto.</p></article>
+          <article class="spv-pill-item"><h4>Task prioritizzati</h4><p>Focus sulle azioni ad alto impatto.</p></article>
+        </div>
+        <div class="spv-pill-col">
+          <article class="spv-pill-item"><h4>Ricarico minimo</h4><p>Soglie protette in ogni fase.</p></article>
+          <article class="spv-pill-item"><h4>Controllo offerte</h4><p>Durata e condizioni governate.</p></article>
+          <article class="spv-pill-item"><h4>Vincoli dedicati</h4><p>Limiti su prodotti e cluster.</p></article>
+        </div>
+        <div class="spv-pill-col">
+          <article class="spv-pill-item"><h4>Target per marca</h4><p>Interventi mirati e selettivi.</p></article>
+          <article class="spv-pill-item"><h4>Logiche per Minsan</h4><p>Azione dove serve davvero.</p></article>
+          <article class="spv-pill-item"><h4>Ottimizzazione continua</h4><p>Correzioni rapide nel tempo.</p></article>
+        </div>
       </div>
     </div>
   </div>
 
   <style>
-    /* ---- PANORAMICA (solo questa sezione) ---- */
-    .sp-overview{
-      position:relative;
+    .spv-overview{
       border-radius: var(--r28);
       border: 1px solid rgba(226,229,243,1);
       background:
-        radial-gradient(circle at 0% 0%, rgba(25,198,255,0.16), transparent 55%),
-        radial-gradient(circle at 100% 0%, rgba(137,35,173,0.14), transparent 58%),
-        radial-gradient(circle at 50% 120%, rgba(249,115,22,0.10), transparent 55%),
+        radial-gradient(circle at 0% 0%, rgba(25,198,255,0.14), transparent 55%),
+        radial-gradient(circle at 100% 0%, rgba(137,35,173,0.12), transparent 58%),
         linear-gradient(180deg, rgba(255,255,255,0.98), rgba(255,255,255,0.70));
       box-shadow: 0 16px 60px rgba(15,23,42,0.08);
       padding: 18px;
-      overflow:hidden;
-    }
-
-    /* Ribbon */
-    .sp-ribbon{
-      position:absolute;
-      left: 18px;
-      top: 18px;
-      bottom: 18px;
-      width: 24px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      pointer-events:none;
-      opacity:0.95;
-    }
-    .sp-ribbon-line{
-      position:absolute;
-      top: 8px;
-      bottom: 8px;
-      width: 2px;
-      border-radius: 999px;
-      background: linear-gradient(180deg, rgba(25,198,255,0.55), rgba(137,35,173,0.55));
-      box-shadow: 0 16px 46px rgba(137,35,173,0.10);
-    }
-    .sp-ribbon-dot{
-      position:absolute;
-      width: 12px; height: 12px;
-      border-radius: 999px;
-      border: 1px solid rgba(14,33,102,0.12);
-      background: #fff;
-      box-shadow: 0 14px 26px rgba(15,23,42,0.10);
-    }
-    .sp-ribbon-dot:after{
-      content:"";
-      position:absolute;
-      inset:2px;
-      border-radius:999px;
-      background: linear-gradient(135deg, var(--azzurro), var(--viola));
-    }
-    .sp-ribbon-dot.d1{ top: 20px; }
-    .sp-ribbon-dot.d2{ top: 50%; transform: translateY(-50%); }
-    .sp-ribbon-dot.d3{ bottom: 20px; }
-
-    /* ✅ Stack allineato: niente “gradini” */
-    .sp-stack{
-      margin-left: 44px; /* spazio ribbon */
       display:grid;
+      gap: 14px;
+    }
+    .spv-cards-row{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
       gap: 12px;
     }
-
-    .sp-card{
-      border-radius: 24px;
+    .spv-card{
+      border-radius: 22px;
       border: 1px solid rgba(226,229,243,1);
-      background: #ffffff;
-      box-shadow: 0 14px 44px rgba(15,23,42,0.10);
-      padding: 16px;
-      position:relative;
-      overflow:hidden;
-      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
-      transform: none !important; /* ✅ forza allineamento identico */
+      padding: 18px;
+      min-height: 190px;
+      box-shadow: 0 10px 30px rgba(15,23,42,0.06);
     }
-    .sp-card:hover{
-      transform: translateY(-2px) !important;
-      box-shadow: 0 18px 58px rgba(15,23,42,0.14);
-      border-color: rgba(14,33,102,0.16);
+    .spv-card.c1{ background: linear-gradient(180deg, #f4effa, #efe7f7); }
+    .spv-card.c2{ background: linear-gradient(180deg, #f6f0e3, #f4eddc); }
+    .spv-card.c3{ background: linear-gradient(180deg, #e6f4ee, #deefe7); }
+    .spv-icon{
+      font-size: 22px;
+      margin-bottom: 10px;
+      filter: saturate(1.1);
+    }
+    .spv-card h3{
+      margin:0 0 8px;
+      font-size: 22px;
+      line-height:1.1;
+      color: #17233b;
+      letter-spacing:-0.3px;
+    }
+    .spv-card p{
+      margin:0;
+      font-size: 15px;
+      line-height:1.38;
+      color: #334155;
     }
 
-    .sp-card:before{
+    .spv-pill-groups{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 12px;
+      margin-top: 2px;
+    }
+    .spv-pill-col{
+      border-radius: 18px;
+      border: 1px dashed rgba(203,213,245,0.9);
+      background: rgba(252,253,255,0.82);
+      padding: 10px;
+      display:grid;
+      gap:8px;
+    }
+    .spv-pill-item{
+      border-radius: 14px;
+      border: 1px solid rgba(203,213,245,0.95);
+      background: #ffffff;
+      padding: 9px 10px 9px 30px;
+      min-height: 64px;
+      box-shadow: 0 8px 18px rgba(15,23,42,0.05);
+      position:relative;
+    }
+    .spv-pill-item::before{
       content:"";
       position:absolute;
-      right:-60px;
-      top:-60px;
-      width: 180px; height: 180px;
-      border-radius: 999px;
-      background: radial-gradient(circle at 35% 35%, rgba(25,198,255,0.16), transparent 55%);
-      opacity:0.9;
+      left:12px;
+      top: 50%;
+      width:8px;
+      height:8px;
+      margin-top:-4px;
+      border-radius:999px;
+      background:#fff;
+      border:2px solid rgba(137,35,173,0.75);
+      box-shadow: 0 0 0 4px rgba(137,35,173,0.10);
+      z-index:2;
     }
-    /* variazione alone per card 2 e 3 senza spostamenti */
-    .sp-card:nth-child(2):before{
-      background: radial-gradient(circle at 35% 35%, rgba(137,35,173,0.14), transparent 55%);
-    }
-    .sp-card:nth-child(3):before{
-      background: radial-gradient(circle at 35% 35%, rgba(249,115,22,0.10), transparent 55%);
-    }
-
-    .sp-card-head{
-      display:flex;
-      gap: 12px;
-      align-items:flex-start;
-      position:relative;
+    .spv-pill-item:not(:last-child)::after{
+      content:"";
+      position:absolute;
+      left:15px;
+      top: 50%;
+      bottom: -12px;
+      width:2px;
+      background: linear-gradient(180deg, rgba(25,198,255,0.72), rgba(137,35,173,0.74));
       z-index:1;
     }
-
-    .sp-ico{
-      width: 44px; height: 44px;
-      border-radius: 18px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-weight: 900;
-      color:#fff;
-      flex: 0 0 auto;
-      box-shadow: 0 14px 30px rgba(15,23,42,0.10);
-      margin-top:1px;
-    }
-    .sp-ico.i1{ background: linear-gradient(135deg, var(--blu), var(--viola)); }
-    .sp-ico.i2{ background: linear-gradient(135deg, var(--viola), var(--azzurro)); }
-    .sp-ico.i3{ background: linear-gradient(135deg, #f59e0b, var(--arancio)); }
-
-    .sp-title h3{
-      margin:0 0 6px;
-      font-size: 16px;
-      letter-spacing:-0.2px;
-      color: var(--blu);
-    }
-    .sp-title p{
+    .spv-pill-item h4{
       margin:0;
-      color: var(--muted);
-      font-size: 13px;
-      max-width: 78ch;
-    }
-
-    .sp-meta{
-      margin-top: 12px;
-      display:flex;
-      flex-wrap:wrap;
-      gap: 8px;
-      position:relative;
-      z-index:1;
-    }
-    .sp-pill{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding: 7px 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(14,33,102,0.14);
-      background: rgba(239,246,255,0.85);
       color: var(--blu);
-      font-weight: 900;
-      font-size: 12px;
-      white-space:nowrap;
+      font-size: 13px;
+      line-height:1.2;
+      letter-spacing:-0.1px;
     }
-    .sp-pill-dot{
-      width:8px;height:8px;border-radius:999px;
-      background: linear-gradient(135deg, var(--azzurro), var(--viola));
-      box-shadow: 0 6px 14px rgba(137,35,173,0.12);
-    }
-
-    .sp-pill-green{
-      border-color: var(--verde-bd);
-      background: var(--verde-bg);
-      color: var(--verde);
-    }
-    .sp-pill-green .sp-pill-dot{
-      background: linear-gradient(135deg, #34d399, var(--verde));
-      box-shadow: 0 6px 14px rgba(21,128,61,0.12);
+    .spv-pill-item p{
+      margin:4px 0 0;
+      color: var(--muted);
+      font-size: 11.5px;
+      line-height:1.28;
     }
 
-    .sp-pill-orange{
-      border-color: var(--arancio-bd);
-      background: var(--arancio-bg);
-      color: var(--arancio-txt);
+    @media (max-width: 1000px){
+      .spv-cards-row{ grid-template-columns: 1fr; }
+      .spv-pill-groups{ grid-template-columns: 1fr; }
     }
-    .sp-pill-orange .sp-pill-dot{
-      background: linear-gradient(135deg, #f59e0b, var(--arancio));
-      box-shadow: 0 6px 14px rgba(249,115,22,0.16);
-    }
-
-    /* Responsive */
-    @media (max-width: 900px){
-      .sp-stack{ margin-left: 0; }
-      .sp-ribbon{ display:none; }
+    @media (max-width: 620px){
+      .spv-overview{ padding: 14px; }
+      .spv-card{ min-height: auto; }
+      .spv-card h3{ font-size: 19px; }
     }
   </style>
 </section>
@@ -1467,6 +1411,117 @@
   </style>
 </section>
 
+  <!-- Citazione full-width -->
+  <section id="citazione-smartprofit" aria-label="Citazione Smart Profit">
+    <div class="wrap">
+      <div class="quote-band reveal">
+        <span class="quote-mark quote-mark-open" aria-hidden="true">“</span>
+        <div class="quote-content">
+          <p class="quote-question">Quante ore ti servirebbero per quintuplicare gli ordini mantenendo il margine al sicuro?</p>
+          <p class="quote-answer">Nessuna. Lo facciamo noi per te.</p>
+        </div>
+        <span class="quote-mark quote-mark-close" aria-hidden="true">”</span>
+      </div>
+    </div>
+  </section>
+
+  <style>
+    .quote-band{
+      margin: 28px 0 18px;
+      width: 100%;
+      border-radius: 34px;
+      border: 1px solid rgba(226,229,243,0.95);
+      background:
+        radial-gradient(circle at 8% 18%, rgba(25,198,255,0.24), transparent 38%),
+        radial-gradient(circle at 90% 84%, rgba(137,35,173,0.26), transparent 42%),
+        linear-gradient(145deg, #f6fbff 0%, #ffffff 52%, #f8f1ff 100%);
+      box-shadow: 0 28px 72px rgba(15,23,42,0.13);
+      padding: 44px 56px;
+      position: relative;
+      overflow:hidden;
+      text-align:center;
+    }
+    .quote-band::before,
+    .quote-band::after{
+      content:"";
+      position:absolute;
+      width:220px;
+      height:220px;
+      border-radius:999px;
+      z-index:0;
+      pointer-events:none;
+    }
+    .quote-band::before{
+      left:-90px;
+      top:-100px;
+      background: radial-gradient(circle at 50% 50%, rgba(25,198,255,0.25), transparent 68%);
+    }
+    .quote-band::after{
+      right:-90px;
+      bottom:-105px;
+      background: radial-gradient(circle at 50% 50%, rgba(137,35,173,0.24), transparent 68%);
+    }
+    .quote-mark{
+      position:absolute;
+      z-index:1;
+      font-size: clamp(80px, 8vw, 130px);
+      line-height:0.78;
+      font-weight:900;
+      user-select:none;
+      opacity:0.38;
+      pointer-events:none;
+    }
+    .quote-mark-open{
+      top:22px;
+      left:24px;
+      color: rgba(25,198,255,0.65);
+    }
+    .quote-mark-close{
+      right:24px;
+      bottom:16px;
+      color: rgba(137,35,173,0.56);
+    }
+    .quote-content{
+      position:relative;
+      z-index:2;
+      max-width: 980px;
+      margin: 0 auto;
+      display:grid;
+      gap: 24px;
+    }
+    .quote-question{
+      margin:0;
+      color: var(--blu);
+      font-size: clamp(26px, 3vw, 46px);
+      line-height:1.12;
+      letter-spacing:-0.5px;
+      font-weight:900;
+    }
+    .quote-answer{
+      margin:0;
+      color: var(--viola);
+      font-size: clamp(30px, 3.6vw, 56px);
+      line-height:1.06;
+      letter-spacing:-0.7px;
+      font-weight:900;
+      text-shadow: 0 8px 24px rgba(137,35,173,0.20);
+    }
+
+    @media (max-width: 900px){
+      .quote-band{
+        padding: 34px 20px;
+        border-radius: 26px;
+      }
+      .quote-mark{
+        font-size: 72px;
+        opacity:0.26;
+      }
+      .quote-mark-open{ top:14px; left:10px; }
+      .quote-mark-close{ right:10px; bottom:10px; }
+      .quote-content{ gap:16px; }
+      .quote-answer{ font-size: clamp(24px, 7.2vw, 34px); }
+    }
+  </style>
 
 
   <!-- Prezzi -->
@@ -1583,70 +1638,20 @@
         <div>
           <h2>Come attivare il servizio</h2>
           <p>
-            Per maggiori informazioni su servizio, prezzi, modalità di attivazione e piani disponibili, è possibile contattare il proprio account manager di riferimento o fare richiesta di essere contattati trami il form.
+            Per maggiori informazioni su servizio, prezzi, modalità di attivazione e piani disponibili, puoi contattare direttamente il tuo account manager oppure prenotare una call dal calendario.
           </p>
         </div>
       </div>
 
-      <!-- ✅ form + contatto diretto affiancati -->
+      <!-- ✅ contatto diretto + call to action affiancati -->
       <div class="grid">
-        <div class="card reveal attivazione-form" style="grid-column: span 7;">
-          <div class="inner" id="form">
-            <h3 style="margin:0 0 8px;color:var(--blu);letter-spacing:-0.15px;">Richiesta rapida</h3>
-
-            <form onsubmit="return handleSubmit(event)" style="display:grid;gap:10px;">
-              <div class="form-row-2" style="display:grid;grid-template-columns: 1fr 1fr; gap:10px;">
-                <label style="display:grid;gap:6px;">
-                  <span style="font-size:12px;color:var(--muted2);font-weight:900;">Nome e cognome</span>
-                  <input required name="name" placeholder="Es. Mario Rossi"
-                         style="padding:12px 12px;border-radius:14px;border:1px solid rgba(226,229,243,1);background:#fff;">
-                </label>
-                <label style="display:grid;gap:6px;">
-                  <span style="font-size:12px;color:var(--muted2);font-weight:900;">Email</span>
-                  <input required type="email" name="email" placeholder="Es. farmacia@email.it"
-                         style="padding:12px 12px;border-radius:14px;border:1px solid rgba(226,229,243,1);background:#fff;">
-                </label>
-              </div>
-
-              <div class="form-row-2" style="display:grid;grid-template-columns: 1fr 1fr; gap:10px;">
-                <label style="display:grid;gap:6px;">
-                  <span style="font-size:12px;color:var(--muted2);font-weight:900;">Telefono</span>
-                  <input name="phone" placeholder="Es. +39 ..."
-                         style="padding:12px 12px;border-radius:14px;border:1px solid rgba(226,229,243,1);background:#fff;">
-                </label>
-                <label style="display:grid;gap:6px;">
-                  <span style="font-size:12px;color:var(--muted2);font-weight:900;">Piano di interesse</span>
-                  <select name="plan"
-                          style="padding:12px 12px;border-radius:14px;border:1px solid rgba(226,229,243,1);background:#fff;">
-                    <option value="Standard">Standard</option>
-                    <option value="Plus">Plus</option>
-                    <option value="Premium">Premium</option>
-                    <option value="Non so ancora">Non so ancora</option>
-                  </select>
-                </label>
-              </div>
-
-              <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:space-between;">
-                <div style="color:var(--muted);font-size:12px;">
-                  Inviando accetti di essere ricontattato per questa richiesta.
-                </div>
-                <button class="btn btn-primary btn-no-shadow" type="submit"><span class="btn-dot"></span><span class="btn-cta-label">Invia richiesta</span></button>
-              </div>
-
-              <div id="formMsg" style="display:none;margin-top:6px;border-radius:14px;padding:12px 12px;border:1px solid var(--verde-bd);background:var(--verde-bg);color:var(--verde);font-weight:900;font-size:13px;">
-                Richiesta inviata! (Demo) Collega il form al tuo endpoint per l’invio reale.
-              </div>
-            </form>
-          </div>
-        </div>
-
-        <div class="card reveal attivazione-direct" style="grid-column: span 5;">
+        <div class="card reveal attivazione-direct" style="grid-column: span 6;">
           <div class="inner">
             <h3 style="margin:0 0 10px;color:var(--blu);letter-spacing:-0.15px;">Contatto diretto</h3>
 
             <div style="display:grid;gap:10px;">
               <div class="note" style="display:flex;align-items:center;gap:10px;">
-                <strong style="color:var(--blu);">Il tuo account manager:</strong>
+                <strong style="color:var(--blu);font-size:13px;">Il tuo account manager:</strong>
                 <span style="color:var(--muted2);font-weight:900;font-size:13px;">Alessandro Idà</span>
               </div>
 
@@ -1658,10 +1663,22 @@
                 ✉️ <span style="font-weight:900;">Email:</span> <span style="color:var(--muted2);">alessandro.ida@migliorshop.it</span>
               </a>
 
-              <a class="btn btn-primary btn-no-shadow" href="https://calendar.app.google/prohXQNL1gghERp96" target="_blank" rel="noopener noreferrer" style="justify-content:flex-start;">
-                <span class="btn-dot"></span><span class="btn-cta-label">Prenota una call</span>
+              <a class="btn btn-primary btn-no-shadow direct-appointment-btn" href="https://calendar.app.google/prohXQNL1gghERp96" target="_blank" rel="noopener noreferrer" style="justify-content:flex-start;">
+                <span class="btn-dot"></span><span class="btn-cta-label">Prenota il tuo appuntamento</span>
               </a>
             </div>
+          </div>
+        </div>
+
+        <div class="card reveal attivazione-cta" style="grid-column: span 6;">
+          <div class="inner" style="height:100%;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;gap:16px;background:linear-gradient(180deg,#eef3ff,#e6eefb);">
+            <h3 style="margin:0;color:var(--blu);font-size:52px;letter-spacing:-0.8px;line-height:1;">Scoprilo ora.</h3>
+            <p style="margin:0;color:#1e314d;font-size:18px;line-height:1.35;max-width:34ch;">
+              Scopri come possiamo gestire per te le strategie e l'operatività, proteggendo i margini e con più risultati.
+            </p>
+            <a class="btn btn-primary btn-no-shadow attivazione-demo-btn" href="https://calendar.app.google/prohXQNL1gghERp96" target="_blank" rel="noopener noreferrer">
+              Fissa una call
+            </a>
           </div>
         </div>
       </div>
@@ -1690,14 +1707,6 @@
     }, { threshold: 0.16, rootMargin: '0px 0px -8% 0px' });
     revealEls.forEach(el=>io.observe(el));
 
-    // Demo submit handler
-    function handleSubmit(ev){
-      ev.preventDefault();
-      const msg = document.getElementById('formMsg');
-      msg.style.display = 'block';
-      msg.scrollIntoView({behavior:'smooth', block:'nearest'});
-      return false;
-    }
   </script>
 </body>
 </html>
