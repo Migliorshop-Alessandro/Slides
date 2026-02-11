@@ -848,11 +848,11 @@
     }
 
     .attivazione-demo-btn{
-      font-size: clamp(28px, 3.2vw, 38px);
-      padding:16px 44px;
+      font-size: clamp(24px, 2.8vw, 32px);
+      padding:14px 34px;
       border-radius:999px;
       line-height:1;
-      min-width:360px;
+      min-width:300px;
       justify-content:center;
       background:linear-gradient(135deg,#9f35c5,#6f3ec5);
       border:none;
@@ -927,7 +927,7 @@
       .attivazione-demo-btn{
         min-width:0;
         width:100%;
-        font-size: clamp(28px, 3.2vw, 38px);
+        font-size: clamp(24px, 2.8vw, 32px);
       }
 
       #attivazione .grid{
@@ -1027,7 +1027,7 @@
             </div>
 
             <div class="hero-cta">
-              <a class="btn btn-primary btn-no-shadow hero-main-cta" href="https://calendar.app.google/prohXQNL1gghERp96" target="_blank" rel="noopener noreferrer"><span class="btn-dot"></span><span class="btn-cta-label">Scopri come funziona</span></a>
+              <a class="btn btn-primary btn-no-shadow hero-main-cta" href="#" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/migliorshop'});return false;"><span class="btn-dot"></span><span class="btn-cta-label">Scopri come funziona</span></a>
             </div>
           </div>
 
@@ -1620,7 +1620,7 @@
           </div>
 
           <div class="footer">
-            <a class="btn cta" href="https://calendar.app.google/prohXQNL1gghERp96" target="_blank" rel="noopener noreferrer">Attiva X2</a>
+            <a class="btn cta" href="#" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/migliorshop'});return false;">Attiva X2</a>
           </div>
         </div>
 
@@ -1651,7 +1651,7 @@
           </div>
 
           <div class="footer">
-            <a class="btn btn-primary cta btn-no-shadow" href="https://calendar.app.google/prohXQNL1gghERp96" target="_blank" rel="noopener noreferrer"><span class="btn-dot"></span>Attiva X3</a>
+            <a class="btn btn-primary cta btn-no-shadow" href="#" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/migliorshop'});return false;"><span class="btn-dot"></span>Attiva X3</a>
           </div>
         </div>
 
@@ -1682,7 +1682,7 @@
           </div>
 
           <div class="footer">
-            <a class="btn cta" href="https://calendar.app.google/prohXQNL1gghERp96" target="_blank" rel="noopener noreferrer">Attiva X5</a>
+            <a class="btn cta" href="#" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/migliorshop'});return false;">Attiva X5</a>
           </div>
         </div>
       </div>
@@ -1703,9 +1703,9 @@
 
       <!-- ✅ contatto diretto + call to action affiancati -->
       <div class="grid">
-        <div class="card reveal attivazione-direct" style="grid-column: span 6;">
+        <div class="card reveal attivazione-direct" style="grid-column: span 5;">
           <div class="inner">
-            <h3 style="margin:0 0 10px;color:var(--blu);letter-spacing:-0.15px;">Contatto diretto</h3>
+            <h3 style="margin:0 0 10px;color:var(--blu);letter-spacing:-0.15px;">I nostri contatti</h3>
 
             <div style="display:grid;gap:10px;">
               <a class="btn" href="tel:0245076435" style="justify-content:flex-start;">
@@ -1716,20 +1716,20 @@
                 ✉️ <span style="font-weight:900;">Email:</span> <span style="color:var(--muted2);">info@migliorshop.it</span>
               </a>
 
-              <a class="btn btn-primary btn-no-shadow direct-appointment-btn" href="https://calendar.app.google/prohXQNL1gghERp96" target="_blank" rel="noopener noreferrer" style="justify-content:flex-start;background:rgb(11, 127, 240);color:#fff;border-color:rgb(11, 127, 240);">
-                <span class="btn-dot"></span><span class="btn-cta-label">Prenota il tuo appuntamento</span>
+              <a class="btn btn-primary btn-no-shadow direct-appointment-btn" href="#" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/migliorshop'});return false;" style="justify-content:flex-start;background:rgb(11, 127, 240);color:#fff;border-color:rgb(11, 127, 240);">
+                <span class="btn-cta-label">Prenota il tuo appuntamento</span>
               </a>
             </div>
           </div>
         </div>
 
-        <div class="card reveal attivazione-cta" style="grid-column: span 6;">
+        <div class="card reveal attivazione-cta" style="grid-column: span 7;">
           <div class="inner" style="height:100%;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;gap:16px;background:linear-gradient(180deg,#eef3ff,#e6eefb);">
             <h3 style="margin:0;color:var(--blu);font-size:clamp(28px, 3.2vw, 38px);letter-spacing:-0.45px;line-height:1.1;">Scoprilo gratis!</h3>
-            <p style="margin:0;color:#1e314d;font-size:16px;line-height:1.45;max-width:34ch;">
+            <p style="margin:0;color:#1e314d;font-size:16px;line-height:1.45;max-width:62ch;">
               Moltiplichiamo gli ordini applicando le strategie al posto tuo, proteggendo il margine e senza che tu debba dedicare tempo.
             </p>
-            <a class="btn btn-primary btn-no-shadow attivazione-demo-btn" href="https://calendar.app.google/prohXQNL1gghERp96" target="_blank" rel="noopener noreferrer">
+            <a class="btn btn-primary btn-no-shadow attivazione-demo-btn" href="#" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/migliorshop'});return false;">
               Fissa una call
             </a>
           </div>
@@ -1761,5 +1761,6 @@
     revealEls.forEach(el=>io.observe(el));
 
   </script>
+  <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
 </body>
 </html>
