@@ -699,7 +699,7 @@
     }
     .plan .name{
       margin:0;
-      font-size: 24px;
+      font-size: 40px;
       color: var(--blu);
       letter-spacing:-0.2px;
     }
@@ -1677,7 +1677,7 @@
           </div>
 
           <div class="footer">
-            <a class="btn btn-primary cta btn-no-shadow" href="#" onclick="return openCalendlyPopup(event);"><span class="btn-dot"></span>Attiva X3</a>
+            <a class="btn btn-primary cta btn-no-shadow" href="#" onclick="return openCalendlyPopup(event);">Attiva X3</a>
           </div>
         </div>
 
